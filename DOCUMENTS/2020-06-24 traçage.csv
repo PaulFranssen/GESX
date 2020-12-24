@@ -1,0 +1,35 @@
+TRAÇAGE
+
+baseG
+
+Thu 11 Jun 2020
+> Wed 24 Jun 2020
+
+DATE,INFOS
+
+Wed 24 Jun 2020 (17:43),édition,vente,Marcel,total: 43000,18 Jun 2020
+Wed 24 Jun 2020 (17:42),import,vente,Marcel,total: 43000,12 jun 2020
+Wed 24 Jun 2020 (17:42),import,vente,Marcel,total: 43000,12 jun 2020
+Wed 24 Jun 2020 (17:40),import,vente,Marcel,total: 43000,12 jun 2020
+Wed 24 Jun 2020 (17:13),édition,vente,Marcel,total: 43000,12 Jun 2020
+Wed 24 Jun 2020 (17:10),édition,vente,Marcel,total: 43000,13 Jun 2020
+Wed 24 Jun 2020 (16:45),édition,vente,Marcel,total: 43000,12 Jun 2020
+Wed 24 Jun 2020 (16:41),édition,vente,Marcel,total: 43000,13 Jun 2020
+Wed 24 Jun 2020 (16:41),édition,vente,Marcel,total: 43000,14 Jun 2020
+Wed 24 Jun 2020 (16:38),ajout,vente,Marcel,total: 8000,15 jun 2020
+Wed 24 Jun 2020 (16:37),suppression,vente,Marcel,total: 167000,24 Jun 2020
+Wed 24 Jun 2020 (16:37),suppression,vente,Marcel,total: 52000,13 Jun 2020
+Wed 24 Jun 2020 (16:37),suppression,vente,Marcel,total: 43000,12 Jun 2020
+Wed 24 Jun 2020 (16:14),édition,vente,Marcel,total: 43000,12 Jun 2020
+Wed 24 Jun 2020 (14:59),ajout,vente,Marcel,total: 52000,13 jun 2020
+Wed 24 Jun 2020 (13:56),édition,vente,Marcel,total: 51000,12 Jun 2020
+Wed 24 Jun 2020 (13:51),édition,vente,Marcel,total: 43000,12 Jun 2020
+Wed 24 Jun 2020 (13:51),suppression,vente,Marcel,total: 43000,12 Jun 2020
+Wed 24 Jun 2020 (13:50),suppression,vente,Marcel,total: 43000,12 Jun 2020
+Wed 24 Jun 2020 (13:50),suppression,vente,Marcel,total: 48000,12 Jun 2020
+Wed 24 Jun 2020 (13:46),édition,vente,Marcel,total: 48000,12 Jun 2020
+Wed 24 Jun 2020 (13:34),édition,vente,Marcel,total: 43000,12 Jun 2020
+Tue 23 Jun 2020 (16:37),correction,coca,théorique: 200,physique: 195,
+Tue 23 Jun 2020 (16:35),suppression,charge 006,erevan,montant: 56200,23 Jun 2020
+Tue 23 Jun 2020 (16:35),ajout,charge 006,erevan,montant: 56200,23 Jun 2020
+Tue 23 Jun 2020 (16:32),suppression,charge 007,erevan,montant: 6000,23 Jun 2020

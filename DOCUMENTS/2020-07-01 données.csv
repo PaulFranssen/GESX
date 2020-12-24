@@ -1,0 +1,18 @@
+DONNÉES,baseG
+
+Wed 01 Jul 2020
+
+ARTICLES INVENTORIÉS
+CODE,DÉSIGNATION,,PV,MIN
+
+BOISSONCHAUDE
+cafeCap,café expresso,V,1000,0
+
+SODA
+coca,coca-cola 33cl,V,1000,10
+
+ARTICLES COMPOSÉS
+CODE,DÉSIGNATION,,PV,COMPOSITION
+
+SODA
+mojito,mojito cocktail,V,6000,cafeCap,"0,5",coca,"0,6"

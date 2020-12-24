@@ -1,0 +1,390 @@
+DONNÉES,baseC
+
+Sat 04 Jul 2020
+
+ARTICLES INVENTORIÉS
+CODE,DÉSIGNATION,,PV,MIN
+
+BIÈRE
+beni,beninoise 33cl,V,1500,0
+bf,beaufort 33cl,V,1500,0
+bièreNA,bière non alcoolisée 25cl,V,2000,0
+cast,castel 33cl,V,1500,0
+despe,desperados 33cl,V,2000,0
+eku,eku 33cl,V,1500,0
+grimbergen,grimbergen bière kriet,V,2000,0
+gui,guinness 33cl,V,2000,0
+hein25,heineken 25 cl,V,2000,0
+lef25,leffe 25 cl,V,2000,0
+panach25,panachee 25cl,V,2000,0
+pils,pils 33cl,V,1500,0
+skol,skol 33cl,V,2000,0
+
+BOISSONCHAUDE
+cafeCap,café en capsule,V,1000,0
+cafeSac,sachet de café,V,1000,0
+cappuccino,1 tasse de cappuccino,V,1500,0
+lipton,1 sachet de lipton,V,0,0
+théCitron,1 thé de citron,V,1500,0
+
+CHAMPAGNE
+affinity,champagne sans alcool,V,30000,0
+champNA,champagne non alcoolisé,V,0,0
+champNARo,champagne non alcoolisé rosé,V,0,0
+fereix,champagne fereixnet prosecco,V,40000,0
+lagaBrut1.5L,lagache brut M 1.5L,V,0,0
+lagaBrutRes,lagache brut réservée ,V,0,0
+lagaNatB,lagache nature blanc,V,0,0
+lagaPrestD1.5L,lagache prestige d1.5L,V,0,0
+lagaRo,lagache rosée,V,0,0
+laurentPer,laurent perrier,V,0,0
+lucBelFantome,bout luc bellaire fantome,V,60000,0
+lucBelRo,luc bellaire rosé,V,0,0
+moetB1.5L,moet brut 1.5L,V,0,0
+moetBrut,moet brut simple,V,0,0
+moetIceImp,moet ice impérial ,V,0,0
+moetNect,moet chandon nectar,V,115000,0
+moetNectRo,meot nectar Rosé,V,115000,0
+moetNectar,bout moet c. nectar,V,80000,0
+moetRo,moet rosé,V,0,0
+princessFr,princesse de france,V,0,0
+remyTresBrut,remy trésor brut,V,0,0
+ruinBlBl,ruinart blanc de blanc,V,0,0
+ruinBrut,ruinart brut,V,0,0
+ruinRo,ruinart rosé,V,0,0
+toso,toso,V,0,0
+trouillard,champagne trouillard,V,60000,0
+veuveClicot,veuve clicot,V,80000,0
+
+CHICHA
+chicha,chicha,V,0,0
+
+CIGARE
+cHabano,cigare cohiba habano,V,0,0
+cHabanoCM,cigare habano cm,V,0,0
+cHoyo,cigare cohiba hoyo,V,0,0
+
+COCKTAIL
+laitCoco,une boite de lait de coco,V,0,0
+
+COGNAC
+calvaVSOP,calvados vsop 70cl,V,0,0
+camusVS,camus vs 70cl,V,0,0
+camusVSOP,bout camus VSOP,V,70000,0
+comteJoseph,comte Joseph,V,110000,0
+comteJosephHA,comte Joseph Hors Age,V,120000,0
+comteJosephVS,comte Joseph VS,V,55000,0
+hennessyVS,hennessy vs 70cl,V,0,0
+hennessyVS1L,bouteille d'un litre de hennessyVS ,V,70000,0
+hennessyVSOP,hennessy vsop,V,60000,0
+hennessyVSOP1L,hennessy vsop 1 L,V,135000,0
+stRemyVSOP,saint remy vsop 70cl,V,0,0
+
+CONSO
+jusCaraf,caraffe de jus,V,2500,0
+verreMousCC,1/14 bout vin mousseux,V,2500,0
+
+CUISINE
+agbama,une portion de agbama,V,0,0
+agneau,viande agneau sans os,V,5000,0
+agneauOs,viande agneau avec os,V,0,0
+akassan,akassan,V,1000,0
+atieke,atiéké une portion,V,1000,0
+attieke,une portion de attieke,V,1000,0
+blancPoulet,blanc de poulet une portion,V,0,0
+boeuf,1 portion de boeuf,V,0,0
+boyau,1 portion de boyau,V,0,0
+calamar,calamar une portion,V,0,0
+crabe,portion de crabe,V,0,0
+crevette,1 portion de crevette,V,0,0
+cuisPoulet,une portion de cuisse de poulet braisée,V,4000,0
+darnePoisson,darne de poisson,V,4000,0
+eminceP,un émince de poulet,V,0,0
+emincePoulet,emincée de poulet,V,4000,0
+farineBle,farine de blé ,V,0,0
+farinePatNoire,1 kg de farine pour patte noire,V,0,0
+farinePateBlanche,farine pour pate blanche,V,1000,0
+farineRouge,farine pour patte rouge,V,0,0
+filetBoeuf,1 portion de filet de boeuf,V,4000,0
+filetPoisson,filet de poisson,V,4000,0
+frite,1 portion de frites,V,1000,0
+fromage,fromage en tranche,V,0,0
+gambas,1 portion de gambas,V,0,0
+gateauRiz,1 portion gateau de riz,V,0,0
+gesier,1 portion de gesier,V,0,0
+haricotV,haricot vert,V,1000,0
+langueB,1 portion de langue de boeuf,V,0,0
+langueBoeuf,1 portion de langue de boeuf,V,4000,0
+mais300G,"maïs doux, boite de 300g",V,0,0
+maisDoux,1 portion de maïs doux,V,0,0
+merguez,1 portion merguez,V,0,0
+oeuf,un oeuf,V,0,0
+pain,pain pour soupe,V,500,0
+painChaw,1 portion de pain chawarma,V,0,0
+painHamb,1 portion de pain hamburger,V,0,0
+painSandw,1 portion de pain pour sandwich,V,0,0
+patRouge,portion de pate rouge,V,1000,0
+pateRouge,pate rouge,V,1000,0
+petitPois,1 portion de petit pois,V,0,0
+pintade,1 portion de pintade,V,4000,0
+piron,plat de piron,V,1000,0
+poisson,1 portion de poisson,V,0,0
+poissonFume,poisson fumé,V,0,0
+pommeKG,pomme en kg,V,0,0
+poulet,1 portion de poulet,V,0,0
+pouletBi,1 portie de poulet bicyclette,V,0,0
+pouletCuisse,cuisses de poulet ,V,3000,0
+riz,1 portion de riz,V,0,0
+rizCant,1 portion de riz cantonais,V,0,0
+saladeFruit,plat salade de fruit,V,2000,0
+sauceBlokoto,sauce de blokoto,V,5000,0
+spagh,1 portion de spaghettis,V,1000,0
+thon,1 portion de thon,V,0,0
+tilapiaG,poisson tilapia,V,5000,0
+tilapiaM,poisson tilapia moyen,V,4000,0
+viandeBro,1 portion de boeuf pour 1 brochette,V,0,0
+viandeChaw,viande pour chawarma,V,0,0
+viandeH,viande hachée une portion,V,0,0
+viandeNem,1 portion de viande pour nems,V,0,0
+wangache,1 portion de wangache,V,0,0
+
+DIVERSALCOOL
+Get27,Get 27,V,0,0
+absenta,absenta,V,0,0
+agavita,tequila agavita,V,0,0
+baileys,baileys,V,0,0
+bols,vodka bols 70cl,V,0,0
+boris,vodka boris,V,0,0
+bottega,liqueur bottega 70cl,V,0,0
+brizL,liqueur marie brizard mp,V,0,0
+campari,liqueur campari 1L,V,0,0
+cointreau,liqueur cointreau,V,0,0
+cointreau350,cointreau 350 cl,V,0,0
+diplomatico,rhum diplomatico,V,0,0
+disaronno,disaronno,V,0,0
+droitBouchon,droit de bouchon,V,10000,0
+gordons,bout gordons,V,20000,0
+grants,liqueur grants,V,0,0
+grdMarnier,bout grand marnier,V,0,0
+jelzin,vodka jelzin 70cl,V,0,0
+kamel,rhum kamel 70cl,V,0,0
+litchiL,liqueur litchi,V,0,0
+malibu,malibu,V,0,0
+mangPaL,liqueur mangue passion,V,0,0
+martiniB,martini blanc 1L,V,0,0
+martiniR,martini rouge,V,0,0
+martiniRo,martini rosé,V,0,0
+molinari,bout de molinari,V,25000,0
+orangeSec,orange sec ,V,0,0
+pachuca,tequila pachuca 70cl,V,0,0
+podere,bout de podere,V,25000,0
+ricard,liqueur ricard,V,0,0
+sanjoseS,tequila sanjose silver,V,0,0
+savoy,vodka savoy ,V,0,0
+smirnof,vodka smirnof,V,0,0
+stJamesB,rhum saint james blanc 1L,V,0,0
+stJamesR,rhum saint james rouge 1L,V,0,0
+stPaul,rhum saint paul 70cl,V,0,0
+stoli,vodka stolichnaya 70cl,V,0,0
+sucreCan,bout sucre de canne 0.7L,V,0,0
+suze,liqueur suze,V,0,0
+tBlanc,tequila blanc 70cl,V,0,0
+tChoco,tequila chocolat,V,0,0
+tElCobrizo,tequila el cobrizo,V,20000,0
+tOnOffHecho,bout tequilla on off hecho 70 cl,V,20000,0
+tripleSec,liqueur triple sec 70cl,V,0,0
+vodkaFili,vodka filirt,V,20000,0
+vodkaKavenina,vodka,V,20000,0
+vodkaPoliakov,vodka poliakov,V,20000,0
+yeniRaki,bout de yeni raki,V,25000,0
+
+EAU
+eau,eau 50cl,V,1000,0
+eau1.5,eau 1.5L,V,2000,0
+eauGaz,eau gazefiee 50cl,V,1000,0
+perrier,perrier 33cl,V,0,0
+
+GADGETSEVENT
+gadget,tshirt,V,5000,0
+gadgetStval,"coffret, coeur petit et grand",V,0,0
+
+JUS
+jAnanas,jus ananas 1L,V,0,0
+jBanane,jus banane 1L,V,0,0
+jGoyave,jus goyave 1L,V,0,0
+jMangue,jus mangue 1L,V,0,0
+jOrange,jus orange 1L,V,0,0
+jPamplem,jus pamplemousse 1L,V,0,0
+jPomme,jus pomme 1L,V,0,0
+jRaisin,jus raisin 1L,V,0,0
+jTamarin25,jus tamarin 25cl,V,0,0
+jus1L,1 L jus,V,0,0
+
+LAIT
+lait,lait 1L,V,0,0
+
+SIROP
+sBanane,sirop banane 1L,V,0,0
+sCanne,sirop de canne,V,0,0
+sCassis,sirop de cassis,V,0,0
+sFraise,sirop fraise 1L,V,0,0
+sGinger1L,sirop gingembre 1 L,V,0,0
+sGrenadine,sirop grenadine 1L,V,0,0
+sMenthe,sirop menthe 1L,V,0,0
+sPamplem,sirop pamplemousse 1L,V,0,0
+sPassion,sirop passion,V,0,0
+sPeche,sirop pêche 1L,V,0,0
+sTamarin,sirop tamarin 1 L,V,0,0
+sTomate,sirop tomate 1L,V,0,0
+sirop1L,bout sirop,V,0,0
+
+SODA
+coca,coca 33cl,V,1000,0
+cocaSS,cannette de coca sans sucre,V,2000,0
+sprite,sprite,V,1000,0
+spriteP,sprite plastique 33cl,V,0,0
+tonic,tonic 33cl,V,1000,0
+
+VERRECASSE
+verreBW,verre a bierre ou wisky,V,2000,0
+verreCV,verre à vin casse,V,2000,0
+
+VINBLANC
+baumeB,bout dom baume blanc,V,0,0
+chastSauvB,bout chastagnac Sauvignon blanc,V,0,0
+chretBM,chretienne blanc moelleux,V,15000,0
+cotLayon,coteaux du Layon,V,25000,0
+granitierBM,admirable granitier blanc moelleux,V,15000,0
+haussB,bout haussmann blanc,V,0,0
+luisEsB,bout luis esch blanc,V,0,0
+marBernB,bout marquis bern blanc,V,0,0
+marsanB,bout chat marsan blanc,V,0,0
+messidor,messidor,V,25000,0
+monbazB,bout monbazillac blanc,V,0,0
+muscadetAntique,muscadet antiqe,V,15000,0
+premius,vin blanc Premius,V,25000,0
+rocheMazB,bout roche mazet blanc,V,0,0
+taraniB,bout tarani blanc,V,15000,0
+taraniBM,tarani blanc Moeulleux,V,15000,0
+
+VINMOUSSEUX
+celeneCRBrut,bouteil de vin mouseux,V,25000,0
+coolR,bouteille de vin mousseux,V,15000,0
+cremAlsM,bou crément Alsace mousseux,V,0,0
+jourSpB,bout journée spéciale blanc,V,0,0
+jourSpRo,bout journée spéciale rosée,V,12000,0
+jpB,bout jp chenet blanc,V,12000,0
+jpRo,bout jp chenet rosé,V,12000,0
+jpRo1.5,jp chenet rosé 1.5 L,V,30000,0
+martiPeRo,bout martini pétillant rosé,V,20000,0
+musca,bout muscador mousseux,V,0,0
+prosecco,bouteil de vin mousseux,V,35000,0
+
+VINROSÉ
+bePink,cannette de vin rosé Be Pink,V,2500,0
+calend,bout les calendières vin rosé,V,0,0
+chastSyRo,bout chastagnac syrah rosé,V,0,0
+haussSyRo,haussmann Syrah Rosé,V,15000,0
+monsBordRo,monsieur Bordeaux rosé,V,20000,0
+rocheMazRo,bout roche mazet rosé,V,0,0
+taraniRo,bout tarani rosé,V,0,0
+
+VINROUGE
+alexanderGreat,vin rouge alexander the great,V,12000,0
+armEmil,bout armes royales st emilion rouge,V,0,0
+balast,bout haut balastard rouge,V,0,0
+baumeR,bout domaine de la baume rouge,V,0,0
+bordEru,bout bordeaux sup eru rouge,V,0,0
+bouey,bout maison bouey rouge,V,0,0
+cadiot,cadiot 2016,V,30000,0
+calvetRes,bout calvet grde reserve rouge,V,0,0
+carilloR,bouteille de vin rouge carillonade,V,20000,0
+chastMerl,chastagnac merlot,V,15000,0
+chastR,chastagnac  cabernet sauvignon,V,15000,0
+chatBelAir,chateau Bel Air,V,25000,0
+chatCol,bout chateau colombier rouge,V,0,0
+chatFer,bout chateau ferrande rouge,V,0,0
+chatFerboy,chateau Ferboy,V,15000,0
+chatGrandJardin,vin rouge chat grand jardin,V,20000,0
+chatHautRoulet,chateau Haut Roulet,V,20000,0
+chatMarl,bout chateau marlène,V,12000,0
+chatMartin,bout chateau haut st martin rouge,V,0,0
+chatMoinesMen,chateau moines menodin,V,15000,0
+chateauLary,chateau lary,V,20000,0
+chevalierLand,chevalier Landerac bx sup,V,20000,0
+chretMerl,bout chretienne merlot rouge,V,0,0
+chretR,bout chretienne rouge,V,12000,0
+fiolePap,bout fiole pape rouge,V,0,0
+gPalais,bout grand palais rouge,V,0,0
+gPuch,bout grand puch rouge,V,0,0
+grandNoir,bout le grd noir ,V,25000,0
+hMedoc,bout le haut medoc rouge,V,0,0
+haussCabS,haussmann cabernet sauvignon,V,15000,0
+haussCabSauv,haussmann cabernet sauvignon,V,15000,0
+haussMerl,haussmann merlot rouge,V,15000,0
+haussR,bout haussmann rouge,V,0,0
+leBellevue,Le Belleue,V,12000,0
+loireMarchaisCab,Loire Marchais Cabernet Franc,V,12000,0
+luisEsR,bout luis eschenauer rouge,V,0,0
+magnumRempVir,magnum les remparts du Virou,V,45000,0
+malesan,bout malesan bordeau rouge,V,0,0
+marBois,bout marquis bois rouge,V,0,0
+marsanR,bout chateau marsan rouge,V,0,0
+mazMerl,bout roche mazet merlot rouge,V,0,0
+mazSauv,bout roche mazet sauv rouge,V,0,0
+monsBord,bout monsieur bordeaux rouge,V,0,0
+monsBordSup,monsieur de bordeau superieur,V,25000,0
+moutCadNor,bout mouton cadet normal rouge,V,20000,0
+moutCadRes,bout mouton cadet reserve,V,0,0
+noirMerl,bout le grd noir merlot rouge,V,25000,0
+oustric,bout domaine oustric rouge,V,0,0
+picnicR,vin rouge picnic,V,12000,0
+puissantEleg,puissant et elegant cabSauv,V,15000,0
+rempVirou,remparts du virou,V,25000,0
+rocheMazR,bout roche mazet rouge,V,0,0
+sagesse,bout sagesse rouge,V,0,0
+seigneurieEnclos,seigneurie de l'enclos 2015,V,20000,0
+taraniR,bout tarani rouge,V,15000,0
+
+WHISKY
+aber,bout aberlour ,V,0,0
+ben,bout benriach,V,0,0
+blackLab,bout black label 70 cl ,V,40000,0
+blackLab1,bout black label 1L,V,0,0
+cardhu,bout cardhu,V,60000,0
+chivas12,bout chivas 12 ans 70cl,V,0,0
+chivas12-1,bout chivas 12 ans 1L,V,0,0
+chivas18,bout chivas 18 ans 70cl,V,0,0
+chivas18-1,bout chivas 18 ans 1L,V,0,0
+chivasEx,bout chivas extra 70cl,V,0,0
+dimple,bou dimple,V,0,0
+doubleB1,bout double black 1L,V,0,0
+doubleBlack,bout double black 70cl,V,0,0
+glenB12,bout glenfiddich blanc 12 ans 70cl,V,0,0
+glenB12L,glenfiddich 12 ans un litre,V,80000,0
+glenRo15,bout glenfiddich rosé 15 ans 70cl,V,0,0
+glenRo18,bout glenfiddich rosé 18 ans 70cl,V,0,0
+glenlivet,bout glenlivet 70cl,V,0,0
+goldBar,bout gold bar 70cl,V,0,0
+goldLab,bout gold label 70cl,V,0,0
+jack,bout jack daniel 70cl,V,30000,0
+jack1,bout jack daniel 1L,V,0,0
+jackBar,bout jack barrel 70cl,V,0,0
+jackGent,bout jack gentleman 70cl,V,0,0
+jackHo,bout jack honey 70cl,V,30000,0
+jackSilv,bout jack silver 70cl,V,0,0
+jb,bout jb 70cl,V,0,0
+jbRes,bout de jb réserve 15 ans,V,60000,0
+redLab70,bout red label 70cl,V,0,0
+redLab75,red label 0.75 L,V,30000,0
+single,bout singleton 75cl,V,0,0
+will,bout williams lawson 70cl,V,0,0
+
+ÉNERGÉTIQUE
+BlackColaEnergy,black cola Energy drink,V,2000,0
+atomic,atomic 33cl,V,2000,0
+power,black power ,V,2000,0
+redBull,red bull 33cl,V,2000,0
+rox,rox 33cl,V,2000,0
+speedEnergy,speed energy,V,2000,0
+xxl,xxl 33cl,V,2000,0
