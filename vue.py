@@ -13,7 +13,7 @@ import sys
 from constants import *
 from model import *
 from func import *
-from control import *
+#from control import *
 
 
 class PF(Frame):

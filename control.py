@@ -100,7 +100,7 @@ class Base:
 
         else:
             if self.connexion:
-                print('connexion à la base de données', )
+                print('connexion à la base de données ')
 
     def enregistrer(self):
         self.connexion.commit()
