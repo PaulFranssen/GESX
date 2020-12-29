@@ -1,0 +1,29 @@
+TRAÇAGE
+
+b1
+
+Wed 16 Dec 2020
+> Tue 29 Dec 2020
+
+DATE;INFOS
+
+Tue 29 Dec 2020 (11:25);édition;article;mix;spécial mix;soda
+Tue 29 Dec 2020 (10:54);édition;article;mix;spécial mix;soda
+Tue 29 Dec 2020 (10:51);ajout;vente;carl;total: 2000;29 Dec 2020
+Tue 29 Dec 2020 (09:24);édition;article;mix;spécial mix;soda
+Mon 28 Dec 2020 (21:12);ajout;vente;carl;total: 2000;28 Dec 2020
+Mon 28 Dec 2020 (21:11);ajout;article;mix;spécial mix;soda
+Mon 28 Dec 2020 (21:10);suppression;vente;carl;total: 1000;28 Dec 2020
+Mon 28 Dec 2020 (21:09);ajout;vente;carl;total: 1000;28 Dec 2020
+Mon 28 Dec 2020 (21:07);ajout;achat A002;erevan;total: 400;28 Dec 2020
+Mon 28 Dec 2020 (21:07);suppression;achat A002;erevan;total: 900;28 Dec 2020
+Mon 28 Dec 2020 (21:06);ajout;article;sprite;sprite 25cl;soda
+Mon 28 Dec 2020 (21:04);suppression;vente;carl;total: 1000;28 Dec 2020
+Mon 28 Dec 2020 (20:58);édition;vente;carl;total: 1000;28 Dec 2020
+Mon 28 Dec 2020 (20:50);ajout;vente;carl;total: 1000;27 dec 2020
+Mon 28 Dec 2020 (20:45);ajout;achat A002;erevan;total: 900;28 dec 2020
+Sun 27 Dec 2020 (18:46);édition;achat A001;erevan;total: 400;27 Dec 2020
+Sun 27 Dec 2020 (18:41);correction;coca;théorique: 2;physique: 2;
+Sun 27 Dec 2020 (17:58);édition;achat A001;erevan;total: 400;27 Dec 2020
+Sun 27 Dec 2020 (17:57);ajout;achat A001;erevan;total: 2000;27 Dec 2020
+Sun 27 Dec 2020 (17:52);ajout;article;coca;coca 25cl;soda

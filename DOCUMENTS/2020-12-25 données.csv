@@ -1,0 +1,172 @@
+DONNÉES,baseC1
+
+Fri 25 Dec 2020
+
+ARTICLES COMPOSÉS
+CODE,DÉSIGNATION,,PV,COMPOSITION
+
+BOISSONCHAUDE
+theCitron,thé lipton au citron,V,1500,lipton,1
+thé,un thé avec lipton,V,1000,lipton,1
+théTGV,thé spécial TGV,V,1500,sGinger1L,"0,1"
+
+COCKTAIL
+akpakpa,cocktail akpakpa,V,3500,kamel,"0,12",sucreCan,"0,04",speedEnergy,"0,5"
+amour,cocktail Amour,V,3000,stJamesR,"0,05"
+dapaong,cocktail dapaong,V,4000,stJamesB,"0,05",stJamesR,"0,05",sirop1L,"0,1"
+elom,cocktail elom,V,4000,cremAlsM,"0,07",sucreCan,"0,07"
+ganhi,cocktail ganhi,V,3500,stJamesB,"0,05",sucreCan,"0,07"
+haieVive,cocktail haie vive,V,3500,tripleSec,"0,07",grdMarnier,"0,07",orangeSec,"0,07"
+malibuOrange,cocktail malibu avec du jus,V,3000,jus1L,"0,2",malibu,"0,07"
+mojitoClassic,cocktail mojito classic,V,3500,sucreCan,"0,04",kamel,"0,1",spriteP,"0,11"
+mojitoParf,cocktail de mojito parfumé,V,3000,sucreCan,"0,04",kamel,"0,1",spriteP,"0,11"
+mojitoVierge,mojito sans alcool,V,2500,sucreCan,"0,04",spriteP,"0,2"
+pinkMiami,1 cocktail pinkmiami,V,2500,jus1L,"0,05",sirop1L,"0,15"
+planB,coctail plan B,V,6000,agavita,"0,07",gordons,"0,07",stoli,"0,07"
+planteur,cocktail planteur,V,2500,sirop1L,"0,2",jus1L,"0,05"
+punchCaraib,cocktail punch caraibénne,V,2500,jus1L,"0,2",sirop1L,"0,1"
+quartierJac,cocktail quartier Jac,V,3000,agavita,"0,07",sirop1L,"0,14"
+sexAple,cocktail sex apple,V,2500,jus1L,"0,25"
+stadeAmitie,cocktail stade d'amitié,V,3500,gordons,"0,07",stoli,"0,07",malibu,"0,07"
+tgv1,cocktail tgv1,V,3000,agavita,"0,07",gordons,"0,07",stoli,"0,07"
+tgv2,cocktail tgv2,V,4000,agavita,"0,07",get27,"0,06",stoli,"0,08"
+tgv3,"tequila, grenatdine, vodka",V,3000,stoli,"0,07",sirop1L,"0,03",agavita,"0,07"
+tgvNA,cocktail TGV non alcoolisé,V,2500,sTamarin,"0,5",sGinger1L,"0,05"
+tgvRoyal,cocktail tgv royal,V,8000,cremAlsM,"0,07",stoli,"0,07"
+toiMoi,cocktail toi et moi,V,3500,stRemyVSOP,"0,07",sirop1L,"0,1",sGinger1L,"0,05"
+tropical,cocktal NA tropical,V,2500,jus1L,"0,2"
+tvg1,cocktail tgv1,V,3000,pachuca,"0,07",gordons,"0,07",stoli,"0,07"
+
+CONSO
+absentaC,1 conso de absenta,V,2000,absenta,"0,07"
+agavitaC,conso de bout agavita,V,2500,agavita,"0,07"
+baileysC,1 conso de baileys,V,2500,baileys,"0,07"
+blackLabC,conso black label 0.7L,V,4000,blackLab,"0,08"
+campariC,1/16 de campari 1L,V,2500,campari,"0,06"
+champagneV,une coupe de champagne,V,10000,lagaBrutRes,"0,2"
+chivas12-1C,conso chivas12 1L,V,3500,chivas12-1,"0,06"
+chivas12C,conso chivas12 0.7L,V,3500,chivas12,"0,08"
+gingerC,un verre de gingembre dilué,V,1000,sGinger1L,"0,05"
+gingerShort,une short de gingmbre,V,500,sGinger1L,"0,05"
+glenB12C,conso glenfiddich 12 ans ,V,5000,glenB12L,"0,08"
+gordonsC,1 conso de gordons,V,2500,gordons,"0,08"
+grdMarnierC,conso grand marnier,V,5000,grdMarnier,"0,2"
+hennessyVSC,1 conso hennessy vs,V,5000,hennessyVS,"0,11"
+jackC,1 conso de jack daniels,V,3000,jack,"0,08"
+jbC,jb conso,V,3000,jb,"0,08"
+jusCarafe,carafe de jus,V,2500,jus1L,"0,5"
+jusV,1 verre de jus,V,1500,jus1L,"0,25"
+martiniBC,conso martini blanc,V,2000,martiniB,"0,06"
+martiniRC,1 conso martini rouge,V,2000,martiniR,"0,06"
+orangeSecC,conso orange Sec,V,3000,orangeSec,"0,07"
+pachucaC,1 conso de Pachuca,V,2500,pachuca,"0,07"
+redLabC,1 conso de red label,V,3000,redLab75,"0,08"
+ricardC,1 conso de ricard,V,2000,ricard,"0,06"
+sGinger1V,verre de sirop ginger,V,1000,sGinger1L,"0,1"
+sanjoseSC,conso de sanjose,V,2000,sanjoseS,"0,07"
+siropC,1 conso de sirop ,V,1000,sirop1L,"0,05"
+stJamesBC,conso st james Blanc,V,2500,stJamesB,"0,06"
+stJamesRC,conso saint James,V,2500,stJamesR,"0,06"
+stoliC,conso stoli,V,2000,stoli,"0,07"
+suzeC,conso de suze,V,2500,suze,"0,06"
+tripleSecC,conso de triple sec,V,2500,tripleSec,"0,07"
+verreMoussCC,1/14 vin mousseux,V,2500,cremAlsM,"0,07"
+vinR1V,un verre de vin rouge,V,5000,chretMerl,"0,25"
+willC,conso bout de william,V,2500,will,"0,07"
+
+CUISINE
+agneauSauce,agneau sauce arachide,V,0,agneauOs,1
+agneauSauté,agneau sauté,V,0,agneauOs,1
+alloco,1 portion de alloco,V,500,oeuf,0
+assokui,sauce légume assokui,V,4000,agneauOs,"0,5",wangache,1,poissonFume,1
+beignetCrevet,Beignets de crevettes,V,4000,crevette,1,farineBle,1,oeuf,1
+broBoeuf,une brochette de boeuf,V,4000,filetBoeuf,"0,5"
+broMerguez,brochette de merguez,V,2000,merguez,1
+broMixte,mini brochette mixte,V,2000,filetBoeuf,"0,5",blancPoulet,"0,5",merguez,"0,5"
+broPoisson,1 portion darne de poisson,V,4000,poisson,1
+broPoulet,1 brochette de poulet,V,1500,blancPoulet,"0,5"
+chawPoulet,chawarma poulet,V,2000,painChaw,1,blancPoulet,"0,5",frite,"0,5"
+chawTGV,chawarma tgv,V,2500,painChaw,1,filetBoeuf,"0,5",fromage,1
+chawViande,chawarma de viande,V,2000,painChaw,1,filetBoeuf,"0,5",frite,"0,5"
+cheeseBurger,cheese burger,V,2500,painHamb,1,fromage,1,viandeH,1
+chickenBurg,chicken burger,V,3000,painHamb,1,blancPoulet,1,fromage,2
+choucMouton,choucouya de mouton,V,2500,agneau,1
+choucPoule,choucouyta de poulet,V,2500,blancPoulet,1
+choucPoulet,choucouya de poulet,V,2500,blancPoulet,1
+crepe,un plat de crepe,V,1000,oeuf,1
+cuissPoulet,cuisse de poulet,V,4000,pouletCuisse,1
+doubleHamb,double hamburger,V,4000,painHamb,1,viandeH,2,fromage,2
+duoBroBoeuf,duo brochette boeuf,V,3000,filetBoeuf,1
+duoBroMerguez,duo brochette merguez,V,3000,merguez,2
+duoBroPoulet,duo brochette au poulet,V,3000,blancPoulet,1
+eggCheese,egg cheese burger,V,3500,painHamb,1,oeuf,1,viandeH,1
+eminceBoeufSc,emince boeuf sauce creme,V,5000,filetBoeuf,1
+emincePoul,emincé de poulet,V,4000,blancPoulet,1
+emincePoule,emincé de poulet,V,4000,blancPoulet,1
+escaloPouletSC,escalope poulet sauce crême,V,4000,poulet,1
+escalopoulet,escalope de poulet,V,4000,blancPoulet,1
+filetBoeufSauP,filet de boeuf sauce piquante,V,4000,filetBoeuf,1
+filetPoissonSc,filet poisson sauce creme,V,5000,poisson,1
+filetPoissons,plat filet de poisson,V,4000,poisson,1
+gbekuin,légume,V,4000,poissonFume,1,agneauOs,"0,5",wangache,1
+hamburger,hamburger,V,2000,painHamb,1,viandeH,1,frite,"0,5"
+legumeSaut,1 portion de légume sauté,V,1000,oeuf,0
+miniBroBoeuf,1 plat de 4 mini broch de boeuf,V,0,filetBoeuf,"0,5"
+miniBroMergez,mini brochette mergez,V,2000,merguez,1
+nemBoeuf,1 portion de 4 nems de boeuf,V,2000,viandeNem,1
+nemPoulet,nems de poulet,V,2000,blancPoulet,1
+omelFromage,omelette au fromage,V,2500,oeuf,2,fromage,2
+omelNature,omelette nature,V,1500,oeuf,2
+patNoire,1 portion de patte noire,V,1000,farinePatNoire,1
+patRouges,patte rouge,V,1000,farineRouge,"0,25"
+pateBlanche,portion de pate blanche,V,1000,farinePateBlanche,1
+pateRougeB,pate rouge,V,1000,farinePateBlanche,1
+petitPois*,plat de petit pois,V,2000,petitPois,1,filetBoeuf,1
+petitPois1,plat petit pois,V,1000,petitPois,"0,67",painSandw,"0,5"
+pommeSaute,portion de pomme,V,1000,pommeKG,"0,5"
+pouletBraise,poulet braisé,V,2500,poulet,1
+purePomme,purée de pomme,V,1000,pommeKG,"0,5"
+rizCanto,riz cantonais,V,1000,riz,1,oeuf,3
+rizCantonais,riz cantonai,V,10000,riz,1,oeuf,2
+saladeAvoCrevette,salade avocat au crevette,V,4000,crevette,1,painSandw,"0,5"
+saladeAvoPoulet,salade avocat au poulet,V,3000,blancPoulet,1,painSandw,"0,5"
+saladeCompo,salade compose,V,6000,crevette,1,blancPoulet,"0,5",oeuf,1
+saladeCrudite,salade de crudité,V,2500,oeuf,0
+saladeMixte,salade mixte,V,3000,oeuf,1,thon,"0,5",painSandw,"0,5"
+saladePoulet,salade au poulet,V,3000,thon,"0,5",blancPoulet,"0,5",painSandw,"0,5"
+saladePouletBi,salade au poulet bicyclette,V,4500,pouletBi,"0,5",thon,"0,5",painSandw,"0,5"
+saladeTGV,salade tgv,V,3000,mais300G,"0,5",blancPoulet,"0,5",painSandw,"0,5"
+sandwPoulet,sandwich de poulet,V,2000,painSandw,1,blancPoulet,"0,5"
+sandwSteak,sandwich steak,V,2500,filetBoeuf,"0,5",painSandw,1,mais300G,1
+sandwViande,sandwich avec viande de boeuf,V,2000,filetBoeuf,1,painSandw,1
+sandwich,sandwich,V,2000,painSandw,1,filetBoeuf,"0,5"
+sandwichTGV,sandwich TGV,V,2500,painSandw,1,filetBoeuf,"0,5",fromage,2
+sauceArachide,sauce arachide,V,5000,wangache,1,agneauOs,"0,5",poissonFume,1
+sauceCreme,sauceCreme,V,4000,blancPoulet,1
+sauceCrinCrin,sauce crincrin,V,5000,agbama,1,poissonFume,1,crabe,1
+sauceGombo,sauce de gombo,V,5000,crabe,1,wangache,1,poissonFume,1
+soupeBoyau,soupe de boyau,V,5000,boyau,1,painSandw,"0,5"
+soupePoisson,soupe de poisson,V,4000,poisson,1
+spagBolo,spaghetti bolognaise,V,4000,viandeH,1,spagh,"1,25",fromage,1
+steakChamp,steak au champignon,V,4000,filetBoeuf,1
+trioBroBoeuf,trio brochette de boeuf,V,4000,filetBoeuf,"1,5"
+trioBroPoisson,trio brochette de poisson,V,7500,darnePoisson,"1,5"
+trioBroPoulet,trio brochette de poulet,V,4000,blancPoulet,"1,5"
+trioBromerguez,trio brochette de merguez,V,4000,merguez,3
+
+DIVERSALCOOL
+cointreauC,conso cointreau,V,2500,cointreau,"0,08"
+tBlancC,conso tequila blanco,V,2500,agavita,"0,07"
+
+SIROP
+sirop1V,sirop,V,2000,sirop1L,"0,2"
+
+VINROSÉ
+bePinkPack,4 cannettes de vin Rosé,V,7500,bePink,4
+
+VINROUGE
+vinB1V,un verre de vin blanc,V,0,chretBM,"0,25"
+vinRouge1V,une coupe de chret rouge,V,5000,chretR,"0,25"
+
+WHISKY
+dimpleC,conso AR de bout Dimple,V,6000,dimple,"0,11"
