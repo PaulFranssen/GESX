@@ -163,6 +163,8 @@ pad_45 = {'padx': 20}
 kw_47 = {'selectcolor': color_32, 'font': (police_1, taille_4), 'bg': color_32, 'fg': color_37, 'bd': 0,
          'activebackground': color_32, 'relief': 'flat', 'highlightthickness': 0, 'highlightcolor': color_32,
          'activeforeground': color_37, 'takefocus': 0}
+kw_47b = {'font': (police_1, taille_4), 'bg': color_32, 'fg': color_32, 'bd': 0
+         , 'relief': 'flat'}
 pad_47 = {}
 
 # checkbutton d encodage (en vente, amortissement, ...) dans situation à 2 colonnes

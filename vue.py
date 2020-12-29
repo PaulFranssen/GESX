@@ -80,7 +80,7 @@ class Frame1(Frame):
         me.add_separator()
         me.add_command(label='Articles inventoriés', underline=0, command=self.command10, **kw_2)
         me.add_command(label='Articles composés', command=self.command22, **kw_2)
-        me.add_command(label='Articles non-inventoriés', command=self.command32, **kw_2)
+        #me.add_command(label='Articles non-inventoriés', command=self.command32, **kw_2)
         me.add_separator()
 
         me.add_command(label='Tiers', command=self.command5, **kw_2)
@@ -791,11 +791,12 @@ class Frame59(Frame):
         Checkbutton(cadre9, text="Catégories d'articles".upper(), variable=self.cat, **kw_47).pack(**pad_48)
         Checkbutton(cadre13, text="articles inventoriés".upper(), variable=self.inv, **kw_47).pack(**pad_48)
         Checkbutton(cadre10, text="articles composés".upper(), variable=self.comp, **kw_47).pack(**pad_48)
-        Checkbutton(cadre14, text="articles non-inventoriés".upper(), variable=self.non, **kw_47).pack(**pad_48)
-        Checkbutton(cadre11, text="articles en vente".upper(), variable=self.ven, **kw_47).pack(**pad_48)
-        Checkbutton(cadre15, text="tiers".upper(), variable=self.tie, **kw_47).pack(**pad_48)
-        Checkbutton(cadre12, text="employés".upper(), variable=self.emp, **kw_47).pack(**pad_48)
-        Checkbutton(cadre16, text="types de charges".upper(), variable=self.typ, **kw_47).pack(**pad_48)
+        #Checkbutton(cadre14, text="articles non-inventoriés".upper(), variable=self.non, **kw_47).pack(**pad_48)
+        Checkbutton(cadre14, text="articles en vente".upper(), variable=self.ven, **kw_47).pack(**pad_48) #11
+        Checkbutton(cadre11, text="tiers".upper(), variable=self.tie, **kw_47).pack(**pad_48) # 15
+        Checkbutton(cadre15, text="employés".upper(), variable=self.emp, **kw_47).pack(**pad_48)#12
+        Checkbutton(cadre12, text="types de charges".upper(), variable=self.typ, **kw_47).pack(**pad_48)#16
+        Label(cadre16, text='', **kw_47b).pack(**pad_48)
         # détails cadre t
         Label(cadre7, text='RÉPERTOIRE-CIBLE', **kw_11).pack(**pad_11, side=LEFT)
         e1 = Entry(cadre7, width=l_path, textvariable=self.path, **kw_12)
