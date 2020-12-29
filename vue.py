@@ -1591,7 +1591,7 @@ class Frame49(Frame):
         print('root', root)
 
         self.importe = StringVar()
-        self.nom = StringVar()
+        self.nom = StringVar()                           
         self.def_importe = IntVar()
         self.def_nom = IntVar()
         self.comment = StringVar()

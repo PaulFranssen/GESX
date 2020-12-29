@@ -1,6 +1,6 @@
 DONNÉES;baseC1
 
-Tue 29 Dec 2020
+Wed 30 Dec 2020
 
 ARTICLES EN VENTE
 CODE;DÉSIGNATION;PV
@@ -148,7 +148,6 @@ vinR1V;un verre de vin rouge;5000
 willC;conso bout de william;2500
 
 CUISINE
-agbama;une portion de agbama;0
 agneau;viande agneau sans os;5000
 agneauOs;viande agneau avec os;0
 agneauSauce;agneau sauce arachide;0

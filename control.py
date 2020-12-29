@@ -2462,7 +2462,7 @@ class Base:
 
             if kw['def_importe'].get():
                 try:
-                    with open(f_dirImport, 'w', encoding='latin-1') as f:
+                    with open(f_dirImport, 'w', encoding='utf-8') as f:
                         f.write(importe)
                 except OSError as com:
                     comment.set(com)
@@ -2470,7 +2470,7 @@ class Base:
 
             if kw['def_nom'].get():
                 try:
-                    with open(f_nameImport, 'w', encoding='latin-1') as f:
+                    with open(f_nameImport, 'w', encoding='utf-8') as f:
                         f.write(nom)
                 except OSError as com:
                     comment.set(com)
@@ -4569,7 +4569,7 @@ class Base:
             # situation abandonnée
             print("ad=0 calcul de la marge brute")
             # article non-inventorié (rechercher la quantité achetée)
-            marge -= self.function_41b(x, y, z)
+            marge -= self.function_41b(art_id, y, z)
 
         return tot, marge, qte
 
