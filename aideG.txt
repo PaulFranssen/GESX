@@ -1,0 +1,91 @@
+GESX
+Programme de gestion
+
+OBJECTIFS
+	-suivi des stocks 
+	-suivi financier (gestion des factures, analyse des résultats)
+	-contrôle distanciel (via une base de données partagée)
+
+FONCTIONNEMENT GENERAL
+	Les données sont conservées dans une base de données locale.
+	
+	Au quotidien, l'utilisateur encode les factures d'achats, les charges et les ventes effectuées.
+	
+	Les ventes peuvent être encodées ou importées via un fichier généré par le programme de caisse compatible.
+
+	Pour réaliser l'inventaire, on imprime l'inventaire théorique et le gestionnaire de stock compte le réel.
+	On encode ainsi les corrections de stocks et justifications pour un contrôle contradictoire et le maintient du stock à jour.
+	
+	Un analyse des résultats financiers peut-être effectuée entre deux dates données.
+
+	Les articles venant à manquer sont signalés dans un document généré par le programme, selon un crière de stock minimum.
+
+	Le traçage des différents enregistrements effectués (factures, corrections de stocks,...) permet un (auto-)contôle.
+
+GESTION DES FICHIERS ET DE LA BASE DE DONNEES
+	Le module de lancement se nomme GX. Il se trouve dans le dossier GESX.
+	
+	Dans GESX se trouve notamment le dossier DOCUMENTS (contient les documents de gestion générés par le programme) et
+	le dossier BASE (contenant les bases de données).
+
+	Pour fournir un accès à distance de la base de données, cette dernière peut exportée dans un dossier partagé,
+	cette opération se faisant via le programme.
+
+	Le programme permet également une sauvegarde de la base de donnée, dans un dossier fourni par l'utilisateur. 
+	
+MENU PRINCIPAL
+Le menu principal est constitué des onglets décrits ci-dessous.
+
+DONNEES
+	catégories d'articles		: les articles sont classés en catégorie, définies par un nom
+	articles inventoriés		: il s'agit des informations sur les articles que l'on inventorie,
+								  lorqu'ils ne sont pas en vente, décocher la case "PRIX DE VENTE"
+								
+	artcles composés			: description des articles composés d'articles inventoriés dans des proportions définies	
+	tiers						: les intervenants extérieurs (fournisseurs, prestataires de services, ...)
+	employés					: les employés 
+	
+ENCODAGE
+	vente						: encodage des ventes effectuées via des factures de vente (date, N°pièce, caissier, liste des articles vendus)
+	achat						: encodage des achats (concerne les articles inventoriés) via encodage de factures d'achats,
+								  on a également accès à toutes les factures d'achats de l'exercice en cours.
+	charge						: encodage des charges (selon leur type, les charges reprennent toutes les dépenses sauf les achats d'articles inventoriés),
+	                              on peut y indiquer 
+								  
+
+PARAMETRES
+	changer d'exercice			: permet de changer d'exercice(année), les factures visibles étant celles de l'exercice en cours)
+	afficher G					: en cas d'itilisation du module supplémentaire G
+
+STOCKS		
+	corriger les STOCKS			: modification du stock d'un article suite à l'inventaire 	
+	expliquer les corrections	: explication à postériori des corrections effectuées dans le stock		
+	inventaire					: inventaire théorique des articles à l'instant t (doc CSV)
+	alertes-STOCKS				: liste des articles commençant à manquer (doc CSV)
+		
+ANALYSE							
+	liste détaillée des articles:	
+	traçage des enregistrements	: liste des enregistrements effectuées lors des 15 derniers jours (doc CSV)
+	ouvrir un document			: permet d'ouvrir un document créé précédemment
+	bilan intermédiaire			: effectue un bilan financier entre 2 dates (doc CSV)
+	bilan annuel				: effectue un bilan annuel (doc CSV)
+
+DATABASE
+	exporter					: permet d'effectuer une copie de sauvegarde de la base de donnée et/ou de la partager,
+								  l'utilisateur fournira le répertoire du PC dans lequel sera exportée(copiée) la base
+	sélectionner				: choix de la base de donnée utilisée (en principe on garde la même base de données)
+	importer					: permet  d'importer une base de donnée à partir d'un répertoire de son PC,
+								  utile notamment en cas de contr^le distanciel
+								  
+	créer						: création d'une nouvelle base de donnée
+	renommer					: changer le nom de la base de donnée
+
+DETAILS TECHNIQUES
+	date						: exemple d'encodage d'une date : "16 jan 2020", la date du jour peut également être
+								  encodée avec '*'
+	factures					: pour corriger une ligne de la facture, CLIC sur la ligne, ensuite ENTER, 
+	                              la ligne apparait dans la zone d'encodage pour être modifiée, VALIDER pour la replacer
+								  dans la facture
+	article composé             : les modifications de la composition sont actives sur les ventes enregistrées 
+								  en date du jour de la modification 
+	

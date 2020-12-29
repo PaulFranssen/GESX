@@ -1110,6 +1110,17 @@ class Frame43(Frame):
             e = event.widget
             e['bg'] = color_33
 
+        def etoile(event=None):
+            if self.dat_i.get().strip() == '*':
+                self.dat_i.set(func_8(datetime.now()))
+        
+        def etoile2(event=None):
+            if self.dat_f.get().strip() == '*':
+                self.dat_f.set(func_8(datetime.now()))     
+       
+
+        self.e1.bind('<FocusOut>', etoile)
+        e3.bind('<FocusOut>', etoile2)
         b2.bind('<ButtonRelease-1>', document)
         b2.bind('<Return>', document)
         b2.bind('<Leave>', on_leave)

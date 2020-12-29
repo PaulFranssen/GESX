@@ -32,10 +32,26 @@ def func_1(x):
     return x >= 0
 
 def func_18(x):
+    """majore une date
+
+    Args:
+        x (datetime): date
+
+    Returns:
+        datetime: date du jour suivant x
+    """
     x = datetime(x.year, x.month, x.day)+timedelta(days=1)
     return x
 
 def func_20(x):
+    """minore une date
+
+    Args:
+        x (datetime): date à minorer
+
+    Returns:
+        datetime: date du jour précédent x 
+    """
     x = datetime(x.year, x.month, x.day)-timedelta(days=1)
     return x
 
@@ -61,8 +77,8 @@ def func_11(xx):
 def func_12(x, y):
     com = ''
     try:
-        with open(y, 'w', newline='', encoding='latin-1') as fichier:
-            fiche = csv.writer(fichier)
+        with open(y, 'w', newline='', encoding='utf-8') as fichier:
+            fiche = csv.writer(fichier, delimiter=";")
             fiche.writerows(x)
     except OSError as err:
         com = 'ERREUR création du fichier refusée'
@@ -156,7 +172,14 @@ def func_7(x):
 
 
 def func_9(x):
-    """à partir d'une date, renvoie une date avec le jour ou false si la date de base n'est pas conforme"""
+    """modifie le type d'une date
+
+    Args:
+        x (datetime.datetime): date 
+
+    Returns:
+        str or False: date sous forme de str (exemple : Lu 04 Jan 2021)
+    """
     try:
         y = datetime.strftime(x, "%a %d %b %Y")
     except:
@@ -184,8 +207,8 @@ def func_8(x):
 
 def print_dict_csv(file_name, lis):
     """enregistre un fichier csv, de nom file, de 2 colonnes à partir d'une liste de dictionnaire lis"""
-    with open(file_name, 'w', newline='') as file:
-        fi = csv.DictWriter(file, fieldnames=[1, 2])
+    with open(file_name, 'w', newline='', delimiter=";") as file:
+        fi = csv.DictWriter(file, fieldnames=[1, 2], delimiter=";")
         fi.writerows(lis)
 
 

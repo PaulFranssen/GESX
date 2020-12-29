@@ -3611,90 +3611,112 @@ class Base:
         else:
             return False
 
-    def function_15(self, x, y):
-        dat = self.function_40(x, y)
+    def function_15(self, art_id, dat):
+        """détermine les composants d'un article composé à une certaine date de vente
+
+        Args:
+            art_id (int): id du composant
+            dat (datetime): date de vente
+
+        Returns:
+            tuple or False: tuple de (component_id, proportion) du composé art_id ou False si le composé n'existait pas
+        """      
+        dat = self.function_40(art_id, dat)
         if not dat:
-            return False
-
-        chaine = """SELECT component_id, proportion
-                    FROM composition
-                    WHERE compo_id=?
-                    AND dat=?"""
-        result = self.curseur.execute(chaine, (x, dat)).fetchall()
-        if not result:
-            result = ()
+            res = False
         else:
-            return result
+            chaine = """SELECT component_id, proportion
+                        FROM composition
+                        WHERE compo_id=?
+                        AND dat=?"""
+            result = self.curseur.execute(chaine, (art_id, dat)).fetchall()
+            res = () if not result else result
+            
+        print('liste des composants de', art_id, res, dat)
+        return res
 
-    def function_16(self, x, dat):
+    def function_16(self, art_id, dat):
+        """détermine la quantité vendue d'un article inventorié art_id 
+        pendant l'exercice jusqu'à une date donnée
+
+        Args:
+            art_id (int): id de l'article inventorié
+            dat (datetime): date limite pour la vente
+
+        Returns:
+            float: quantité vendue de l'article art_id jusqu'à la date y
+        """        
         if dat.year < self.exercice:
             # cas où la date initiale est le 1er janvier, donc x est le 31 decembre de l'année pécédente
             return 0
+        
+        # dates initiales et finales
         end = dat
         begin = datetime(dat.year, 1, 1)
-        chaine = """SELECT codeV_id, qte 
+        
+        # récupération de toutes les ventes avec leurs quantités et la date de vente
+        chaine = """SELECT codeV_id, qte, dat 
                     FROM recordV, vente 
                     WHERE  recordV.vente_id=vente.vente_id 
                     AND dat>=? 
                     AND dat<?"""
         result = self.curseur.execute(chaine, (begin, func_18(end))).fetchall()
+        
+        # calcule de la quantité q vendue
         q = 0
         if result:
-            # result contient les tuples (code_id, qte) des ventes
-            for tup in result:
-                code_id, qte = tup
-
-                if code_id == x:  # code_id est l'article recherché
+            for code_id, qte, dat in result:
+                if code_id == art_id:  # code_id est l'article recherché
                     q += qte
-
                 elif self.function_6(code_id):  # l'article est un autre article inventorié
                     continue
-
                 elif self.function_7(code_id):  # code_id est un composé
                     liste = self.function_15(code_id, dat)
-
                     if not liste:
-                        print('ici considéré nul, composé sans composants connus à cette date')
+                        continue # composé sans composants
                     else:
-                        for t in liste:
-                            cod, prop = t
-                            if cod == x:
+                        for cod, prop in liste:
+                            if cod == art_id:
                                 q += prop * qte
-                else:  # code_id est non-inventorié
+                else:  # code_id est non-inventorié et non-composé
                     print('cet article ne devrait pas se trouvé dans  vente')
                     continue
         return q
 
-    def function_16b(self, x, y, z):
-        end = z
-        begin = y
-        chaine = """SELECT codeV_id, qte 
+    def function_16b(self, art_id, y, z):
+        """détermine la quantité d'un article inventorié donné entre 2 dates.
+        cet article a peut se trouvé dans un composé
+
+        Args:
+            art_id (int): id de l'article inventorié
+            y (datetime): date initiale
+            z (datetime): datefinale
+
+        Returns:
+            float: quantité vendue de l'article
+        """        
+    
+        chaine = """SELECT codeV_id, qte, dat 
                     FROM recordV, vente 
                     WHERE  recordV.vente_id=vente.vente_id 
                     AND dat>=? 
                     AND dat<?"""
-        result = self.curseur.execute(chaine, (begin, func_18(end))).fetchall()
+                    
+        result = self.curseur.execute(chaine, (y, func_18(z))).fetchall()
         q = 0
         if result:
-            # result contient les tuples (code_id, qte) des ventes
-            for tup in result:
-                code_id, qte = tup
-
-                if code_id == x:  # code_id est l'article recherché
+            # result contient les tuples (code_id, qte, dat) des ventes
+            for code_id, qte, dat in result:
+                if code_id == art_id:  # code_id est l'article recherché
                     q += qte
-
                 elif self.function_6(code_id):  # l'article est un autre article inventorié
                     continue
-
                 elif self.function_7(code_id):  # code_id est un composé
                     liste = self.function_15(code_id, dat)
-
                     if not liste:
                         print('ici considéré nul, composé sans composants connus à cette date')
                     else:
-                        for t in liste:
-                            cod, prop = t
-                            if cod == x:
+                        for cod, prop in [tup for tup in liste if tup[0] == art_id]:
                                 q += prop * qte
                 else:  # code_id est non-inventorié
                     print('cet article ne devrait pas se trouvé dans  vente')
@@ -3719,21 +3741,27 @@ class Base:
                 q += tup[0]
         return q
 
-    def function_17b(self, art_id, x, y):
-        end = y
-        begin = x
+    def function_17b(self, art_id, y, z):
+        """détermine la quantité achetée d'un article entre 2 dates
+
+        Args:
+            art_id (int): id de l'article
+            y (datetime): date initiale
+            z (datetime): date finale
+
+        Returns:
+            int: quantité achetée entre les dates x et y
+        """ 
+        
         chaine = """SELECT qte  from recordA, factureA 
                     WHERE  art_id=?
                     AND factureA.fact_id=recordA.fact_id 
                     AND dat >= ?
                     AND dat < ?
                     """
-        result = self.curseur.execute(chaine, (art_id, begin, func_18(end))).fetchall()
-        q = 0
-        if result:
-            for tup in result:
-                q += tup[0]
-        return q
+        result = self.curseur.execute(chaine, (art_id, y, func_18(z))).fetchall()
+       
+        return 0 if not result else sum([tup[0] for tup in result])
 
     def function_18(self, art_id, dat):
         if dat.year < self.exercice:
@@ -4033,14 +4061,24 @@ class Base:
 
         return liste
 
-    def function_40(self, x, y):
+    def function_40(self, art_id, y):
+        """détermine la date s'un composé pour une date de vente y
+
+        Args:
+            art_id (int): id du composé
+            y (datetime): date de vente du composé
+
+        Returns:
+            datetime: date du composé (les compositions peuvent en effet varier avec des modifications temporelles)
+        """        
         chaine = """SELECT dat
                     FROM composition
                     WHERE compo_id=?
                     AND dat<?"""
-        result = self.curseur.execute(chaine, (x, func_18(y))).fetchall()
+        result = self.curseur.execute(chaine, (art_id, func_18(y))).fetchall()
         if result:
-            return max(result)[0]
+            print('date compo', art_id, max(result)[0])
+            return max(result)[0] 
         else:
             return False
 
@@ -4067,9 +4105,17 @@ class Base:
                     tot += prix
         return round(tot)
 
-    def function_41b(self, x, y, z):
-        # if y.year < self.exercice:
-        #    return 0
+    def function_41b(self, art_id, y, z):
+        """détermine le montant de l'achat d'un article entre deux dates
+
+        Args:
+            art_id ([type]): id de l'article
+            y (date initiale): [description]
+            z (date finale): [description]
+
+        Returns:
+            int: montant de l'achat l'article entre les dates y et z
+        """        
         tot = 0
         chaine = """SELECT prix, remise, total
                     FROM recordA, factureA
@@ -4077,7 +4123,7 @@ class Base:
                     AND art_id=?
                     AND dat>=?
                     AND dat<?"""
-        result = self.curseur.execute(chaine, (x, y, func_18(z))).fetchall()
+        result = self.curseur.execute(chaine, (art_id, y, func_18(z))).fetchall()
         if result:
             for tup in result:
                 prix, remise, total = tup
@@ -4090,29 +4136,52 @@ class Base:
                     tot += prix
         return round(tot)
 
-    def function_42(self, x, y, dicoPa):
-        tot = 0
-        dat = self.function_40(x, y)
+    def function_42(self, art_id, y, dicoPa):
+        """détermine le Pa d'un composé vendu à la date y
+
+        Args:
+            art_id (int): id de l'article composé
+            y (datetime): date de vente du composé
+            dicoPa (dict): clé: id d'un article/valeur: (stock, Pa)
+
+        Returns:
+            int: prix d'achat du composé
+        """        
+        pA = 0
+        dat = self.function_40(art_id, y)
         if dat:
             chaine = """SELECT component_id, proportion
                         FROM composition
                         WHERE compo_id=?
                         AND dat=?"""
-            result = self.curseur.execute(chaine, (x, dat)).fetchall()
+            result = self.curseur.execute(chaine, (art_id, dat)).fetchall()
             if result:
-                for (art_id, proportion) in result:
-                    tot += proportion * dicoPa[art_id]
-        return round(tot)
+                for article_id, proportion in result:
+                    
+                    pA += proportion * dicoPa[article_id][1]
+        else:
+            print("erreur : le commposant n'existait pas à la date supposée de sa vente...")
+        return round(pA)
 
-    def function_43(self, x, y):
-        num = max(self.function_44(x, y), 0) + self.function_41(x, y)
-        den = max(self.function_19(x, y), 0) + self.function_17(x, y)
+    def function_43(self, art_id, y):
+        """détermine le pa d'un article à une date y 
+
+        Args:
+            art_id (int): id de l'article
+            y (datetime): date pour laquelle on détermine le pa
+
+        Returns:
+            int: pa de l'article
+        """
+        
+        num = max(self.function_44(art_id, y), 0) + self.function_41(art_id, y) # somme des pa*qa
+        den = max(self.function_19(art_id, y), 0) + self.function_17(art_id, y) # somme des qa
 
         if den:
             return round(num / den)
         else:
             # pa du stock de cloture précédent
-            return self.function_44b(x, y)
+            return self.function_44b(art_id, y)
 
     def function_44(self, x, y):
         if y.year < self.exercice:
@@ -4141,21 +4210,30 @@ class Base:
                     AND year=?"""
         result = self.curseur.execute(chaine, (x, year)).fetchone()
         if result:
-            p = result[0]
+            p = round(result[0])
         else:
             p = 0
-        return round(p)
+        return p
 
     def function_45(self, x, y):
 
         return self.function_43(x, y) * self.function_46(x, y)
 
-    def function_46(self, x, y):
+    def function_46(self, art_id, y):
+        """détermine le stock d'un article à une date donnée
 
-        v = self.function_16(x, y)
-        a = self.function_17(x, y)
-        c = self.function_18(x, y)
-        s = self.function_19(x, y)
+        Args:
+            x (int): art_id de l'article
+            y (datetime): date à laquelle on cherche le stock
+
+        Returns:
+            float: quantité de l'article art_id à la date y
+        """
+
+        v = self.function_16(art_id, y)  # q vendue à une date <= y de l'exercice
+        a = self.function_17(art_id, y)  # q achetée à une date <= y de l'exercice
+        c = self.function_18(art_id, y)  # q corrigée à une date <= y de l'exercice
+        s = self.function_19(art_id, y)  # q su stock de cloture de l'année précédente la date y
 
         return s + a + c - v
 
@@ -4280,9 +4358,23 @@ class Base:
         return tot
 
     def function_54b(self, x, y, final=''):
-        valeurStockInitial = variationStockTotal = 0
+        """détermine la situation initiale (stock et Pa) et la situation finale (stock et Pa)
+        pour tous les articles inventoriés
+
+        Args:
+            x (datetime): date initiale
+            y (datetime): date finale
+            final (str, optional): année de cloture. Defaults to ''.
+
+        Returns:
+            tuple: stockInitial(valeur), deltaStock(valeur), stockFinal(valeur), dicoPa(stock, Pa), dicoPaInit(stock, Pa)
+        """        
+        
+        # initialisation
+        deltaStock = stockInitial = 0
         dicoPaInit = {}
         dicoPa = {}
+        # sélection des articles inventoriés (ad=1)
         chaine = """SELECT art_id
                     FROM article
                     WHERE ad=?"""
@@ -4290,41 +4382,51 @@ class Base:
         if result:
             for tup in result:
                 art_id = tup[0]
+                
+                # calcul du prix d'achat et stock initiaux
                 qInit = self.function_46(art_id, func_20(x))
                 pInit = self.function_43(art_id, func_20(x))
                 dicoPaInit[art_id] = (qInit, pInit)
-                valeurStockInitial += pInit * qInit
+                stockInitial += pInit * qInit
+                
+                # calcul du prix d'achat et quantité achetée entre les dates x et y 
                 montantAchat = self.function_41b(art_id, x, y)
-                qA = self.function_17b(art_id, x, y)
-                if qInit + qA != 0:
-                    pA = round((pInit * qInit + montantAchat) / (qInit + qA))
-                else:
-                    "pA du stocloture de l'année précédente"
-                    pA = self.function_44b(art_id, x)
-                    q = self.function_46(art_id, y)
+                qA = self.function_17b(art_id, x, y)              
+                pA = pInit if not (qInit + qA) else round((pInit * qInit + montantAchat) / (qInit + qA))      
+                q = self.function_46(art_id, y)
                 dicoPa[art_id] = (q, pA)
+                
+                # calcul de la valeur du stock
                 qVendue = self.function_16b(art_id, x, y)
                 qCorr = self.function_18b(art_id, x, y)
-                variationStock = montantAchat - pA * (qVendue - qCorr)
-                variationStockTotal += variationStock
-            valeurStockFinal = round(valeurStockInitial) + round(variationStockTotal)
-            return round(valeurStockInitial), round(variationStockTotal), valeurStockFinal, dicoPa, dicoPaInit
+                deltaStock += montantAchat - pA * (qVendue - qCorr)
+            return round(stockInitial), round(deltaStock), round(stockInitial) + round(deltaStock), dicoPa, dicoPaInit
         else:
             return 0, 0, 0, {}, {}
 
     def function_55(self, x, y, final=''):
+        """Détermine le bilan entre deux dates
+
+        Args:
+            x (datetime.datetime): date initiale
+            y (datetime.datetime): date finale  
+            
+            final (str, optional): année du bilan final. Defaults to ''.
+
+        Returns:
+            [list]: liste prête à l'impression
+        """
         v = []
         liste = [['BILAN' + final], v, [self.database], v, [func_9(x)], ['> ' + func_9(y)]]
         recette = self.function_51(x, y)
         achat = self.function_52(x, y)
-        v_stock = self.function_54b(x, y, final)
-        stock_initial = v_stock[0]
-        stock_final = v_stock[2]
-        delta_stock = v_stock[1]
-        dicoPa = v_stock[3]
-        dicoPaInit = v_stock[4]
-        margeB, dicoMarge = self.function_61(x, y, dicoPa)
-        marge_brute = margeB
+        
+        stock_initial, delta_stock, stock_final, dicoPa, dicoPaInit = self.function_54b(x, y, final)
+        
+        marge_brute, dicoMarge = self.function_61(x, y, dicoPa)
+      
+        
+        # encore à vérifié ci-dessous
         charge = self.function_56(x, y)
         resultat_net = recette - achat - charge + delta_stock
 
@@ -4377,7 +4479,7 @@ class Base:
                     liste.append([name.upper()])
                     passage = False
                 art_id = self.function_2(code)
-                d_i, d_f = func_20(x), y
+                d_i, d_f = func_20(x), y 
 
                 pa_final = dicoPa[art_id][1]
                 stk_final = dicoPa[art_id][0]
@@ -4427,9 +4529,20 @@ class Base:
                         tot += part
         return tot
 
-    def function_58(self, x, y, z, dicoPa):
+    def function_58(self, art_id, y, z, dicoPa):
+        """détermine la recette, la margeB et la qte d'un article vendu entre 2 dates
+
+        Args:
+            art_id (int): id de l'article
+            y (datetime): date initiale
+            z (datetime): date finale
+            dicoPa (dict): clé: art_id/valeur:(stock, Pa)
+
+        Returns:
+            tuple: recette, margeBrute, qte vendue entre les dates y et z
+        """        
         tot = qte = marge = 0
-        ad = self.function_59(x)
+        ad = self.function_59(art_id)
         if ad:
             # article composé ou inventorié
             chaine = """SELECT qte, prix, dat
@@ -4438,21 +4551,22 @@ class Base:
                            AND codeV_id=?
                            AND dat>=?
                            AND dat<?"""
-            result = self.curseur.execute(chaine, (x, y, func_18(z))).fetchall()
+            result = self.curseur.execute(chaine, (art_id, y, func_18(z))).fetchall()
 
             if result:
-                for tup in result:
-                    quantity, price, dat = tup
+                for quantity, price, dat in result:
                     if ad == 1:
                         # pa = self.function_43(x, dat)
-                        pa = dicoPa[x][1]
+                        pa = dicoPa[art_id][1]
                     else:
-                        pa = self.function_42(x, dat, dicoPa)
+                        # article composé
+                        pa = self.function_42(art_id, dat, dicoPa)
                 marge += price - pa * quantity
                 qte += quantity
                 tot += price
 
         else:
+            # situation abandonnée
             print("ad=0 calcul de la marge brute")
             # article non-inventorié (rechercher la quantité achetée)
             marge -= self.function_41b(x, y, z)
@@ -4487,21 +4601,42 @@ class Base:
         return recette, marge, qte
     """
     def function_61(self, x, y, dicoPa):
-        marge , recette, qte = 0
+        """détermine la marge brute (montant des articles vendus - la valeur de ces articles en Pa)
+        entre kles dates x et y
+
+        Args:
+            x (datetime): date initiale
+            y (datetime): date finale
+            dicoPa (dict): clé:     art_id
+                           valeur:  stock, Pa de l'article 
+
+        Returns:
+            tuple: (int, dict): margeBrute et dictionnaire (clé: cat_id / valeur: recette, marge, qte vendue)
+        """        
+      
         chaine = """SELECT cat_id FROM categorie"""
-        result = self.curseur.execute(chaine).fetchall()
+        result = self.curseur.execute(chaine).fetchall()   
+        dicoMarge, margeB = {}, 0
         if result:
             for c in result:
                 cat_id = c[0]
-                tup = self.function_61b(cat_id, x, y, dicoPa)
-                recette = tup[0]
-                marge = tup[1]
-                qte = tup[2]
+                recette, marge, qte = self.function_61b(cat_id, x, y, dicoPa)
                 dicoMarge[cat_id] = (recette, marge, qte)
                 margeB += marge
         return margeB, dicoMarge
 
     def function_61b(self, cat_id, x, y, dicoPa):
+        """détermine la recette, la margeBrute, la qte vendue pour une catégorie, entre 2 dates
+
+        Args:
+            cat_id (int): id de la catégorie
+            x (datetime): date initiale
+            y (datetime): date finale
+            dicoPa (dict): clé: art_id / valeur: (stock,Pa)
+
+        Returns:
+            tuple: recette, margeBrute, qunantité vendue entre les dates x et y
+        """        
         marge = recette = qte = 0
         chaine = """SELECT art_id FROM article WHERE cat_id=?"""
         result = self.curseur.execute(chaine, (cat_id,)).fetchall()
