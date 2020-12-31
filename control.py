@@ -69,6 +69,7 @@ class Base:
         self.create_stocloture()
         self.create_correction()
         self.create_ponderation()
+        self.create_fixecat()
         self.create_limitation()
         self.create_trace()
 
@@ -336,6 +337,16 @@ class Base:
                                             )"""
         self.curseur.execute(chaine)
         self.enregistrer()
+        
+    def create_fixecat(self):
+        chaine = """CREATE TABLE IF NOT EXISTS fixecat (
+                                            c_id   INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE
+                                            cat_id INTEGER NOT NULL,
+                                            pc FLOAT,
+                                            couplage INTEGER DEFAULT 0
+                                            )"""
+        self.curseur.execute(chaine)
+        self.enregistrer()
 
     def create_limitation(self):
         chaine = """CREATE TABLE IF NOT EXISTS limitation (
@@ -349,6 +360,10 @@ class Base:
     def insert_ponderation(self, weekday):
         chaine = """INSERT INTO ponderation (weekday) VALUES(?)"""
         self.curseur.execute(chaine, (weekday,))
+        
+    def insert_fixecat(self, tup):
+        chaine = """INSERT INTO fixecat (1, cat_id, pc, couplage) VALUES(?,?,?)"""
+        self.curseur.execute(chaine, tup)
 
     def insert_limitation(self, weekday):
         chaine = """INSERT INTO limitation (weekday) VALUES(?)"""
@@ -482,6 +497,10 @@ class Base:
 
     def update_ponderation(self, tup):
         chaine = """UPDATE ponderation SET weighting=?  WHERE weekday=?"""
+        self.curseur.execute(chaine, tup)
+        
+    def update_fixecat(self, tup):
+        chaine = """UPDATE fixecat SET cat_id=? pc=? couplage=? WHERE c_id=1?"""
         self.curseur.execute(chaine, tup)
 
     def update_limitation(self, tup):
@@ -4885,7 +4904,7 @@ class Base:
                 if not cat_id:
                     raise E
             except: comment = "EREUR catégorie"
-        
+            
         # vérification collective
         if not comment:
             v = (cat and pc != '' and couplage != '') or (not cat and pc == '' and couplage == '')
@@ -4893,10 +4912,13 @@ class Base:
                 comment = ('ERREUR encodage incomplet ou non vide')
             
         if not comment:
-            # enregistrement des données dans la base de données
-            # retour et quitter la figure
+            # enregistrement des données dans la base de données         
+            self.update_fixecat(tup=(self.function_8(cat), pc, 0 if couplage =='' else couplage))
+            self.enregistrer()
+            comment.set('OK')
+            return True
         else:
-            return avec un comment à écrire
+            return False
         
         
         

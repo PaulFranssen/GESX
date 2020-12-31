@@ -1594,6 +1594,7 @@ class Frame55(Frame):
     def __init__(self, boss=None):
         Frame.__init__(self, boss)
         self.configure(**kw_fx)
+        root = self.master.master.master
 
         self.repertoire = StringVar()
         self.cat = StringVar()
@@ -1631,11 +1632,17 @@ class Frame55(Frame):
         e3.pack(**pad_12, side=RIGHT)
         Label(cadre7, text='   COUPLAGE (0-1-2)', **kw_11).pack(side='right', padx=10)
         
+        def refresh():
+            self.comment.set('')
+
         def record(event):
-            self.master.master.base.function_74(cat=self.cat,
-                                                pc=self.pc,
-                                                couplage=self.couplage,
-                                                comment=self.comment)
+            if self.master.master.base.function_74(cat=self.cat,
+                                                            pc=self.pc,
+                                                            couplage=self.couplage,
+                                                            comment=self.comment):
+                self.focus_set()
+                root.bell()
+                root.after(attenteCourte, refresh)
 
         def on_enter(event):
             e = event.widget
