@@ -17,6 +17,8 @@ import sys
 
 from vue import *
 
+class E(Exception):
+    pass
 
 class Base:
 
@@ -4856,6 +4858,49 @@ class Base:
         else:
             return False
 
+    def function_74(self, **kw):
+        cat = kw['cat'].strip()
+        pc = kw['pc'].strip()
+        couplage = kw['couplage'].strip()
+        comment = kw['comment']
+        
+        # vérification de chaque encodage
+        if couplage:
+            try:     
+                couplage = int(couplage)
+                if couplage not in {0, 1, 2}:
+                    raise E
+            except:
+                comment = "ERREUR couplage"        
+        if pc:
+            try:
+                pc = float(pc)
+                if not (0<= pc <= 100):
+                    raise E
+            except:
+                comment = "ERREUR pourcentage"
+        if cat:  
+            try:
+                cat_id = self.function_8(cat)
+                if not cat_id:
+                    raise E
+            except: comment = "EREUR catégorie"
+        
+        # vérification collective
+        if not comment:
+            v = (cat and pc != '' and couplage != '') or (not cat and pc == '' and couplage == '')
+            if not v:
+                comment = ('ERREUR encodage incomplet ou non vide')
+            
+        if not comment:
+            # enregistrement des données dans la base de données
+            # retour et quitter la figure
+        else:
+            return avec un comment à écrire
+        
+        
+        
+    
     def list_19(self, **kw):
 
         list_ref = kw['list_ref']

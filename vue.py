@@ -15,7 +15,6 @@ from model import *
 from func import *
 #from control import *
 
-
 class PF(Frame):
     def __init__(self, base, boss=None):
         Frame.__init__(self, boss)
@@ -106,8 +105,7 @@ class Frame1(Frame):
         Label(self, **kw_50).pack(side='left')
         me = Menu(mb, **kw_3)
         me.add_command(label="Changer d'exercice", underline=0, command=self.command16, **kw_2)
-
-        me.add_checkbutton(label="Afficher G", variable=self.g, command=self.command48, selectcolor=kw_54, **kw_2)
+        me.add_checkbutton(label="Afficher G", variable=self.g, command=self.command48, selectcolor=kw_54['col_spec'], **kw_2)
         mb.configure(menu=me)
 
         # STOCK
@@ -158,12 +156,13 @@ class Frame1(Frame):
 
         # G
         self.mb_g = Menubutton(self, text="G", **kw_1)
-        self.mb_g['foreground'] = kw_54
+        self.mb_g['foreground'] = kw_54['col_spec']
         self.sep_g = Label(self, **kw_50)
 
         me = Menu(self.mb_g, **kw_3)
         me.add_command(label="Pondérer les jours", underline=0, command=self.command44, **kw_2)
         me.add_command(label="Limiter le prix des articles", underline=0, command=self.command45, **kw_2)
+        me.add_command(label="Fixer une catégorie", underline=0, command=self.command55, **kw_2)
         me.add_separator()
         me.add_command(label="Générer les ventes", underline=0, command=self.command46, **kw_2)
         me.add_command(label="Imprimer les tickets", underline=0, command=self.command54, **kw_2)
@@ -474,6 +473,11 @@ class Frame1(Frame):
         self.num_display = 54
         self.list_display[54].display()
 
+    def command55(self):
+            self.list_display[self.num_display].hide()
+            self.num_display = 55
+            self.list_display[55].display()
+        
     def command58(self):
         self.list_display[self.num_display].hide()
         self.num_display = 58
@@ -642,7 +646,10 @@ class Frame2(Frame):
 
         self.frame54 = Frame54(self)
         menu.add_display(54, self.frame54)
-
+        
+        self.frame55 = Frame55(self)
+        menu.add_display(55, self.frame55)
+        
         self.frame58 = Frame58(self)
         menu.add_display(58, self.frame58)
 
@@ -1576,6 +1583,90 @@ class Frame54(Frame):
                                            comment=self.comment)
         self.e2.focus_set()
         self.e2.icursor(END)
+        self.pack(**pad_fx)
+
+    def hide(self):
+        self.pack_forget()
+
+
+class Frame55(Frame):
+
+    def __init__(self, boss=None):
+        Frame.__init__(self, boss)
+        self.configure(**kw_fx)
+
+        self.repertoire = StringVar()
+        self.cat = StringVar()
+        self.couplage = StringVar()
+        self.pc = StringVar()
+        self.d_i = StringVar()
+        self.d_f = StringVar()
+        self.def_rep = IntVar()
+        self.comment = StringVar()
+
+        # structure
+        Label(self, text="FIXER UNE CAtégorie".upper(), **kw_42).pack(**pad_42)
+        cadre1 = Frame(self, **kw_c1)
+        cadre1.pack(**pad_c1)
+        cadre2 = Frame(self, **kw_c2)
+        cadre2.pack(**pad_c2)
+        Label(self, textvariable=self.comment, **kw_14).pack(**pad_14)
+
+        # structure cadre 1
+        cadrex = Frame(cadre1, **kw_cx)
+        cadrex.pack(side=LEFT)
+        cadre7 = Frame(cadrex, **kw_c7)
+        cadre7.pack(**pad_c7)
+
+        # détails cadre 1
+        Label(cadre7, text='catégorie'.upper(), **kw_11).pack(**pad_11, side=LEFT)
+        self.e1 = Entry(cadre7, width=l_code, textvariable=self.cat, **kw_12)
+        self.e1.pack(**pad_12, side=LEFT)
+        
+        Label(cadre7, text='   % VENTE', **kw_11).pack(**pad_11, side=LEFT)
+        e2 = Entry(cadre7, width=l_pc, textvariable=self.pc, **kw_12)
+        e2.pack(**pad_12, side=LEFT)
+        
+        e3 = Entry(cadre7, width=l_couplage, textvariable=self.couplage, **kw_12)
+        e3.pack(**pad_12, side=RIGHT)
+        Label(cadre7, text='   COUPLAGE (0-1-2)', **kw_11).pack(side='right', padx=10)
+        
+        def record(event):
+            self.master.master.base.function_74(cat=self.cat,
+                                                pc=self.pc,
+                                                couplage=self.couplage,
+                                                comment=self.comment)
+
+        def on_enter(event):
+            e = event.widget
+            e['bg'] = color_6
+
+        def on_leave(event):
+            e = event.widget
+            e['bg'] = color_33
+
+        # détails cadre 2
+        b2 = Button(cadre2, text="ENREGISTRER", **kw_45)
+        b2.pack(side='left', **pad_45)
+
+        # liens
+        b2.bind('<ButtonRelease-1>', record)
+        b2.bind('<Return>', record)
+        b2.bind('<Enter>', on_enter)
+        b2.bind('<FocusIn>', on_enter)
+        b2.bind('<Leave>', on_leave)
+        b2.bind('<FocusOut>', on_leave)
+
+    def display(self):
+        self.master.master.base.fermer()
+        self.master.master.base.ouvrir()
+        self.master.master.base.display_54(repertoire=self.repertoire,
+                                           d_i=self.d_i,
+                                           d_f=self.d_f,
+                                           def_rep=self.def_rep,
+                                           comment=self.comment)
+        self.e1.focus_set()
+        self.e1.icursor(END)
         self.pack(**pad_fx)
 
     def hide(self):

@@ -4,7 +4,11 @@
 
 from func import *
 
+
+
+##################################################
 kw_master = {'bg': color_30}
+
 
 ################ f ################################
 kw_pf = {'bg': color_32}
@@ -18,6 +22,7 @@ pad_f2 = {'padx': 0, 'pady': p_02, 'fill': 'y', 'expand': 1}
 
 kw_fx = {'bg': color_32}  # 18
 pad_fx = {'fill': 'y', 'expand': 1}
+
 
 ################### c #############################################
 kw_c0 = {'bg': color_33}
@@ -193,6 +198,26 @@ kw_53 = dict(bg=color_32)
 pad_53 = dict(padx=30)
 
 # color paramètres G select
-kw_54 = color_6
+kw_54 = {'col_spec' : color_6}
 
 #########################################################
+lst = []  # liste des dictionnaires contenant les paramètres
+lst = lst + [kw_master]
+lst = lst +[kw_pf, kw_f1, kw_f2, kw_fx, kw_c0, kw_c1, kw_c2, kw_c3, kw_c4, kw_c5, kw_cx, kw_c6, kw_c7]
+lst = lst + [kw_pf, kw_f1, kw_f2, kw_fx, kw_c0, kw_c1, kw_c2, kw_c3, kw_c4, kw_c5, kw_cx, kw_c6, kw_c7]
+lst = lst + [kw_c8, kw_c9, kw_c10, kw_c11, kw_c12, kw_c13, kw_c14, kw_c22, kw_c44, kw_c15, kw_c16, kw_c17, kw_c20]
+
+lst = lst + [kw_1, kw_2, kw_3, kw_10, kw_11, kw_12, kw_13, kw_14, kw_27, kw_28, kw_32, kw_40, kw_42]
+lst = lst + [kw_45, kw_47, kw_47b, kw_49, kw_50, kw_51, kw_52, kw_52b, kw_53, kw_54]
+
+def modif_1(x):
+    """modifie la couleur de la base
+
+    Args:
+        x (str): nouvelle couleur
+    """
+    for dico in lst:
+        for cle, valeur in dico.items():
+            if type(valeur) == str and valeur == color_6:
+                dico[cle] = x
+

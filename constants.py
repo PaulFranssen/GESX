@@ -29,6 +29,8 @@ color_38 = 'grey80'
 
 
 # largeur des labels et entry
+l_couplage = 1
+l_pc = 5 # longueur pour pourcentage
 l_code = 15
 l_des = 30
 l_base = 15
@@ -104,7 +106,7 @@ h_10 = 21       # listbox sans button mais avec comment
 # couleur
 color_32 = 'grey15'         # fond écran
 color_37 = 'grey80'         # écriture claire
-color_6 = 'tomato'          # sélection
+color_6 =  'tomato'              # 'lime green' sélection
 color_33 = 'grey30'         # disabled
 color_30 = 'black'          # écriture foncée
 

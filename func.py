@@ -12,6 +12,7 @@ from calendar import monthrange
 f = lambda x: int(x) if x == int(x) else x  # renvoie un integer si x est un integer
 
 
+
 def func_2(x):
     if not x:
         return True
