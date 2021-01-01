@@ -1596,13 +1596,9 @@ class Frame55(Frame):
         self.configure(**kw_fx)
         root = self.master.master.master
 
-        self.repertoire = StringVar()
         self.cat = StringVar()
         self.couplage = StringVar()
         self.pc = StringVar()
-        self.d_i = StringVar()
-        self.d_f = StringVar()
-        self.def_rep = IntVar()
         self.comment = StringVar()
 
         # structure
@@ -1636,10 +1632,10 @@ class Frame55(Frame):
             self.comment.set('')
 
         def record(event):
-            if self.master.master.base.function_74(cat=self.cat,
-                                                            pc=self.pc,
-                                                            couplage=self.couplage,
-                                                            comment=self.comment):
+            if self.master.master.base.record_55(cat=self.cat,
+                                                    pc=self.pc,
+                                                    couplage=self.couplage,
+                                                    comment=self.comment):
                 self.focus_set()
                 root.bell()
                 root.after(attenteCourte, refresh)
@@ -1667,10 +1663,9 @@ class Frame55(Frame):
     def display(self):
         self.master.master.base.fermer()
         self.master.master.base.ouvrir()
-        self.master.master.base.display_54(repertoire=self.repertoire,
-                                           d_i=self.d_i,
-                                           d_f=self.d_f,
-                                           def_rep=self.def_rep,
+        self.master.master.base.display_55(cat=self.cat,
+                                           pc=self.pc,
+                                           couplage=self.couplage,
                                            comment=self.comment)
         self.e1.focus_set()
         self.e1.icursor(END)

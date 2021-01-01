@@ -165,7 +165,7 @@ class Base:
                     art_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
                     code TEXT,
                     des TEXT,
-                    cat_id INT,        
+                    cat_id INTEGER,        
                     pv INTEGER,
                     stockmin INTEGER DEFAULT 0,
                     envente INTEGER DEFAULT 1,
@@ -344,10 +344,10 @@ class Base:
         
     def create_fixecat(self):
         chaine = """CREATE TABLE IF NOT EXISTS fixecat (
-                                            c_id   INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE
+                                            c_id   INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
                                             cat_id INTEGER NOT NULL,
                                             pc FLOAT,
-                                            couplage INTEGER DEFAULT 0
+                                            couplage INTEGER DEFAULT 0,
                                             FOREIGN KEY(cat_id) REFERENCES categorie (cat_id)
                                             )"""
         self.curseur.execute(chaine)
@@ -367,7 +367,7 @@ class Base:
         self.curseur.execute(chaine, (weekday,))
         
     def insert_fixecat(self, tup):
-        chaine = """INSERT INTO fixecat (1, cat_id, pc, couplage) VALUES(?,?,?)"""
+        chaine = """INSERT INTO fixecat (cat_id, pc, couplage) VALUES(?,?,?)"""
         self.curseur.execute(chaine, tup)
 
     def insert_limitation(self, weekday):
@@ -505,7 +505,7 @@ class Base:
         self.curseur.execute(chaine, tup)
         
     def update_fixecat(self, tup):
-        chaine = """UPDATE fixecat SET cat_id=? pc=? couplage=? WHERE c_id=1?"""
+        chaine = """UPDATE fixecat SET cat_id=?,pc=?,couplage=? WHERE c_id=1"""
         self.curseur.execute(chaine, tup)
 
     def update_limitation(self, tup):
@@ -1021,7 +1021,19 @@ class Base:
                 self.insert_ponderation(weekday)
                 p[weekday].set('1')
             self.enregistrer()
-
+            
+    def display_55(self, **kw):
+        chaine = """SELECT cat_id, pc, couplage FROM fixecat"""
+        result = self.curseur.execute(chaine).fetchall()
+        if result:
+            cat_id, pc, couplage = result[0]
+            cat = self.function_32(cat_id)
+            if cat:
+                kw['cat'].set(cat)
+                kw['pc'].set(pc)
+                kw['couplage'].set(couplage)
+        kw['comment'].set('')
+        
     def display_45(self, **kw):
         p = kw['p']
         comment = kw['comment']
@@ -4882,11 +4894,13 @@ class Base:
         else:
             return False
 
-    def function_74(self, **kw):
-        cat = kw['cat'].strip()
-        pc = kw['pc'].strip()
-        couplage = kw['couplage'].strip()
-        comment = kw['comment']
+    def record_55(self, **kw):
+        
+        # initialisation
+        cat = kw['cat'].get().strip()
+        pc = kw['pc'].get().strip()
+        couplage = kw['couplage'].get().strip()
+        com = ''
         
         # vérification de chaque encodage
         if couplage:
@@ -4895,34 +4909,48 @@ class Base:
                 if couplage not in {0, 1, 2}:
                     raise E
             except:
-                comment = "ERREUR couplage"        
+                com = "ERREUR couplage"        
         if pc:
             try:
                 pc = float(pc)
                 if not (0<= pc <= 100):
                     raise E
             except:
-                comment = "ERREUR pourcentage"
+                com = "ERREUR pourcentage"
         if cat:  
             try:
                 cat_id = self.function_8(cat)
                 if not cat_id:
                     raise E
-            except: comment = "EREUR catégorie"
+            except: 
+                com = "EREUR catégorie"
             
         # vérification collective
-        if not comment:
+        if not com:
             v = (cat and pc != '' and couplage != '') or (not cat and pc == '' and couplage == '')
             if not v:
-                comment = ('ERREUR encodage incomplet ou non vide')
+                com = ('ERREUR encodage incomplet ou non vide')
             
-        if not comment:
-            # enregistrement des données dans la base de données         
-            self.update_fixecat(tup=(self.function_8(cat), pc, 0 if couplage =='' else couplage))
-            self.enregistrer()
-            comment.set('OK')
+        if not com:
+            result = self.curseur.execute("""SELECT c_id FROM fixecat""").fetchall()
+            if not cat:
+                if result:
+                    # suppression du crière de catégorie
+                    self.curseur.execute("""DELETE FROM fixecat WHERE c_id=?""", (1,))
+                    self.enregistrer()
+                    kw['comment'].set('OK')
+            else:
+                # enregistrement des données dans la base de données
+                tup = (self.function_8(cat), pc, 0 if couplage =='' else couplage)
+                if not result:
+                    self.insert_fixecat(tup=tup)
+                else:
+                    self.update_fixecat(tup=tup)
+                self.enregistrer()
+                kw['comment'].set('OK')
             return True
         else:
+            kw['comment'].set(com)
             return False
         
         
