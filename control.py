@@ -336,7 +336,7 @@ class Base:
     def create_ponderation(self):
         chaine = """CREATE TABLE IF NOT EXISTS ponderation (
                                             pond_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-                                            weekday INTEGER UNIQUE,
+                                            jour INTEGER UNIQUE,
                                             weighting INTEGER DEFAULT 1
                                             )"""
         self.curseur.execute(chaine)
@@ -356,23 +356,23 @@ class Base:
     def create_limitation(self):
         chaine = """CREATE TABLE IF NOT EXISTS limitation (
                                             lim_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-                                            weekday INTEGER UNIQUE,
+                                            jour INTEGER UNIQUE,
                                             limite INTEGER
                                             )"""
         self.curseur.execute(chaine)
         self.enregistrer()
 
-    def insert_ponderation(self, weekday):
-        chaine = """INSERT INTO ponderation (weekday) VALUES(?)"""
-        self.curseur.execute(chaine, (weekday,))
+    def insert_ponderation(self, jour):
+        chaine = """INSERT INTO ponderation (jour) VALUES(?)"""
+        self.curseur.execute(chaine, (jour,))
         
     def insert_fixecat(self, tup):
         chaine = """INSERT INTO fixecat (cat_id, pc, couplage) VALUES(?,?,?)"""
         self.curseur.execute(chaine, tup)
 
-    def insert_limitation(self, weekday):
-        chaine = """INSERT INTO limitation (weekday) VALUES(?)"""
-        self.curseur.execute(chaine, (weekday,))
+    def insert_limitation(self, jour):
+        chaine = """INSERT INTO limitation (jour) VALUES(?)"""
+        self.curseur.execute(chaine, (jour,))
 
     def insert_stock(self, tup):
         chaine = """INSERT INTO stock (art_id, pa, stk, dat) VALUES(?,?,?,?)"""
@@ -501,15 +501,15 @@ class Base:
         self.curseur.execute(chaine, tup)
 
     def update_ponderation(self, tup):
-        chaine = """UPDATE ponderation SET weighting=?  WHERE weekday=?"""
+        chaine = """UPDATE ponderation SET weighting=?  WHERE jour=?"""
         self.curseur.execute(chaine, tup)
         
     def update_fixecat(self, tup):
-        chaine = """UPDATE fixecat SET cat_id=?,pc=?,couplage=? WHERE c_id=1"""
-        self.curseur.execute(chaine, tup)
+        self.curseur.execute("""DELETE FROM fixecat""")
+        self.insert_fixecat(tup)
 
     def update_limitation(self, tup):
-        chaine = """UPDATE limitation SET limite=?  WHERE weekday=?"""
+        chaine = """UPDATE limitation SET limite=?  WHERE jour=?"""
         self.curseur.execute(chaine, tup)
 
     def update_charge(self, tup):
@@ -629,7 +629,7 @@ class Base:
 
             art_id, pv = x
             # vérification non dépassement de limite du jour
-            chaine = """SELECT limite FROM limitation WHERE weekday=?"""
+            chaine = """SELECT limite FROM limitation WHERE jour=?"""
             result = self.curseur.execute(chaine, (y.weekday(),)).fetchone()
             limite = result[0]
             if limite:
@@ -1011,15 +1011,15 @@ class Base:
         comment = kw['comment']
         com = ''
 
-        chaine = """SELECT weekday, weighting FROM ponderation"""
+        chaine = """SELECT jour, weighting FROM ponderation"""
         result = self.curseur.execute(chaine).fetchall()
         if result:
             for tup in result:
                 p[tup[0]].set(tup[1])
         else:
-            for weekday in range(7):
-                self.insert_ponderation(weekday)
-                p[weekday].set('1')
+            for jour in range(7):
+                self.insert_ponderation(jour)
+                p[jour].set('1')
             self.enregistrer()
             
     def display_55(self, **kw):
@@ -1027,27 +1027,32 @@ class Base:
         result = self.curseur.execute(chaine).fetchall()
         if result:
             cat_id, pc, couplage = result[0]
+            pc = int(pc) if pc == int(pc) else pc
             cat = self.function_32(cat_id)
             if cat:
                 kw['cat'].set(cat)
-                kw['pc'].set(pc)
-                kw['couplage'].set(couplage)
-        kw['comment'].set('')
-        
+                kw['pc'].set(pc) 
+                kw['couplage'].set(couplage)       
+        else:
+            kw['cat'].set('')
+            kw['pc'].set('') 
+            kw['couplage'].set('')
+        kw['comment'].set('')   
+            
     def display_45(self, **kw):
         p = kw['p']
         comment = kw['comment']
         com = ''
 
-        chaine = """SELECT weekday, limite FROM limitation"""
+        chaine = """SELECT jour, limite FROM limitation"""
         result = self.curseur.execute(chaine).fetchall()
         if result:
             for tup in result:
                 p[tup[0]].set(tup[1])
         else:
-            for weekday in range(7):
-                self.insert_limitation(weekday)
-                p[weekday].set('')
+            for jour in range(7):
+                self.insert_limitation(jour)
+                p[jour].set('')
             self.enregistrer()
 
     def display_31(self, **kw):
@@ -1717,7 +1722,8 @@ class Base:
         kw['comment'].set(com)
 
         if not com:
-            self.curseur.execute("""DELETE FROM categorie WHERE cat_id=?""", (cat_id,))
+            self.curseur.execute("""DELETE FROM fixecat WHERE cat_id=?""", (cat_id,))
+            self.curseur.execute("""DELETE FROM categorie WHERE cat_id=?""", (cat_id,))    
             self.enregistrer()
             return True
         else:
@@ -2169,15 +2175,15 @@ class Base:
         p = kw['p']
         comment = kw['comment']
         com = ''
-        for weekday in range(7):
-            if not func_1(p[weekday].get().strip()):
+        for jour in range(7):
+            if not func_1(p[jour].get().strip()):
                 com = "ERREUR pondération"
         comment.set(com)
 
         if not com:
-            for weekday in range(7):
-                weighting = p[weekday].get().strip()
-                self.update_ponderation(tup=(weighting, weekday))
+            for jour in range(7):
+                weighting = p[jour].get().strip()
+                self.update_ponderation(tup=(weighting, jour))
             self.enregistrer()
             comment.set('OK')
             return True
@@ -2188,15 +2194,15 @@ class Base:
         p = kw['p']
         comment = kw['comment']
         com = ''
-        for weekday in range(7):
-            if not func_2(p[weekday].get().strip()):
+        for jour in range(7):
+            if not func_2(p[jour].get().strip()):
                 com = "ERREUR prix"
         comment.set(com)
 
         if not com:
-            for weekday in range(7):
-                limite = p[weekday].get().strip()
-                self.update_limitation(tup=(limite, weekday))
+            for jour in range(7):
+                limite = p[jour].get().strip()
+                self.update_limitation(tup=(limite, jour))
             self.enregistrer()
             comment.set('OK')
             return True
@@ -4734,7 +4740,7 @@ class Base:
         return tot
 
     def function_65(self, x):
-        chaine = """SELECT weighting FROM ponderation WHERE weekday=?"""
+        chaine = """SELECT weighting FROM ponderation WHERE jour=?"""
         result = self.curseur.execute(chaine, (x.weekday(),)).fetchone()
         if result:
             return result[0]
@@ -4933,10 +4939,12 @@ class Base:
             
         if not com:
             result = self.curseur.execute("""SELECT c_id FROM fixecat""").fetchall()
+            print(result)
             if not cat:
                 if result:
-                    # suppression du crière de catégorie
-                    self.curseur.execute("""DELETE FROM fixecat WHERE c_id=?""", (1,))
+                    # suppression du critère de catégorie
+                    print('suupression de enregistrement')
+                    self.curseur.execute("""DELETE FROM fixecat""")
                     self.enregistrer()
                     kw['comment'].set('OK')
             else:
