@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from os.path import join
+
 # liste des couleurs non-utilisées
 color_1 = 'wheat1'
 color_2 = 'pink'
@@ -106,7 +108,7 @@ h_10 = 21       # listbox sans button mais avec comment
 # couleur
 color_32 = 'grey15'         # fond écran
 color_37 = 'grey80'         # écriture claire
-color_6 =  'tomato'              # 'lime green' sélection
+color_6 =  'tomato'         # 'lime green' sélection
 color_33 = 'grey30'         # disabled
 color_30 = 'black'          # écriture foncée
 
@@ -114,13 +116,14 @@ color_30 = 'black'          # écriture foncée
 police_1 = "Consolas"
 
 # NOMS DE FICHIERS
-f_partage = "share_file.txt"
-f_sauvegarde = "save_file.txt"
-f_base = "base_file.txt"
-f_dirImport = "dirImport_file.txt"
-f_dirImportVente = "dirImportVente_file.txt"
-f_nameImport = "nameImport_file.txt"
-f_ticket = "ticket_file.txt"
+
+f_partage = join("MEM_FILE", "share_file.txt")
+f_sauvegarde = join("MEM_FILE", "save_file.txt")
+f_base = join("MEM_FILE", "base_file.txt")
+f_dirImport = join("MEM_FILE", "dirImport_file.txt")
+f_dirImportVente = join("MEM_FILE", "dirImportVente_file.txt")
+f_nameImport = join("MEM_FILE", "nameImport_file.txt")
+f_ticket = join("MEM_FILE", "ticket_file.txt")
 
 # temps d'attente
 attenteLongue = 1000

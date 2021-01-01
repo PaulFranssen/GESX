@@ -83,7 +83,7 @@ class Base:
         self.fermer()
 
         # enregistrement dans le fichier f_base de la databse de lancement
-        with open(f_base, 'w', encoding='latin-1') as f:
+        with open(f_base, 'w', encoding='utf-8') as f:
             f.write(self.database)
 
     def get_database(self):
@@ -122,28 +122,32 @@ class Base:
                 mkdir('BASE')
             elif not isdir('BASE'):
                 mkdir('BASE')
+            if not exists('MEM_file'):
+                mkdir('MEM_file')
+            elif not isdir('MEM_file'):
+                mkdir('MEM_file')
             if not exists(f_partage):
-                with open(f_partage, 'w', encoding='latin-1') as f:
+                with open(f_partage, 'w', encoding='utf-8') as f:
                     f.write('')
             if not exists(f_sauvegarde):
-                with open(f_sauvegarde, 'w', encoding='latin-1') as f:
+                with open(f_sauvegarde, 'w', encoding='utf-8') as f:
                     f.write('')
             if not exists(f_dirImport):
-                with open(f_dirImport, 'w', encoding='latin-1') as f:
+                with open(f_dirImport, 'w', encoding='utf-8') as f:
                     f.write('')
             if not exists(f_dirImportVente):
-                with open(f_dirImportVente, 'w', encoding='latin-1') as f:
+                with open(f_dirImportVente, 'w', encoding='utf-8') as f:
                     f.write('')
             if not exists(f_nameImport):
-                with open(f_nameImport, 'w', encoding='latin-1') as f:
+                with open(f_nameImport, 'w', encoding='utf-8') as f:
                     f.write('')
             if not exists(f_ticket):
-                with open(f_ticket, 'w', encoding='latin-1') as f:
+                with open(f_ticket, 'w', encoding='utf-8') as f:
                     f.write('')
             if not exists(f_base):
-                with open(f_base, 'w', encoding='latin-1') as f:
+                with open(f_base, 'w', encoding='utf-8') as f:
                     f.write('baseX')
-            with open(f_base, 'r', encoding='latin-1') as f:
+            with open(f_base, 'r', encoding='utf-8') as f:
                 nom = f.readline()
             if not nom.strip():
                 nom = "baseX"
@@ -344,6 +348,7 @@ class Base:
                                             cat_id INTEGER NOT NULL,
                                             pc FLOAT,
                                             couplage INTEGER DEFAULT 0
+                                            FOREIGN KEY(cat_id) REFERENCES categorie (cat_id)
                                             )"""
         self.curseur.execute(chaine)
         self.enregistrer()
@@ -1169,7 +1174,7 @@ class Base:
         comment.set('')
 
         try:
-            with open(f_ticket, "r", encoding="latin-1") as f:
+            with open(f_ticket, "r", encoding="utf-8") as f:
                 p = f.readline()
         except OSError as error:
             comment.set(error)
@@ -1186,7 +1191,7 @@ class Base:
         comment.set('')
 
         try:
-            with open(f_partage, "r", encoding="latin-1") as f:
+            with open(f_partage, "r", encoding="utf-8") as f:
                 p = f.readline()
                 partage.set(p)
         except OSError as error:
@@ -1194,7 +1199,7 @@ class Base:
             return False
 
         try:
-            with open(f_sauvegarde, "r", encoding="latin-1") as f:
+            with open(f_sauvegarde, "r", encoding="utf-8") as f:
                 p = f.readline()
                 sauvegarde.set(p)
         except OSError as error:
@@ -1213,7 +1218,7 @@ class Base:
         comment.set('')
 
         try:
-            with open(f_dirImport, "r", encoding="latin-1") as f:
+            with open(f_dirImport, "r", encoding="utf-8") as f:
                 p = f.readline()
         except OSError as error:
             comment.set(error)
@@ -1221,7 +1226,7 @@ class Base:
         importe.set(p)
 
         try:
-            with open(f_nameImport, "r", encoding="latin-1") as f:
+            with open(f_nameImport, "r", encoding="utf-8") as f:
                 p = f.readline()
         except OSError as error:
             comment.set(error)
@@ -1238,7 +1243,7 @@ class Base:
         comment.set('')
 
         try:
-            with open(f_dirImportVente, "r", encoding="latin-1") as f:
+            with open(f_dirImportVente, "r", encoding="utf-8") as f:
                 p = f.readline()
         except OSError as error:
             comment.set(error)
@@ -2292,7 +2297,7 @@ class Base:
                     comment.set('Partage effectué')
                     if kw['def_partage'].get():
                         try:
-                            with open(f_partage, 'w', encoding='latin-1') as f:
+                            with open(f_partage, 'w', encoding='utf-8') as f:
                                 f.write(partage)
                         except OSError as com:
                             comment.set(com)
@@ -2317,7 +2322,7 @@ class Base:
                     comment.set('Sauvegarde effectuée')
                     if kw['def_sauvegarde'].get():
                         try:
-                            with open(f_sauvegarde, 'w', encoding='latin-1') as f:
+                            with open(f_sauvegarde, 'w', encoding='utf-8') as f:
                                 f.write(sauvegarde)
                         except OSError as com:
                             comment.set(com)
@@ -2336,7 +2341,7 @@ class Base:
         dicoVenteTrie = OrderedDict(sorted(dicoVente.items(), key=lambda t: t[0]))
         print(dicoVente, dicoVenteTrie)
 
-        with open(nomF, 'w', encoding='latin-1') as fichier:
+        with open(nomF, 'w', encoding='utf-8') as fichier:
 
             fichier.write('{:^31}'.format(etoile))
             fichier.write('\n{:^31}'.format(NomBar))
@@ -2401,7 +2406,7 @@ class Base:
             return False
 
         if def_rep.get():
-            with open(f_ticket, 'w', encoding='latin-1') as fichier:
+            with open(f_ticket, 'w', encoding='utf-8') as fichier:
                 fichier.write(repertoire)
 
         # fabrication des tickets txt
@@ -2530,7 +2535,7 @@ class Base:
         else:
             if kw['def_importe'].get():
                 try:
-                    with open(f_dirImportVente, 'w', encoding='latin-1') as f:
+                    with open(f_dirImportVente, 'w', encoding='utf-8') as f:
                         f.write(importe)
                 except OSError as com:
                     comment.set(com)
@@ -2538,11 +2543,11 @@ class Base:
             try:
                 comment.set('Importation en cours...')
                 # lire le fichier csv
-                with open(src, 'r', newline='', encoding='latin-1') as f:
+                with open(src, 'r', newline='', encoding='utf-8') as f:
                     fi = csv.DictReader(f, fieldnames=['code', 'qte', 'prix'])
                     liste = [dico for dico in fi]
             except csv.Error as com:
-                comment.set(error)
+                comment.set(com)
                 return False
 
             ## vérification du fichier
@@ -2648,7 +2653,7 @@ class Base:
         else:
             try:
                 rename(old, new)
-                with open(f_base, 'w', encoding='latin-1') as f:
+                with open(f_base, 'w', encoding='utf-8') as f:
                     f.write(name)
             except OSError as com:
                 comment.set(com)
