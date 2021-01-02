@@ -1023,21 +1023,31 @@ class Base:
             self.enregistrer()
             
     def display_55(self, **kw):
+      
+        n = kw['n']
+        cat = kw['cat']
+        pc = kw['pc']
+        couplage = kw['couplage']
+        
+        
+        # effacement
+        couplage.set(0)
+        kw['comment'].set('')
+        for i in range(n):
+            cat[i].set('')
+            pc[i].set('') 
+                       
+        # récupération des enregistrements dans result
         chaine = """SELECT cat_id, pc, couplage FROM fixecat"""
         result = self.curseur.execute(chaine).fetchall()
         if result:
-            cat_id, pc, couplage = result[0]
-            pc = int(pc) if pc == int(pc) else pc
-            cat = self.function_32(cat_id)
-            if cat:
-                kw['cat'].set(cat)
-                kw['pc'].set(pc) 
-                kw['couplage'].set(couplage)       
-        else:
-            kw['cat'].set('')
-            kw['pc'].set('') 
-            kw['couplage'].set('')
-        kw['comment'].set('')   
+            for i, tup in enumerate(result):
+                cat_id, percent, couple = tup
+                # placement des valeurs de la base dans les variables dynamiques
+                cat[i].set(self.function_32(cat_id))
+                pc[i].set(int(percent) if percent == int(percent) else percent) 
+                if i == 0:
+                    couplage.set(couple)               
             
     def display_45(self, **kw):
         p = kw['p']
@@ -1692,7 +1702,7 @@ class Base:
         elif len(code) > l_code:
             com = "ERREUR nom (limite = " + str(l_code) + " caractères)"
         elif self.function_8(code) and self.function_8(code) != cat_id:
-            com = "ERREUR code (déjà utilisé)"
+            com = "ERREUR nom (déjà utilisé)"
 
         kw['comment'].set(com)
 
@@ -4903,67 +4913,64 @@ class Base:
     def record_55(self, **kw):
         
         # initialisation
-        cat = kw['cat'].get().strip()
-        pc = kw['pc'].get().strip()
-        couplage = kw['couplage'].get().strip()
+        cat = [elem for elem in kw['cat']]
+        pc = [elem for elem in kw['pc']]
+        n = kw['n']
+        couplage = kw['couplage'].get()
         com = ''
+        cat_id =[False for _ in range(n)]
         
         # vérification de chaque encodage
-        if couplage:
-            try:     
-                couplage = int(couplage)
-                if couplage not in {0, 1, 2}:
-                    raise E
-            except:
-                com = "ERREUR couplage"        
-        if pc:
-            try:
-                pc = float(pc)
-                if not (0<= pc <= 100):
-                    raise E
-            except:
-                com = "ERREUR pourcentage"
-        if cat:  
-            try:
-                cat_id = self.function_8(cat)
-                if not cat_id:
-                    raise E
-            except: 
-                com = "EREUR catégorie"
-            
-        # vérification collective
-        if not com:
-            v = (cat and pc != '' and couplage != '') or (not cat and pc == '' and couplage == '')
-            if not v:
-                com = ('ERREUR encodage incomplet ou non vide')
-            
-        if not com:
-            result = self.curseur.execute("""SELECT c_id FROM fixecat""").fetchall()
-            print(result)
-            if not cat:
-                if result:
-                    # suppression du critère de catégorie
-                    print('suupression de enregistrement')
-                    self.curseur.execute("""DELETE FROM fixecat""")
-                    self.enregistrer()
-                    kw['comment'].set('OK')
-            else:
-                # enregistrement des données dans la base de données
-                tup = (self.function_8(cat), pc, 0 if couplage =='' else couplage)
-                if not result:
-                    self.insert_fixecat(tup=tup)
+        i = 0
+        while i < n and not com:
+            encode1 = encode2 = False
+            if pc[i].get().strip():
+                try:
+                    pc[i] = float(pc[i].get().strip())
+                    if not (0<= pc[i] <= 100):
+                        raise E
+                except:
+                    com = "ERREUR pourcentage"
                 else:
-                    self.update_fixecat(tup=tup)
-                self.enregistrer()
-                kw['comment'].set('OK')
-            return True
-        else:
-            kw['comment'].set(com)
-            return False
+                    encode1 = True
+            if cat[i].get().strip():  
+                try:
+                    cat_id[i] = self.function_8(cat[i].get().strip())
+                    if not cat_id[i]:
+                        raise E
+                except: 
+                    com = "EREUR catégorie"
+                else:
+                    encode2 = True
+            if not com and encode1 != encode2:
+                com = "ERREUR encodage"
+            i += 1 
+        # vérification collective
+        ## catégories doivent être toutes différentes ou toutes vides
+        if not com:
+            liste = [elem for elem in cat_id if elem is not False]
+            test = liste == [] or  len(set(liste)) == len(liste)
+            if not test:
+                com = "Erreur encodage (catégories identiques)"
+        ## somme des pc doit être <= 100
+        if not com:
+            if sum([pc[i] for i in range(n) if type(pc[i])==float]) > 100:
+                com = "ERREUR pourcentage"                      
+        if not com:
+            # suppression des enregistrements
+            self.curseur.execute("""DELETE FROM fixecat""")
+                
+            # enregistrements des nouvelles contraintes
+            for i in range(n):
+                if cat_id[i]:
+                    self.insert_fixecat(tup = (cat_id[i], pc[i], 0 if i>0 else couplage))
+            self.enregistrer()  
+            com = 'OK'
         
+        # message d'erreur   
+        kw['comment'].set(com) 
+        return True if com == 'OK' else False
         
-        
-    
     def list_19(self, **kw):
 
         list_ref = kw['list_ref']

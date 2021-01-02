@@ -172,6 +172,9 @@ kw_47b = {'font': (police_1, taille_4), 'bg': color_32, 'fg': color_32, 'bd': 0
          , 'relief': 'flat'}
 pad_47 = {}
 
+# checkbutton dans la fixation de catégorie (g)
+pad_47c = dict(padx = 30, side = 'right')
+
 # checkbutton d encodage (en vente, amortissement, ...) dans situation à 2 colonnes
 pad_48 = dict(side='left')
 

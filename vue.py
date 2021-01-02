@@ -1595,14 +1595,16 @@ class Frame55(Frame):
         Frame.__init__(self, boss)
         self.configure(**kw_fx)
         root = self.master.master.master
-
-        self.cat = StringVar()
-        self.couplage = StringVar()
-        self.pc = StringVar()
+        
+        # variables dynamiques
+        self.n = 5
+        self.cat = [StringVar() for _ in range(self.n)]
+        self.pc = [StringVar() for _ in range(self.n)]
+        self.couplage = IntVar()
         self.comment = StringVar()
 
         # structure
-        Label(self, text="FIXER UNE CAtégorie".upper(), **kw_42).pack(**pad_42)
+        Label(self, text="fixer une catégorie".upper(), **kw_42).pack(**pad_42)
         cadre1 = Frame(self, **kw_c1)
         cadre1.pack(**pad_c1)
         cadre2 = Frame(self, **kw_c2)
@@ -1611,31 +1613,37 @@ class Frame55(Frame):
 
         # structure cadre 1
         cadrex = Frame(cadre1, **kw_cx)
-        cadrex.pack(side=LEFT)
-        cadre7 = Frame(cadrex, **kw_c7)
-        cadre7.pack(**pad_c7)
-
-        # détails cadre 1
-        Label(cadre7, text='catégorie'.upper(), **kw_11).pack(**pad_11, side=LEFT)
-        self.e1 = Entry(cadre7, width=l_code, textvariable=self.cat, **kw_12)
+        cadrex.pack(side=LEFT)      
+        cadre = [Frame(cadrex, **kw_c7) for _ in range(self.n)] 
+          
+        ## ligne1
+        cadre[0].pack(**pad_c7)
+        Label(cadre[0], text='catégorie'.upper(), **kw_11).pack(**pad_11, side=LEFT)
+        self.e1 = Entry(cadre[0], width=l_code, textvariable=self.cat[0], **kw_12)
         self.e1.pack(**pad_12, side=LEFT)
         
-        Label(cadre7, text='   % VENTE', **kw_11).pack(**pad_11, side=LEFT)
-        e2 = Entry(cadre7, width=l_pc, textvariable=self.pc, **kw_12)
-        e2.pack(**pad_12, side=LEFT)
-        
-        e3 = Entry(cadre7, width=l_couplage, textvariable=self.couplage, **kw_12)
-        e3.pack(**pad_12, side=RIGHT)
-        Label(cadre7, text='   COUPLAGE (0-1-2)', **kw_11).pack(side='right', padx=10)
-        
+        Label(cadre[0], text='   % VENTE', **kw_11).pack(**pad_11, side=LEFT)
+        Entry(cadre[0], width=l_pc, textvariable=self.pc[0], **kw_12).pack(**pad_12, side=LEFT) 
+          
+        Checkbutton(cadre[0], text="couplage".upper(), variable=self.couplage, **kw_47).pack(**pad_47c)     
+
+        # lignes suivantes
+        for i in range(1, self.n):
+            cadre[i].pack(**pad_c7)
+            Label(cadre[i], text='catégorie'.upper(), **kw_11).pack(**pad_11, side=LEFT)
+            Entry(cadre[i], width=l_code, textvariable=self.cat[i], **kw_12).pack(**pad_12, side=LEFT)         
+            Label(cadre[i], text='   % VENTE', **kw_11).pack(**pad_11, side=LEFT)
+            Entry(cadre[i], width=l_pc, textvariable=self.pc[i], **kw_12).pack(**pad_12, side=LEFT)
+      
         def refresh():
             self.comment.set('')
 
         def record(event):
             if self.master.master.base.record_55(cat=self.cat,
-                                                    pc=self.pc,
-                                                    couplage=self.couplage,
-                                                    comment=self.comment):
+                                                pc=self.pc,
+                                                couplage=self.couplage,
+                                                comment=self.comment,
+                                                n = self.n):
                 self.focus_set()
                 root.bell()
                 root.after(attenteCourte, refresh)
@@ -1666,7 +1674,8 @@ class Frame55(Frame):
         self.master.master.base.display_55(cat=self.cat,
                                            pc=self.pc,
                                            couplage=self.couplage,
-                                           comment=self.comment)
+                                           comment=self.comment,
+                                           n = self.n)
         self.e1.focus_set()
         self.e1.icursor(END)
         self.pack(**pad_fx)

@@ -25,6 +25,7 @@ if __name__ == '__main__':
     base.fix_cp(pf)
 
     # affichage écran d'accueil
+    
     pf.accueil()
 
     # création éventuelle du système de fichiers, établissement de la base de départ et de l'exercice actuel
