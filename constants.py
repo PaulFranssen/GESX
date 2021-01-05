@@ -134,6 +134,12 @@ reglage_1 = 33
 reglage_2 = 33
 reglage_3 = 65
 
+# coefficient de placement des composés dans la liste générée
+# indique la proportion minimale d'article inventorié à prendre en compte
+coef_compose = 0.5
+# maximum de recherche itérations pour générer
+max_iteration = 100000
+
 
 
 
