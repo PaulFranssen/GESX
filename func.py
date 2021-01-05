@@ -14,12 +14,20 @@ f = lambda x: int(x) if x == int(x) else x  # renvoie un integer si x est un int
 
 
 def func_2(x):
+    """détermine la nature entière et positive de x
+
+    Args:
+        x (str): valeur introduite par l'utilisateur
+
+    Returns:
+        bool: True si x est la chaine vide ou contient un entier positif, False sinon
+    """    
     if not x:
         return True
     else:
         try:
             x = int(x)
-        except ValueError:
+        except:
             return False
 
         return x >= 0

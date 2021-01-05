@@ -357,14 +357,21 @@ class Base:
         chaine = """CREATE TABLE IF NOT EXISTS limitation (
                                             lim_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
                                             jour INTEGER UNIQUE,
-                                            limite INTEGER
+                                            limite INTEGER DEFAULT NULL
                                             )"""
         self.curseur.execute(chaine)
+        
+        # initialisation des limites à None pour chaque jour
+        if not self.curseur.execute("""SELECT lim_id FROM limitation"""):
+            for jour in range(7):
+                    self.insert_limitation(jour)
+                               
         self.enregistrer()
-
+        
     def insert_ponderation(self, jour):
         chaine = """INSERT INTO ponderation (jour) VALUES(?)"""
         self.curseur.execute(chaine, (jour,))
+        
         
     def insert_fixecat(self, tup):
         chaine = """INSERT INTO fixecat (cat_id, pc, couplage) VALUES(?,?,?)"""
@@ -582,8 +589,7 @@ class Base:
             
             # initailisation du dico
             dico = dict()
-            
-            
+        
             if result:
                 for tup in result:
                     # stock de chaque article avant le premier jour de vente
@@ -638,6 +644,15 @@ class Base:
             return liste
 
         def f_6(x, y):
+            """construit la liste des jours de vente
+
+            Args:
+                x (datetime): premier jour de vente
+                y (datetime): dernier jour de vente
+
+            Returns:
+                list: liste 
+            """            
             day = x
             liste = []
             while day <= y:
@@ -665,10 +680,11 @@ class Base:
             # vérification non dépassement de limite du jour
             chaine = """SELECT limite FROM limitation WHERE jour=?"""
             result = self.curseur.execute(chaine, (y.weekday(),)).fetchone()
-            limite = result[0]
-            if limite:
-                if limite <= pv:
+            if result:
+                limite = result[0] 
+                if limite is not None and limite <= pv:
                     return False
+                return True
                 
             # verification non-dépassement des quotas de catégories
             if cat_id in dico_quota[art_id] and dico_quota[art_id][1] + pv > dico_quota[art_id][0]:
@@ -843,7 +859,7 @@ class Base:
             jour = choice(list_jour)
 
             # validité des choix          
-            if not f_3(dico_stock, article, jour):
+            if not f_3(dico_stock, article, jour, dico_quota):
                 iteration +=1
                 continue
 
@@ -1161,18 +1177,19 @@ class Base:
         p = kw['p']
         comment = kw['comment']
         com = ''
-
         chaine = """SELECT jour, limite FROM limitation"""
         result = self.curseur.execute(chaine).fetchall()
         if result:
             for tup in result:
-                p[tup[0]].set(tup[1])
+                if tup[1] is not None:
+                    p[tup[0]].set(tup[1])
+                else:
+                    p[tup[0]].set('')
         else:
-            for jour in range(7):
-                self.insert_limitation(jour)
-                p[jour].set('')
-            self.enregistrer()
-
+            com = "Erreur database (limitation)"
+        
+        comment.set(com)
+        
     def display_31(self, **kw):
 
         x = getcwd()
@@ -2312,15 +2329,20 @@ class Base:
         p = kw['p']
         comment = kw['comment']
         com = ''
+        
+        # test 
         for jour in range(7):
             if not func_2(p[jour].get().strip()):
-                com = "ERREUR prix"
+                com = "ERREUR prix non conforme"
         comment.set(com)
 
         if not com:
+            # update 
             for jour in range(7):
                 limite = p[jour].get().strip()
-                self.update_limitation(tup=(limite, jour))
+                if limite == '':
+                    limite = None
+                self.update_limitation(tup=(jour, limite))
             self.enregistrer()
             comment.set('OK')
             return True

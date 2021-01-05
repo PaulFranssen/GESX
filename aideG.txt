@@ -94,6 +94,8 @@ DETAILS TECHNIQUES
 								  la base est alors placée dans le dossier GESX/BASE et remplace celle du même nom si existante
 	export base 				: exporter une base permet de la copier dans un répertoire indiqué par l'utilisateur
 
-	                              
-	
+GENERATION
+	limite journalière			: limitations du prix des articles selon le jour de vente,
+								  exemple : lundi 5000, signifie ne pas vendre le lundi des articles de plus de 5000
+								  si l'aticle choisi ne convient pas, choisir un autre article
 	
