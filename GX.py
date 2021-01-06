@@ -4,6 +4,7 @@
 
 # importation des modules
 
+
 #from sqlite3 import *
 from random import choice, randint
 from os import startfile

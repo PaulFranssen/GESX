@@ -138,7 +138,7 @@ reglage_3 = 65
 # indique la proportion minimale d'article inventorié à prendre en compte
 coef_compose = 0.5
 # maximum de recherche itérations pour générer
-max_iteration = 100000
+max_iteration = 20000
 
 
 

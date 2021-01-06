@@ -103,7 +103,8 @@ class Base:
 
         else:
             if self.connexion:
-                print('connexion à la base de données ')
+                # connexion à la base de données
+                pass
 
     def enregistrer(self):
         self.connexion.commit()
@@ -516,6 +517,7 @@ class Base:
         self.insert_fixecat(tup)
 
     def update_limitation(self, tup):
+        print(tup)
         chaine = """UPDATE limitation SET limite=?  WHERE jour=?"""
         self.curseur.execute(chaine, tup)
 
@@ -588,7 +590,7 @@ class Base:
             result = self.curseur.execute(chaine, (1,)).fetchall()
             
             # initailisation du dico
-            dico = dict()
+            dico = {}
         
             if result:
                 for tup in result:
@@ -677,51 +679,65 @@ class Base:
 
             art_id, cat_id, pv = x
             
+            print('test article, cat, pv', x)
+            
+            res = True
+            
             # vérification non dépassement de limite du jour
             chaine = """SELECT limite FROM limitation WHERE jour=?"""
             result = self.curseur.execute(chaine, (y.weekday(),)).fetchone()
             if result:
                 limite = result[0] 
-                if limite is not None and limite <= pv:
-                    return False
-                return True
-                
-            # verification non-dépassement des quotas de catégories
-            if cat_id in dico_quota[art_id] and dico_quota[art_id][1] + pv > dico_quota[art_id][0]:
-                return False
-            elif dico_quota[0][1] + pv > dico_quota[0][0]:
-                return False
-                
-
-            # vérification de non stock négatifs (et retrait des stocks)
-            chaine = """SELECT ad FROM article WHERE art_id=?"""
-            result = self.curseur.execute(chaine, (art_id,)).fetchone()
-            ad = result[0]
-            if ad == 1:
-                if dico[art_id] - 1 < 0:
-                    return False
-                else:
-                    # retrait des stocks
-                    dico[art_id] -= 1
-            else:
-                # articles composés
-                liste = self.function_15(art_id, y)
-                for tup in liste:
-                    component_id, proportion = tup
-                    if dico[component_id] - proportion < 0:
-                        return False
-                # retrait des stocks
-                for tup in liste:
-                    component_id, proportion = tup
-                    dico[component_id] -= proportion
+                if limite is not None and pv >= limite:
+                    print('1')
+                    res = False
             
-            # complétion du dictionnaire des catégories
-            if cat_id in dico_quota[art_id]:
-                dico_quota[art_id][1] += pv
-            else:
-                dico_quota[0][1] += pv    
-            return True
-           
+            if res:   
+                # verification non-dépassement des quotas de catégories
+                if cat_id in dico_quota:
+                    
+                    if dico_quota[cat_id][1] + pv > dico_quota[cat_id][0]:
+                        print(dico_quota[cat_id][1] + pv, '>', dico_quota[cat_id][0])
+                        res = False
+                        print('2')
+                elif dico_quota[0][1] + pv > dico_quota[0][0]:
+                    print(dico_quota[0][1] + pv, '>', dico_quota[0][0])
+                    print('3')
+                    res = False
+                
+            if res:
+                # vérification de non stock négatifs (et retrait des stocks)
+                chaine = """SELECT ad FROM article WHERE art_id=?"""
+                result = self.curseur.execute(chaine, (art_id,)).fetchone()
+                ad = result[0]
+                if ad == 1:
+                    # article inventorié
+                    if dico[art_id] - 1 < 0:
+                        res = False
+                    else:
+                        # retrait des stocks
+                        dico[art_id] -= 1
+                else:
+                    # articles composés
+                    liste = self.function_15(art_id, y)
+                    for tup in liste:
+                        component_id, proportion = tup
+                        if dico[component_id] - proportion < 0:
+                            res = False
+                    # retrait des stocks
+                    for tup in liste:
+                        component_id, proportion = tup
+                        dico[component_id] -= proportion
+            if res:   
+                # complétion du dictionnaire des catégories
+                if cat_id in dico_quota:
+                    dico_quota[cat_id][1] += pv
+                else:
+                    dico_quota[0][1] += pv    
+                
+            print(res)
+            return res
+          
         def f_4(dico, x, y, nulle):
             """ajout de l'article dans le dictionnaire des ventes
 
@@ -833,6 +849,8 @@ class Base:
         if not len(list_choix):
             comment.set("ERREUR pas d'articles en vente")
             return False
+        
+        print('list_choix', list_choix)
 
         # liste des jours
         list_jour = f_6(d_i, d_f)
@@ -840,16 +858,19 @@ class Base:
             comment.set("ERREUR pas de dates programmées")
             return False
         
+        print('liste des jours', list_jour)
+        
         # construction du dictionnaire de quotas (catégories) clés art_id des catégories ou 0 (autres)
         #   valeurs : couple (montant d'achat, montant actuel vendu)
         
         dico_quota ={}
         f_8(dico_quota, montant)
 
-        # initailsation de la boucle de choix
+        # initialisation de la boucle de choix
         dico_vente = dict()
         t = 0
         iteration = 0
+        comment.set('en cours...')
 
         # boucle principale     
         while t < montant and len(list_choix) and iteration < max_iteration:
@@ -889,7 +910,7 @@ class Base:
 
         # enregistrement des modifications de la base
         self.enregistrer()
-        comment.set(f"Total généré : ' {func_6(t)}")
+        comment.set(f"Total généré : {func_6(t)}")
         return True
 
     def display_11(self, **kw):
@@ -2327,6 +2348,7 @@ class Base:
 
     def record_45(self, **kw):
         p = kw['p']
+        print(p)    
         comment = kw['comment']
         com = ''
         
@@ -2342,7 +2364,7 @@ class Base:
                 limite = p[jour].get().strip()
                 if limite == '':
                     limite = None
-                self.update_limitation(tup=(jour, limite))
+                self.update_limitation(tup=(limite, jour))
             self.enregistrer()
             comment.set('OK')
             return True
@@ -3387,20 +3409,15 @@ class Base:
         comment = kw['comment']
         d_i = func_7(kw['d_i'].get().strip())
         d_f = func_7(kw['d_f'].get().strip())
-
         com = ''
-
         year = self.exercice
 
         if not isdir(path):
             com = "ERREUR répertoire"
-
         elif not (d_i and d_f):
             com = "ERREUR date (non conforme)"
-
         elif d_f < d_i:
             com = "ERREUR date (non conforme)"
-
         elif d_i.year != year or d_f.year != year:
             com = "ERREUR date (année non conforme)"
 
@@ -3868,7 +3885,7 @@ class Base:
         return q
 
     def function_16b(self, art_id, y, z):
-        """détermine la quantité d'un article inventorié donné entre 2 dates.
+        """détermine la quantité vendue d'un article inventorié donné entre 2 dates.
         cet article a peut se trouvé dans un composé
 
         Args:
@@ -3893,6 +3910,7 @@ class Base:
             for code_id, qte, dat in result:
                 if code_id == art_id:  # code_id est l'article recherché
                     q += qte
+                    print('article comptaboilisé', art_id, qte, dat)
                 elif self.function_6(code_id):  # l'article est un autre article inventorié
                     continue
                 elif self.function_7(code_id):  # code_id est un composé
@@ -3905,6 +3923,7 @@ class Base:
                 else:  # code_id est non-inventorié
                     print('cet article ne devrait pas se trouvé dans  vente')
                     continue
+        
         return q
 
     def function_17(self, art_id, dat):
@@ -4663,6 +4682,7 @@ class Base:
                     liste.append([name.upper()])
                     passage = False
                 art_id = self.function_2(code)
+                
                 d_i, d_f = func_20(x), y 
 
                 pa_final = dicoPa[art_id][1]
@@ -4739,15 +4759,19 @@ class Base:
 
             if result:
                 for quantity, price, dat in result:
+                    # détermination du Pa
                     if ad == 1:
+                        # article inventorié
                         # pa = self.function_43(x, dat)
                         pa = dicoPa[art_id][1]
                     else:
                         # article composé
                         pa = self.function_42(art_id, dat, dicoPa)
-                marge += price - pa * quantity
-                qte += quantity
-                tot += price
+                    
+                    # incrémentation
+                    marge += price - pa * quantity
+                    qte += quantity
+                    tot += price
 
         else:
             # situation abandonnée
