@@ -696,14 +696,17 @@ class Base:
                 # verification non-dépassement des quotas de catégories
                 if cat_id in dico_quota:
                     
-                    if dico_quota[cat_id][1] + pv > dico_quota[cat_id][0]:
-                        print(dico_quota[cat_id][1] + pv, '>', dico_quota[cat_id][0])
+                    if dico_quota[cat_id][1] > dico_quota[cat_id][0]:
+                        print(dico_quota[cat_id][1], '>', dico_quota[cat_id][0])
                         res = False
                         print('2')
-                elif dico_quota[0][1] + pv > dico_quota[0][0]:
+                elif dico_quota[0][1] > dico_quota[0][0]:
                     print(dico_quota[0][1] + pv, '>', dico_quota[0][0])
                     print('3')
                     res = False
+                # vérification du dépassement de limite globale: je renvoie "None"
+                
+                
                 
             if res:
                 # vérification de non stock négatifs (et retrait des stocks)
@@ -735,7 +738,8 @@ class Base:
                 else:
                     dico_quota[0][1] += pv    
                 
-            print(res)
+            print(res, dico_quota)
+            
             return res
           
         def f_4(dico, x, y, nulle):
