@@ -162,7 +162,7 @@ class Frame1(Frame):
         me = Menu(self.mb_g, **kw_3)
         me.add_command(label="Pondérer les jours", underline=0, command=self.command44, **kw_2)
         me.add_command(label="Limiter le prix des articles", underline=0, command=self.command45, **kw_2)
-        me.add_command(label="Fixer une catégorie", underline=0, command=self.command55, **kw_2)
+        me.add_command(label="Fixer des catégories", underline=0, command=self.command55, **kw_2)
         me.add_separator()
         me.add_command(label="Générer les ventes", underline=0, command=self.command46, **kw_2)
         me.add_command(label="Imprimer les tickets", underline=0, command=self.command54, **kw_2)
@@ -1597,14 +1597,14 @@ class Frame55(Frame):
         root = self.master.master.master
         
         # variables dynamiques
-        self.n = 5
+        self.n = nbr_categorie_fix
         self.cat = [StringVar() for _ in range(self.n)]
         self.pc = [StringVar() for _ in range(self.n)]
         self.couplage = IntVar()
         self.comment = StringVar()
 
         # structure
-        Label(self, text="fixer une catégorie".upper(), **kw_42).pack(**pad_42)
+        Label(self, text="fixer des catégories".upper(), **kw_42).pack(**pad_42)
         cadre1 = Frame(self, **kw_c1)
         cadre1.pack(**pad_c1)
         cadre2 = Frame(self, **kw_c2)
@@ -1625,7 +1625,7 @@ class Frame55(Frame):
         Label(cadre[0], text='   % VENTE', **kw_11).pack(**pad_11, side=LEFT)
         Entry(cadre[0], width=l_pc, textvariable=self.pc[0], **kw_12).pack(**pad_12, side=LEFT) 
           
-        Checkbutton(cadre[0], text="couplage".upper(), variable=self.couplage, **kw_47).pack(**pad_47c)     
+        #Checkbutton(cadre[0], text="couplage".upper(), variable=self.couplage, **kw_47).pack(**pad_47c)     
 
         # lignes suivantes
         for i in range(1, self.n):

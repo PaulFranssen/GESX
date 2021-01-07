@@ -1,5 +1,5 @@
 GESX
-Programme de gestion
+Programme de gestion pour bar restaurant
 
 OBJECTIFS
 	-suivi des stocks 
@@ -28,7 +28,7 @@ GESTION DES FICHIERS ET DE LA BASE DE DONNEES
 	Dans GESX se trouve notamment le dossier DOCUMENTS (contient les documents de gestion générés par le programme) et
 	le dossier BASE (contenant les bases de données).
 
-	Pour fournir un accès à distance de la base de données, cette dernière peut exportée dans un dossier partagé,
+	Pour fournir un accès à distance de la base de données, cette dernière peut être exportée dans un dossier partagé,
 	cette opération se faisant via le programme.
 
 	Le programme permet également une sauvegarde de la base de donnée, dans un dossier fourni par l'utilisateur. 
@@ -96,6 +96,11 @@ DETAILS TECHNIQUES
 
 GENERATION
 	limite journalière			: limitations du prix des articles selon le jour de vente,
-								  exemple : lundi 5000, signifie ne pas vendre le lundi des articles de plus de 5000
-								  si l'aticle choisi ne convient pas, choisir un autre article
+								  exemple : lundi 5000, signifie ne pas vendre le lundi des articles de plus de 5000,
+	pondérer les jours			: par défaut, la pondération journalière est de 1, 
+								  indique l'importance des ventes selon le jour de la semaine
+	fixer des catégories        : permet de fixer un % de vente lié à une ou plusieures catégorie,
+	                              par exemple, 'cuisine' à 20% des ventes, donc sous-entendu le reste des articles sera de 80%
+								  les ventes sont également liés à leur quantité en stock						  
+
 	

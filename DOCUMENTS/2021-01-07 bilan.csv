@@ -7,13 +7,13 @@ Thu 07 Jan 2021
 
 RÉSULTATS GLOBAUX
 
-RECETTES;20000
+RECETTES;200000
 ACHATS;0
-VARIATION DE STOCK;-2650
-MARGE BRUTE;17350
+VARIATION DE STOCK;-57900
+MARGE BRUTE;142100
 CHARGES;0
-RÉSULTAT NET;17350
-MARGE NETTE;87%
+RÉSULTAT NET;142100
+MARGE NETTE;71%
 
 RÉSULTATS SELON CATÉGORIE
 
@@ -23,25 +23,25 @@ Recette;0
 Marge brute;0
 
 COCKTAIL
-Quantité vendue;9
-Recette;18000
-Marge brute;15750
-
-EAU
 Quantité vendue;0
 Recette;0
 Marge brute;0
 
+EAU
+Quantité vendue;179
+Recette;179000
+Marge brute;125300
+
 SODA
-Quantité vendue;2
-Recette;2000
-Marge brute;1600
+Quantité vendue;21
+Recette;21000
+Marge brute;16800
 
 CHARGES SELON TYPE
 
 VALEUR STOCK
-Initial;10000
-Final;7350
+Initial;5000
+Final;-52900
 
 DÉTAILS STOCKS
 CODE;INITIAL;PA;FINAL;PA
@@ -50,7 +50,7 @@ ALCOOL
 gin;0;0;0;0
 
 EAU
-perrier;20;300;15,5;300
+perrier;10;300;-169;300
 
 SODA
-coca;20;200;13,5;200
+coca;10;200;-11;200

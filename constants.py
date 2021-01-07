@@ -139,6 +139,8 @@ reglage_3 = 65
 coef_compose = 0.5
 # maximum de recherche itérations pour générer
 max_iteration = 20000
+# nombre de catégories fixées (pour générer)
+nbr_categorie_fix = 5
 
 
 

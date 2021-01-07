@@ -676,11 +676,7 @@ class Base:
             Returns:
                 bool: True si le choix est bon, false sinon
             """            
-
-            art_id, cat_id, pv = x
-            
-            print('test article, cat, pv', x)
-            
+            art_id, cat_id, pv = x                 
             res = True
             
             # vérification non dépassement de limite du jour
@@ -689,25 +685,31 @@ class Base:
             if result:
                 limite = result[0] 
                 if limite is not None and pv >= limite:
-                    print('1')
-                    res = False
-            
+                    res = False           
             if res:   
                 # verification non-dépassement des quotas de catégories
-                if cat_id in dico_quota:
-                    
-                    if dico_quota[cat_id][1] > dico_quota[cat_id][0]:
-                        print(dico_quota[cat_id][1], '>', dico_quota[cat_id][0])
-                        res = False
-                        print('2')
+                if cat_id in dico_quota:                   
+                    if dico_quota[cat_id][1] > dico_quota[cat_id][0]: 
+                        # dépassement dans une catégorie fixée           
+                        res = False  
+                        # suppression des éléments de cette catégorie
+                        i = 0
+                        while i<len(list_choix):
+                            if list_choix[i][1] == cat_id:
+                                del list_choix[i]
+                            else:
+                                i +=1
+                            
                 elif dico_quota[0][1] > dico_quota[0][0]:
-                    print(dico_quota[0][1] + pv, '>', dico_quota[0][0])
-                    print('3')
-                    res = False
-                # vérification du dépassement de limite globale: je renvoie "None"
-                
-                
-                
+                    # dépassement dans le reste des catégories
+                    res = False    
+                    # suppression des éléments des autres catégories
+                    i = 0
+                    while i<len(list_choix):
+                        if list_choix[i][1] not in dico_quota:
+                            del list_choix[i]
+                        else:
+                            i +=1                  
             if res:
                 # vérification de non stock négatifs (et retrait des stocks)
                 chaine = """SELECT ad FROM article WHERE art_id=?"""
@@ -730,20 +732,11 @@ class Base:
                     # retrait des stocks
                     for tup in liste:
                         component_id, proportion = tup
-                        dico[component_id] -= proportion
-            if res:   
-                # complétion du dictionnaire des catégories
-                if cat_id in dico_quota:
-                    dico_quota[cat_id][1] += pv
-                else:
-                    dico_quota[0][1] += pv    
-                
-            print(res, dico_quota)
-            
+                        dico[component_id] -= proportion        
             return res
           
-        def f_4(dico, x, y, nulle):
-            """ajout de l'article dans le dictionnaire des ventes
+        def f_4(dico, x, y, nulle, dico_quota):
+            """ajout de l'article dans le dictionnaire des ventes et des quotas
 
             Args:
                 dico (dict): dictionnaire des ventes
@@ -754,9 +747,17 @@ class Base:
             Returns:
                 int: prix de vente
             """
-            art_id, cat_id, p = x
-            facteur = lambda z: 1 if randint(0, 100) >= z else 0
-            pv = facteur(nulle) * p
+            art_id, cat_id, pv = x
+            facteur = (lambda z: 1 if randint(0, 100) >= z else 0)(nulle)
+            pv = facteur * pv
+            
+            # complétion du dictionnaire des catégories
+            if cat_id in dico_quota:
+                dico_quota[cat_id][1] += pv
+            else:
+                dico_quota[0][1] += pv 
+                
+            # ajout dans le dictionnaire de vente
             if y not in dico:
                 dico[y] = ({art_id: [1, pv]})
             elif art_id not in dico[y]:
@@ -822,10 +823,11 @@ class Base:
                 for (cat_id, pc) in result:
                     dico[cat_id] = [pc*montant/100, 0]
                     total_pc += pc
-            dico[0] = [montant - total_pc*montant/100, 0]
-                
+            dico[0] = [montant - total_pc*montant/100, 0]               
             print('dico_quotas', dico)
             
+        ### corps principal ###
+        
         # récupération des variables
         comment = kw['comment']
         d_i = func_7(kw['dat_i'].get().strip())
@@ -862,16 +864,23 @@ class Base:
             comment.set("ERREUR pas de dates programmées")
             return False
         
-        print('liste des jours', list_jour)
-        
-        # construction du dictionnaire de quotas (catégories) clés art_id des catégories ou 0 (autres)
+        # construction du dictionnaire de quotas (catégories) clés cat_id des catégories ou 0 (autres)
         #   valeurs : couple (montant d'achat, montant actuel vendu)
         
         dico_quota ={}
         f_8(dico_quota, montant)
-
+        
+        # suppression dans la liste articles ceux dont la catégorie est pc=0
+        liste = [cat_id for cat_id in dico_quota if cat_id !=0] # ltste des catégories fixées
+        pc = 100 - sum([dico_quota[cat_id][0] for cat_id in liste]) # pourcentage de la catégorie 0
+        if pc == 0:
+            # conservation des articles de catégorie dans la liste
+            list_choix = [elem for elem in list_choix if elem[1] in liste]
+        ## conservation des catégories ne se trouvant pas dans la liste ou, si elle s'y trouve, n'est pas à 0
+        list_choix = [elem for elem in list_choix if (elem[1] in liste and dico_quota[elem[1]][0] != 0) or (elem[1] not in liste)]
+        
         # initialisation de la boucle de choix
-        dico_vente = dict()
+        dico_vente = {}
         t = 0
         iteration = 0
         comment.set('en cours...')
@@ -889,25 +898,23 @@ class Base:
                 continue
 
             # ajout du choix dans le dictionnaire de vente et incrémentation du total
-            t += f_4(dico_vente, article, jour, vente_nulle)
+            t += f_4(dico_vente, article, jour, vente_nulle, dico_quota)
 
             # retrait de l'article choisi de la liste
-            list_choix.remove(article)  # ceci est une option qui favorise la diversité des articles
-
-            if not len(list_choix):
-                print('liste article vide on ne peut plus générer')
+            list_choix.remove(article) 
 
         # fin de boucle >
         # vérification des raisons de sortie de boucle
         if iteration == max_iteration:
-            comment.set(f"ERREUR : 'itérations excessives({iteration})")
+            comment.set(f"ERREUR : itérations excessives({iteration})")
             return False
         if not len(list_choix):
-            comment.set(f"ERREUR : 'manque d'articles en vente selon les critères")
+            comment.set(f"ERREUR : manque d'articles en vente selon les critères")
             return False
         
         # suppression des ventes entre les dates
         f_7(d_i, d_f)
+
 
         # transfert du dico_vente dans la database
         f_5(dico_vente, caisse)
