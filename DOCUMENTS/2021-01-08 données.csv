@@ -1,0 +1,33 @@
+DONNÉES;baseX
+
+Fri 08 Jan 2021
+
+ARTICLES INVENTORIÉS
+CODE;DÉSIGNATION;MIN;STOCK;PA;;PV
+
+ALCOOL
+gin;gin 70cl;5;0;0;V;10000
+
+EAU
+perrier;perrier 50cl;0;25.0;200;V;1000
+
+SODA
+coca;coca 25cl;20;16.0;200;V;1000
+
+ARTICLES COMPOSÉS
+CODE;DÉSIGNATION;;PV;COMPOSITION
+
+COCKTAIL
+mix;cockail perrier-coca;;2000;perrier;0,5;coca;0,5
+
+ARTICLES EN VENTE
+CODE;DÉSIGNATION;PV
+
+ALCOOL
+gin;gin 70cl;10000
+
+EAU
+perrier;perrier 50cl;1000
+
+SODA
+coca;coca 25cl;1000

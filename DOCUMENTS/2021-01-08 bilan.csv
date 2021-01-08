@@ -1,0 +1,61 @@
+BILAN
+
+baseX
+
+Tue 05 Jan 2021
+> Mon 11 Jan 2021
+
+RÉSULTATS GLOBAUX
+
+RECETTES;40000
+ACHATS;13000
+VARIATION DE STOCK;2340
+MARGE BRUTE;29340
+CHARGES;0
+RÉSULTAT NET;29340
+MARGE NETTE;73%
+
+RÉSULTATS SELON CATÉGORIE
+
+ALCOOL
+Quantité vendue;0
+Recette;0
+Marge brute;0
+
+COCKTAIL
+Quantité vendue;0
+Recette;0
+Marge brute;0
+
+CUISINE
+Quantité vendue;0
+Recette;0
+Marge brute;0
+
+EAU
+Quantité vendue;20
+Recette;20000
+Marge brute;14000
+
+SODA
+Quantité vendue;20
+Recette;20000
+Marge brute;15340
+
+CHARGES SELON TYPE
+
+VALEUR STOCK
+Initial;0
+Final;2340
+
+DÉTAILS STOCKS
+CODE;INITIAL;PA;FINAL;PA
+
+ALCOOL
+gin;0;0;0;0
+
+EAU
+perrier;0;0;0;300
+
+SODA
+coca;0;0;10;233

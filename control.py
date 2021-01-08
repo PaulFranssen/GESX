@@ -887,7 +887,7 @@ class Base:
 
         # boucle principale     
         while t < montant and len(list_choix) and iteration < max_iteration:
-            
+           
             # choix aléatoire de l'article et du jour
             article = choice(list_choix)  # article est un triplet (art_id, cat_id, pv)
             jour = choice(list_jour)
@@ -905,16 +905,15 @@ class Base:
 
         # fin de boucle >
         # vérification des raisons de sortie de boucle
-        if iteration == max_iteration:
+        if iteration >= max_iteration:
             comment.set(f"ERREUR : itérations excessives({iteration})")
             return False
-        if not len(list_choix):
-            comment.set(f"ERREUR : manque d'articles en vente selon les critères")
+        if t < montant and not len(list_choix):
+            comment.set(f"ERREUR : manque d'articles en vente selon les critères ({round(t)}<{montant})")
             return False
         
         # suppression des ventes entre les dates
         f_7(d_i, d_f)
-
 
         # transfert du dico_vente dans la database
         f_5(dico_vente, caisse)
@@ -5209,7 +5208,7 @@ class Base:
 
         chaine = """SELECT dat, art_id, theorique, physique, explication 
                     FROM correction
-                     WHERE corr_id=?"""
+                    WHERE corr_id=?"""
         result = self.curseur.execute(chaine, (corr_id,)).fetchone()
 
         dat.set(func_9(result[0]))
