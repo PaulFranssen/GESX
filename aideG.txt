@@ -54,7 +54,7 @@ ENCODAGE
 								  
 
 PARAMETRES
-	changer d'exercice			: permet de changer d'exercice(année), les factures visibles étant celles de l'exercice en cours)
+	changer d'exercice			: permet de changer d'exercice(année), les factures visibles étant celles de l'exercice en cours
 	afficher G					: en cas d'itilisation du module supplémentaire G
 
 STOCKS		
@@ -71,11 +71,16 @@ ANALYSE
 	bilan annuel				: effectue un bilan annuel (doc CSV)
 
 DATABASE
-	exporter					: permet d'effectuer une copie de sauvegarde de la base de donnée et/ou de la partager,
-								  l'utilisateur fournira le répertoire du PC dans lequel sera exportée(copiée) la base
+	partager					: permet d'effectuer un partage de la base de donnée,
+								  l'utilisateur fournira le répertoire du PC dans lequel sera partagée(copiée) la database,
+								  la database de même nom sera écrasée
+	sauvegarder					: permet de sauvegarder la database,
+								  l'utilisateur fournira le répertoire du PC dans lequel sera suvegardée(copiée) la database,
+								  la database sauvegardée aura un nom modifié (ajout de la date de sauvegarde comme préfixe)
 	sélectionner				: choix de la base de donnée utilisée (en principe on garde la même base de données)
-	importer					: permet  d'importer une base de donnée à partir d'un répertoire de son PC,
-								  utile notamment en cas de contr^le distanciel
+	importer					: permet  d'importer une database de donnée à partir d'un répertoire de son PC, 
+								  utile notamment en cas de contrôle distanciel, afin de récupérer une database partagée
+								  la database importée écrasera celle de même nom comprise dans le dossier "BASE" 
 								  
 	créer						: création d'une nouvelle base de donnée
 	renommer					: changer le nom de la base de donnée
@@ -101,6 +106,6 @@ GENERATION
 								  indique l'importance des ventes selon le jour de la semaine
 	fixer des catégories        : permet de fixer un % de vente lié à une ou plusieures catégorie,
 	                              par exemple, 'cuisine' à 20% des ventes, donc sous-entendu le reste des articles sera de 80%
-								  les ventes sont également liés à leur quantité en stock						  
+								  à noter que les ventes sont également liés à leur quantité en stock						  
 
 	

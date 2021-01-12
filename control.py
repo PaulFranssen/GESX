@@ -39,6 +39,7 @@ class Base:
         self.exercice = year
         self.cp.fix_exercice(year)
 
+
     def get_exercice(self):
         return self.exercice
 
@@ -82,7 +83,7 @@ class Base:
         # fermeture de la database
         self.fermer()
 
-        # enregistrement dans le fichier f_base de la databse de lancement
+        # enregistrement dans le fichier f_base de la database de lancement
         with open(f_base, 'w', encoding='utf-8') as f:
             f.write(self.database)
 
@@ -341,6 +342,11 @@ class Base:
                                             weighting INTEGER DEFAULT 1
                                             )"""
         self.curseur.execute(chaine)
+        
+        # initialisation des pondérations à 1 pour chaque jour
+        if not self.curseur.execute("""SELECT pond_id FROM ponderation""").fetchall():
+            for jour in range(7):
+                    self.insert_ponderation(jour)
         self.enregistrer()
         
     def create_fixecat(self):
@@ -363,9 +369,10 @@ class Base:
         self.curseur.execute(chaine)
         
         # initialisation des limites à None pour chaque jour
-        if not self.curseur.execute("""SELECT lim_id FROM limitation"""):
+        if not self.curseur.execute("""SELECT lim_id FROM limitation""").fetchall():
             for jour in range(7):
-                    self.insert_limitation(jour)
+                print(jour)
+                self.insert_limitation(jour)
                                
         self.enregistrer()
         
@@ -373,14 +380,16 @@ class Base:
         chaine = """INSERT INTO ponderation (jour) VALUES(?)"""
         self.curseur.execute(chaine, (jour,))
         
+    def insert_limitation(self, jour):
+        chaine = """INSERT INTO limitation (jour) VALUES(?)"""
+        self.curseur.execute(chaine, (jour,))
+        
         
     def insert_fixecat(self, tup):
         chaine = """INSERT INTO fixecat (cat_id, pc, couplage) VALUES(?,?,?)"""
         self.curseur.execute(chaine, tup)
 
-    def insert_limitation(self, jour):
-        chaine = """INSERT INTO limitation (jour) VALUES(?)"""
-        self.curseur.execute(chaine, (jour,))
+   
 
     def insert_stock(self, tup):
         chaine = """INSERT INTO stock (art_id, pa, stk, dat) VALUES(?,?,?,?)"""
@@ -550,6 +559,51 @@ class Base:
         self.fix_database(nom)
         comment.set(nom + ' créée')
         return True
+    
+    def action_57(self, **kw):
+        # récupérer les variables
+        comment = kw['comment']
+        nom = kw['nom'].get().strip()
+
+        # test
+        com = ''
+        liste = listdir('BASE')
+        filename = nom + '.db'
+        if not nom:
+            com = "ERREUR database (vide)"
+        elif len(nom) > l_baseC:
+            com = "ERREUR database (limite : " + str(l_baseC) + " caractères)"
+        elif not nom.isalnum():
+            com = "ERREUR database (catactère non-alphanumérique)"
+        elif filename in liste:
+            com = 'ERREUR database (déjà existante)'
+        comment.set(com)
+        if com:
+            return False
+        
+        # recopiage de la base et ouverture du clone
+        clone_path = join('BASE', nom + '.db')
+        shutil.copy(self.database_path, clone_path)
+        comment.set(nom + ' est un clône de ' + self.database)
+        self.fix_database(nom)
+        self.ouvrir()
+        
+        # vidage de certaines tables
+        liste = ["""DELETE FROM recordA""", """DELETE FROM recordV""", """DELETE FROM stocloture""", """DELETE FROM charge""",
+                 """DELETE FROM correction""", """DELETE FROM factureA""", """DELETE FROM vente""", """DELETE FROM fixecat""",
+                 """DELETE FROM limitation""", """DELETE FROM ponderation""", """DELETE FROM trace"""]
+        for chaine in liste:
+            self.curseur.execute(chaine)
+            
+        chaine = """SELECT pond_id from ponderation"""
+      
+        
+        self.create_limitation()
+        self.create_ponderation()
+        self.enregistrer()
+        
+        return True
+
 
     def action_46(self, **kw):
 
@@ -589,24 +643,29 @@ class Base:
             chaine = """SELECT art_id FROM article WHERE ad=?"""
             result = self.curseur.execute(chaine, (1,)).fetchall()
             
-            # initailisation du dico
+            # initialisation du dico
             dico = {}
         
             if result:
                 for tup in result:
-                    # stock de chaque article avant le premier jour de vente
-                    dico[tup[0]] = self.function_46(tup[0], func_20(x))
+                    # stock de chaque article avant le premier jour de vente + les achats et corrections pendant la période de vente
+                    dico[tup[0]] = self.function_46(tup[0], func_20(x)) + self.function_17b(tup[0], x, y) + self.function_18b(tup[0], x, y)
                     
-                # augmentation du stock suite aux achats entre les la date initiale inculuse et le dernier jour de génération   
-                chaine = """SELECT art_id, qte FROM recordA, factureA
+                """
+                # augmentation du stock suite aux achats entre les la date initiale incluse et le dernier jour de génération   
+                chaine = "SELECT art_id, qte FROM recordA, factureA
                             WHERE recordA.fact_id=factureA.fact_id
                             AND dat>=?
-                            AND dat<?"""
+                            AND dat<?"
                 res = self.curseur.execute(chaine, (x, func_18(y)))
                 if res:
                     # ajout des quantités achetées dans le dictionnaire
                     for tup in res:
                         dico[tup[0]] += tup[1]
+                # modification du stock suite aux corrections
+                """
+                
+                
             return dico
 
         def f_2(dico, dat):
@@ -658,19 +717,18 @@ class Base:
             day = x
             liste = []
             while day <= y:
-                nbr = self.function_65(day)
-                print(nbr, 'fonction_65(day)')
-                liste += [day for j in range(self.function_65(day))]
+                liste += [day for _ in range(self.function_65(day))]
                 day += timedelta(days=1)
             return liste
 
-        def f_3(dico, x, y, dico_quota):
+        def f_3(dico, x, y, z, dico_quota):
             """détermine la validité des choix
 
             Args:
                 dico (dict): dictionnaire des stocks
                 x (tuple): (art_id, cat_id, pv)
                 y (datetime): jour choisi
+                z (datetime): dernier jour de vente
                 dico_quota(dict): dictionnaire des quotas
 
             Returns:
@@ -717,7 +775,7 @@ class Base:
                 ad = result[0]
                 if ad == 1:
                     # article inventorié
-                    if dico[art_id] - 1 < 0:
+                    if dico[art_id] - 1 - self.function_17b(art_id, y, z) - self.function_18b(art_id, y, z)< 0:
                         res = False
                     else:
                         # retrait des stocks
@@ -727,7 +785,7 @@ class Base:
                     liste = self.function_15(art_id, y)
                     for tup in liste:
                         component_id, proportion = tup
-                        if dico[component_id] - proportion < 0:
+                        if dico[component_id] - proportion - self.function_17b(component_id, y, z) - self.function_18b(component_id, y, z)< 0:
                             res = False
                     # retrait des stocks
                     for tup in liste:
@@ -826,6 +884,8 @@ class Base:
             dico[0] = [montant - total_pc*montant/100, 0]               
             print('dico_quotas', dico)
             
+        
+            
         ### corps principal ###
         
         # récupération des variables
@@ -856,8 +916,6 @@ class Base:
             comment.set("ERREUR pas d'articles en vente")
             return False
         
-        print('list_choix', list_choix)
-
         # liste des jours
         list_jour = f_6(d_i, d_f)
         if not len(list_jour):
@@ -893,7 +951,7 @@ class Base:
             jour = choice(list_jour)
 
             # validité des choix          
-            if not f_3(dico_stock, article, jour, dico_quota):
+            if not f_3(dico_stock, article, jour, d_f, dico_quota):
                 iteration +=1
                 continue
 
@@ -1172,10 +1230,7 @@ class Base:
             for tup in result:
                 p[tup[0]].set(tup[1])
         else:
-            for jour in range(7):
-                self.insert_ponderation(jour)
-                p[jour].set('1')
-            self.enregistrer()
+            comment.set('Erreur database')
             
     def display_55(self, **kw):
       
@@ -1367,9 +1422,9 @@ class Base:
     def display_38(self, **kw):
 
         partage = kw['partage']
-        sauvegarde = kw['sauvegarde']
+       
         kw['partage'].set(0)
-        kw['def_sauvegarde'].set(0)
+       
         comment = kw['comment']
         comment.set('')
 
@@ -1381,6 +1436,16 @@ class Base:
             comment.set(error)
             return False
 
+
+    def display_56(self, **kw):
+    
+        
+        sauvegarde = kw['sauvegarde']
+       
+        kw['def_sauvegarde'].set(0)
+        comment = kw['comment']
+        comment.set('')
+
         try:
             with open(f_sauvegarde, "r", encoding="utf-8") as f:
                 p = f.readline()
@@ -1389,7 +1454,7 @@ class Base:
             comment.set(error)
             return False
         return True
-
+    
     def display_49(self, **kw):
 
         importe = kw['importe']
@@ -2465,57 +2530,73 @@ class Base:
 
     def record_38(self, **kw):
 
-        arg = kw['arg']
+        
         comment = kw['comment']
         com = ''
         comment.set(com)
 
-        if arg == 'PARTAGE':
-            partage = kw['partage'].get().strip()
-            if not isdir(partage):
-                com = 'ERREUR répertoire de partage (non conforme)'
-                comment.set(com)
-            else:
-                dst = join(partage, self.database + '.db')
-                comment.set('Partage en cours...')
-                src = self.database_path
-                try:
-                    shutil.copyfile(src, dst)
-                except shutil.Error as com:
-                    comment.set(com)
-                else:
-                    comment.set('Partage effectué')
-                    if kw['def_partage'].get():
-                        try:
-                            with open(f_partage, 'w', encoding='utf-8') as f:
-                                f.write(partage)
-                        except OSError as com:
-                            comment.set(com)
-
+    
+        partage = kw['partage'].get().strip()
+        if not isdir(partage):
+            com = 'ERREUR répertoire de partage (non conforme)'
+            comment.set(com)
         else:
-            # sauvegarde
-            sauvegarde = kw['sauvegarde'].get().strip()
-
-            if not isdir(sauvegarde):
-                com = 'ERREUR répertoire de sauvegarde (non conforme)'
-                comment.set(com)
+            dst = join(partage, self.database + '.db')
+            comment.set('Partage en cours...')
+            src = self.database_path
+            try:
+                shutil.copyfile(src, dst)
+            except shutil.Error as e:
+                comment.set(e)
+                com = e
             else:
-                dst = join(sauvegarde,
-                           datetime.strftime(datetime.now(), "%Y%m%d") + self.database + '.db')
-                comment.set('Sauvegarde en cours...')
-                src = self.database_path
-                try:
-                    shutil.copyfile(src, dst)
-                except shutil.Error as com:
-                    comment.set(com)
-                else:
-                    comment.set('Sauvegarde effectuée')
-                    if kw['def_sauvegarde'].get():
-                        try:
-                            with open(f_sauvegarde, 'w', encoding='utf-8') as f:
-                                f.write(sauvegarde)
-                        except OSError as com:
-                            comment.set(com)
+                comment.set('Partage effectué')
+                if kw['def_partage'].get():
+                    try:
+                        with open(f_partage, 'w', encoding='utf-8') as f:
+                            f.write(partage)
+                    except OSError as e:
+                        comment.set(e)
+                        com = e
+
+        if com:
+            return False
+        else:
+            return True
+        
+    def record_56(self, **kw):
+    
+        comment = kw['comment']
+        com = ''
+        comment.set(com)
+
+        # sauvegarde
+        sauvegarde = kw['sauvegarde'].get().strip()
+
+        if not isdir(sauvegarde):
+            com = 'ERREUR répertoire de sauvegarde (non conforme)'
+            comment.set(com)
+        
+        else:
+            dst = join(sauvegarde,
+                        datetime.strftime(datetime.now(), "%Y%m%d") + self.database + '.db')
+            comment.set('Sauvegarde en cours...')
+            src = self.database_path
+            try:
+                shutil.copyfile(src, dst)
+            except shutil.Error as e:
+                comment.set(e)
+                com = e
+            else:
+                comment.set('Sauvegarde effectuée')
+                if kw['def_sauvegarde'].get():
+                    try:
+                        with open(f_sauvegarde, 'w', encoding='utf-8') as f:
+                            f.write(sauvegarde)
+                    except OSError as e:
+                        comment.set(e)
+                        com = e
+        
         if com:
             return False
         else:
@@ -2570,7 +2651,7 @@ class Base:
             # date sous format 2019-11-09 21:49:12
             datum = dat[8:10] + '/' + dat[5:7] + '/' + dat[0:4] + '   ' + dat[11:16]
             fichier.write('\n' + '{:^31}'.format(datum))
-
+    
     def document_54(self, **kw):
         # variables
         repertoire = kw['repertoire'].get().strip()
@@ -3994,14 +4075,22 @@ class Base:
         return cor
 
     def function_18b(self, art_id, x, y):
-        begin = x
-        end = y
+        """détermine la quantité corrigée entre 2 dates
+
+        Args:
+            art_id (int): id de l'article
+            x (datetime): date de début
+            y (datetime): date de fin
+
+        Returns:
+            int: quantité corrigée
+        """        
         chaine = """SELECT theorique, physique 
                     FROM correction
                     WHERE art_id=?
                     AND dat>=?
                     and dat<?"""
-        result = self.curseur.execute(chaine, (art_id, begin, func_18(end))).fetchall()
+        result = self.curseur.execute(chaine, (art_id, x, func_18(y))).fetchall()
         cor = 0
         if result:
             for tup in result:

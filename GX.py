@@ -25,15 +25,13 @@ if __name__ == '__main__':
     # fixation du lien : base > cadre_principal
     base.fix_cp(pf)
 
-    # affichage écran d'accueil
-    
+    # affichage écran d'accueil 
     pf.accueil()
 
     # création éventuelle du système de fichiers, établissement de la base de départ et de l'exercice actuel
     base.create_f()
 
     # boucle principale (attente des événements)
-
     pf.mainloop()
     
                                     

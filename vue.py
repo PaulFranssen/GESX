@@ -145,12 +145,14 @@ class Frame1(Frame):
         mb.pack(**pad_1)
         sep = Label(self, **kw_50).pack(side=LEFT)
         me = Menu(mb, **kw_3)
-        me.add_command(label="Exporter", underline=0, command=self.command38, **kw_2)
+        me.add_command(label="Partager", underline=0, command=self.command38, **kw_2)
+        me.add_command(label="Sauvegarder", underline=0, command=self.command56, **kw_2)
         me.add_separator()
         me.add_command(label="Sélectionner", underline=0, command=self.command21, **kw_2)
         me.add_separator()
         me.add_command(label="Importer", underline=0, command=self.command49, **kw_2)
         me.add_command(label="Créer", underline=0, command=self.command47, **kw_2)
+        me.add_command(label="Clôner", underline=0, command=self.command57, **kw_2)
         me.add_command(label="Renommer", underline=0, command=self.command50, **kw_2)
         mb.configure(menu=me)
 
@@ -474,9 +476,19 @@ class Frame1(Frame):
         self.list_display[54].display()
 
     def command55(self):
-            self.list_display[self.num_display].hide()
-            self.num_display = 55
-            self.list_display[55].display()
+        self.list_display[self.num_display].hide()
+        self.num_display = 55
+        self.list_display[55].display()
+            
+    def command56(self):
+        self.list_display[self.num_display].hide()
+        self.num_display = 56
+        self.list_display[56].display()
+        
+    def command57(self):
+        self.list_display[self.num_display].hide()
+        self.num_display = 57
+        self.list_display[57].display()
         
     def command58(self):
         self.list_display[self.num_display].hide()
@@ -655,6 +667,12 @@ class Frame2(Frame):
 
         self.frame59 = Frame59(self)
         menu.add_display(59, self.frame59)
+        
+        self.frame56 = Frame56(self)
+        menu.add_display(56, self.frame56)
+        
+        self.frame57 = Frame57(self)
+        menu.add_display(57, self.frame57)
 
 
 class Frame42(Frame):
@@ -919,6 +937,85 @@ class Frame47(Frame):
             b2.focus_set()
 
         b2 = Button(cadre2, text="CRÉER", **kw_45)
+        b2.pack(side='left', **pad_45)
+        b2.bind('<ButtonRelease-1>', action)
+        b2.bind('<Return>', action)
+        b2.bind('<Leave>', on_leave)
+        b2.bind('<Enter>', on_enter)
+        b2.bind('<FocusIn>', on_enter)
+        b2.bind('<FocusOut>', on_leave)
+        self.e1.bind('<Return>', next)
+
+    def display(self, arg=''):
+        self.master.master.base.fermer()
+        self.master.master.base.ouvrir()
+
+        self.comment.set('')
+        self.nom.set('')
+
+        self.e1.focus_set()
+        self.e1.icursor(END)
+
+        self.pack(**pad_fx)
+
+    def hide(self):
+        self.pack_forget()
+        
+class Frame57(Frame):
+    
+    def __init__(self, boss=None):
+        Frame.__init__(self, boss)
+        self.configure(**kw_fx)
+        root = self.master.master.master
+
+        self.nom = StringVar()
+        self.comment = StringVar()
+
+        # structure
+        Label(self, text='clôner une database'.upper(), **kw_42).pack(**pad_42)
+        cadre1 = Frame(self, **kw_c1)
+        cadre1.pack(**pad_c1)
+        cadre2 = Frame(self, **kw_c2)
+        cadre2.pack(**pad_c2)
+        Label(self, textvariable=self.comment, **kw_14).pack(**pad_14)
+
+        # structure cadre 1
+        cadrex = Frame(cadre1, **kw_cx)
+        cadrex.pack(side=LEFT)
+        cadre7 = Frame(cadrex, **kw_c7)
+        cadre7.pack(**pad_c7)
+
+        Label(cadre7, text='NOUVELLE DATABASE', **kw_11).pack(**pad_11, side=LEFT)
+        self.e1 = Entry(cadre7, width=l_baseC + 1, textvariable=self.nom, **kw_12)
+        self.e1.pack(**pad_12, side=LEFT)
+
+        def refresh():
+            self.comment.set('')
+
+        def action(event):
+            self.comment.set('')
+            if self.master.master.base.action_57(nom=self.nom,
+                                                 comment=self.comment):
+                self.nom.set('')
+                self.focus_set()
+                root.bell()
+                root.after(attenteLongue, refresh)
+            else:
+                self.e1.focus_set()
+                self.e1.icursor(END)
+
+        def on_enter(event):
+            e = event.widget
+            e['bg'] = color_6
+
+        def on_leave(event):
+            e = event.widget
+            e['bg'] = color_33
+
+        def next(event):
+            b2.focus_set()
+
+        b2 = Button(cadre2, text="clôner".upper(), **kw_45)
         b2.pack(side='left', **pad_45)
         b2.bind('<ButtonRelease-1>', action)
         b2.bind('<Return>', action)
@@ -1314,13 +1411,13 @@ class Frame38(Frame):
         root = self.master.master
 
         self.partage = StringVar()
-        self.sauvegarde = StringVar()
+        
         self.def_partage = IntVar()
-        self.def_sauvegarde = IntVar()
+        
         self.comment = StringVar()
 
         # structure
-        Label(self, text="EXPORTER LA DATABASE", **kw_42).pack(**pad_42)
+        Label(self, text="PARTAGER LA DATABASE", **kw_42).pack(**pad_42)
         cadre1 = Frame(self, **kw_c1)
         cadre1.pack(**pad_c1)
         cadre2 = Frame(self, **kw_c2)
@@ -1332,8 +1429,7 @@ class Frame38(Frame):
         cadrex.pack(side=LEFT)
         cadre7 = Frame(cadrex, **kw_c7)
         cadre7.pack(**pad_c7)
-        cadre8 = Frame(cadrex, **kw_c8)
-        cadre8.pack(**pad_c8)
+       
 
         # détails cadre 1
         Checkbutton(cadre7, text='DÉFINIR PAR DÉFAUT', variable=self.def_partage, **kw_49) \
@@ -1342,27 +1438,19 @@ class Frame38(Frame):
         self.e1.pack(**pad_12, side=RIGHT)
         Label(cadre7, text='RÉPERTOIRE DE PARTAGE', **kw_11).pack(**pad_11, side=RIGHT)
 
-        Label(cadre8, text='RÉPERTOIRE DE SAUVEGARDE', **kw_11).pack(**pad_11, side=LEFT)
-
-        self.e2 = Entry(cadre8, width=l_path, textvariable=self.sauvegarde, **kw_12)
-        self.e2.pack(**pad_12, side=LEFT)
-        Checkbutton(cadre8, text='DÉFINIR PAR DÉFAUT', variable=self.def_sauvegarde, **kw_49) \
-            .pack(side='left', padx=10)
 
         def refresh(event=None):
             self.comment.set('')
 
         def record(event):
-            if event.widget == b2:
-                arg = "PARTAGE"
-            else:
-                arg = "SAUVEGARDE"
+            arg = "PARTAGE"
+            
 
             if self.master.master.base.record_38(arg=arg,
                                                  partage=self.partage,
-                                                 sauvegarde=self.sauvegarde,
+                                                 
                                                  def_partage=self.def_partage,
-                                                 def_sauvegarde=self.def_sauvegarde,
+                                                
                                                  comment=self.comment):
                 self.focus_set()
                 root.bell()
@@ -1377,18 +1465,11 @@ class Frame38(Frame):
             e['bg'] = color_33
 
         b2 = Button(cadre2, text="PARTAGER", width=l_button1, **kw_45)
-        b3 = Button(cadre2, text="SAUVEGARDER", width=l_button1, **kw_45)
-
+        
         b2.pack(side='left', **pad_45)
         b2.bind('<ButtonRelease-1>', record)
         b2.bind('<Return>', record)
-        b3.pack(side='left', **pad_45)
-        b3.bind('<ButtonRelease-1>', record)
-        b3.bind('<Return>', record)
-        b3.bind('<Enter>', on_enter)
-        b3.bind('<FocusIn>', on_enter)
-        b3.bind('<Leave>', on_leave)
-        b3.bind('<FocusOut>', on_leave)
+        
         b2.bind('<Enter>', on_enter)
         b2.bind('<FocusIn>', on_enter)
         b2.bind('<Leave>', on_leave)
@@ -1398,9 +1479,9 @@ class Frame38(Frame):
         self.master.master.base.fermer()
         self.master.master.base.ouvrir()
         self.master.master.base.display_38(partage=self.partage,
-                                           sauvegarde=self.sauvegarde,
+                                          
                                            def_partage=self.def_partage,
-                                           def_sauvegarde=self.def_sauvegarde,
+                                          
                                            comment=self.comment)
         self.e1.focus_set()
         self.e1.icursor(END)
@@ -1409,6 +1490,96 @@ class Frame38(Frame):
     def hide(self):
         self.pack_forget()
 
+class Frame56(Frame):
+    
+    def __init__(self, boss=None):
+        Frame.__init__(self, boss)
+        self.configure(**kw_fx)
+        root = self.master.master
+
+        
+        self.sauvegarde = StringVar()
+        
+        self.def_sauvegarde = IntVar()
+        self.comment = StringVar()
+
+        # structure
+        Label(self, text="SAUVEGARDER LA DATABASE", **kw_42).pack(**pad_42)
+        cadre1 = Frame(self, **kw_c1)
+        cadre1.pack(**pad_c1)
+        cadre2 = Frame(self, **kw_c2)
+        cadre2.pack(**pad_c2)
+        Label(self, textvariable=self.comment, **kw_14).pack(**pad_14)
+
+        # structure cadre 1
+        cadrex = Frame(cadre1, **kw_cx)
+        cadrex.pack(side=LEFT)
+        
+        cadre8 = Frame(cadrex, **kw_c8)
+        cadre8.pack(**pad_c8)
+
+        # détails cadre 1
+        
+
+        Label(cadre8, text='RÉPERTOIRE DE SAUVEGARDE', **kw_11).pack(**pad_11, side=LEFT)
+
+        self.e2 = Entry(cadre8, width=l_path, textvariable=self.sauvegarde, **kw_12)
+        self.e2.pack(**pad_12, side=LEFT)
+        Checkbutton(cadre8, text='DÉFINIR PAR DÉFAUT', variable=self.def_sauvegarde, **kw_49) \
+            .pack(side='left', padx=10)
+
+        def refresh(event=None):
+            self.comment.set('')
+
+        def record(event):
+           
+            arg = "SAUVEGARDE"
+
+            if self.master.master.base.record_56(arg=arg,
+                                                 
+                                                 sauvegarde=self.sauvegarde,
+                                                 
+                                                 def_sauvegarde=self.def_sauvegarde,
+                                                 comment=self.comment):
+                self.focus_set()
+                root.bell()
+                root.after(attenteLongue, refresh)
+
+        def on_enter(event):
+            e = event.widget
+            e['bg'] = color_6
+
+        def on_leave(event):
+            e = event.widget
+            e['bg'] = color_33
+
+       
+        b3 = Button(cadre2, text="SAUVEGARDER", width=l_button1, **kw_45)
+
+       
+        b3.pack(side='left', **pad_45)
+        b3.bind('<ButtonRelease-1>', record)
+        b3.bind('<Return>', record)
+        b3.bind('<Enter>', on_enter)
+        b3.bind('<FocusIn>', on_enter)
+        b3.bind('<Leave>', on_leave)
+        b3.bind('<FocusOut>', on_leave)
+       
+
+    def display(self):
+        self.master.master.base.fermer()
+        self.master.master.base.ouvrir()
+        self.master.master.base.display_56(
+                                           sauvegarde=self.sauvegarde,
+                                           
+                                           def_sauvegarde=self.def_sauvegarde,
+                                           comment=self.comment)
+        self.e2.focus_set()
+        self.e2.icursor(END)
+        self.pack(**pad_fx)
+
+    def hide(self):
+        self.pack_forget()
 
 class Frame58(Frame):
 
@@ -2096,7 +2267,8 @@ class Frame46(Frame):
         Entry(cadre9, width=l_code, textvariable=self.caisse, **kw_12).pack(**pad_12, side=LEFT)
 
         def refresh():
-            self.comment.set('')
+            pass
+            #self.comment.set('')
 
         def action(event):
             etoile1()
@@ -2109,7 +2281,7 @@ class Frame46(Frame):
                                                  comment=self.comment):
                 self.focus_set()
                 root.bell()
-                root.after(attenteCourte, refresh)
+                #root.after(attenteCourte, refresh)
 
         def on_enter(event):
             e = event.widget
