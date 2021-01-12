@@ -3109,6 +3109,7 @@ class Frame21(Frame):
     def __init__(self, boss=None):
         Frame.__init__(self, boss)
         self.configure(**kw_fx)
+        root = self.master.master.master
 
         self.comment = StringVar()
         self.var_spin = StringVar()
@@ -3123,8 +3124,8 @@ class Frame21(Frame):
 
         # détails cadre1
         def select(event=None):
-            self.master.master.base.fermer()
-            self.master.master.base.fix_database(self.var_spin.get())
+            pass
+            
 
         cadre7 = Frame(cadre1, **kw_c7)
         cadre7.pack(side=LEFT, **pad_c7)
@@ -3136,9 +3137,37 @@ class Frame21(Frame):
         self.spin.pack(side=LEFT, padx=5)
 
         # détails cadre2
-        b1 = Button(cadre2, text=" ← ", takefocus=0, **kw_45)
-        b1.pack(side='left', **pad_45)
-        b1.pack_forget()
+        
+        def refresh():
+            self.comment.set('')
+            
+        def record(event):
+            self.master.master.base.fermer()
+            self.master.master.base.fix_database(self.var_spin.get())
+            self.focus_set()
+            self.comment.set('OK')
+            root.bell()
+            root.after(attenteLongue, refresh)
+            
+        def on_enter(event):
+            e = event.widget
+            e['bg'] = color_6
+
+        def on_leave(event):
+            e = event.widget
+            e['bg'] = color_33
+
+       
+        b2 = Button(cadre2, text="CONFIRMER", width=l_button1, **kw_45)
+        b2.pack(side='left', **pad_45)
+
+        b2.bind('<ButtonRelease-1>', record)
+        b2.bind('<Return>', record)
+        b2.bind('<Enter>', on_enter)
+        b2.bind('<FocusIn>', on_enter)
+        b2.bind('<Leave>', on_leave)
+        b2.bind('<FocusOut>', on_leave)
+        
 
     def display(self):
         self.master.master.base.fermer()
