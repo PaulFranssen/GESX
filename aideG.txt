@@ -1,10 +1,11 @@
 GESX
-Programme de gestion pour bar restaurant
+Programme de gestion pour bar-restaurant
 
 OBJECTIFS
-	-suivi des stocks 
-	-suivi financier (gestion des factures, analyse des résultats)
-	-contrôle distanciel (via une base de données partagée)
+	- suivi des stocks 
+	- gestion des factures
+	- résultats financiers
+	- contrôle distanciel (via une base de données partagée)
 
 FONCTIONNEMENT GENERAL
 	Les données sont conservées dans une base de données locale.
