@@ -3,7 +3,7 @@ Programme de gestion pour bar-restaurant
 
 OBJECTIFS
 	- suivi des stocks 
-	- gestion des factures
+	- gestion des factures et des charges
 	- résultats financiers
 	- contrôle distanciel (via une base de données partagée)
 
