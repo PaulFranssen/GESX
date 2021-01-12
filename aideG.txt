@@ -83,11 +83,15 @@ DATABASE
 								  la database importée écrasera celle de même nom comprise dans le dossier "BASE" 
 								  
 	créer						: création d'une nouvelle base de donnée
+	clôner						: création d'une nouvelle base de donnée, 
+								  mais en conservant les données (catégorie, articles, tiers,...) de la base précédente,
+								  les factures sont supprimées
 	renommer					: changer le nom de la base de donnée
 
 DETAILS TECHNIQUES
-	date						: exemple d'encodage d'une date : "16 feb 2020", la date du jour peut également être
-								  encodée avec '*', les 3 premières lettres du mois en anglais.
+	date						: exemple d'encodage d'une date : "16 feb 2020" (les 3 premières lettres du mois en anglais),
+								  la date du jour peut également être encodée avec '*', les 3 premières lettres du mois en anglais.
+								  
 	factures					: pour corriger une ligne de la facture, CLIC sur la ligne, ensuite ENTER, 
 	                              la ligne apparait dans la zone d'encodage pour être modifiée, VALIDER pour la replacer
 								  dans la facture
