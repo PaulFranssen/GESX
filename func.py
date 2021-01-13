@@ -90,7 +90,7 @@ def func_12(x, y):
             fiche = csv.writer(fichier, delimiter=";")
             fiche.writerows(x)
     except OSError as err:
-        com = 'ERREUR création du fichier refusée' + err
+        com = 'ERREUR création du fichier refusée'
     return com
 
 
