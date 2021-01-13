@@ -204,6 +204,16 @@ class Base:
         self.curseur.execute(chaine)
         self.enregistrer()
         
+        #chaine = """SELECT rec_id, dat FROM composition WHERE dat > ?"""
+        #result = self.curseur.execute(chaine, (datetime(2020, 3, 3),)).fetchall()
+        #print(result)
+        
+        #for rec_id, dat in result:
+            #chaine = """UPDATE composition SET dat=?  WHERE rec_id=?"""
+            #self.curseur.execute(chaine, (dat-timedelta(days = 1200), rec_id))
+            #print(dat-timedelta(days = 1200))
+        
+        #self.enregistrer()
         
     def create_cat(self):
 
