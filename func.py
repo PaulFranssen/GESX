@@ -90,7 +90,7 @@ def func_12(x, y):
             fiche = csv.writer(fichier, delimiter=";")
             fiche.writerows(x)
     except OSError as err:
-        com = 'ERREUR création du fichier refusée'
+        com = 'ERREUR création du fichier refusée' + err
     return com
 
 
@@ -216,7 +216,7 @@ def func_8(x):
 
 def print_dict_csv(file_name, lis):
     """enregistre un fichier csv, de nom file, de 2 colonnes à partir d'une liste de dictionnaire lis"""
-    with open(file_name, 'w', newline='', delimiter=";") as file:
+    with open(file_name, 'w', newline='', encoding = "utf-8") as file:
         fi = csv.DictWriter(file, fieldnames=[1, 2], delimiter=";")
         fi.writerows(lis)
 

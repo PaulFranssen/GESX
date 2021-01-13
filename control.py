@@ -203,7 +203,8 @@ class Base:
                         FOREIGN KEY(component_id) REFERENCES article (art_id))"""
         self.curseur.execute(chaine)
         self.enregistrer()
-
+        
+        
     def create_cat(self):
 
         chaine = """CREATE TABLE IF NOT EXISTS categorie (
@@ -3579,9 +3580,7 @@ class Base:
     def document_59(self, **kw):
         def f_2():
             dicoPaInit = {}
-            chaine = """SELECT art_id
-                                FROM article
-                                WHERE ad=?"""
+            chaine = """SELECT art_id FROM article WHERE ad=?"""
             result = self.curseur.execute(chaine, (1,)).fetchall()
             if result:
                 dat = datetime.now()
@@ -3592,7 +3591,7 @@ class Base:
                     qInit = self.function_46(art_id, dat)
                     pInit = self.function_43(art_id, dat)
                     dicoPaInit[art_id] = (qInit, pInit)
-            self.fix_exercice(year)
+                self.fix_exercice(year)
             return dicoPaInit
 
         def f_1():

@@ -40,6 +40,8 @@ if choix == '1':
             print("Error while connecting to sqlite", error)
         else:
             for cat in liste_categorie:
+                if len(cat)>15:
+                    cat = cat[:15]
                 chaine = """INSERT INTO categorie (name) VALUES(?)"""
                 curseur.execute(chaine, (cat,))
             connexion.commit()
@@ -66,9 +68,9 @@ elif choix == '2':
         else:
             for dico in liste_article:
                 # recherche de la catégorie
-                cat_id = curseur.execute("""SELECT cat_id FROM categorie WHERE name=?""", (dico['cat'],)).fetchone()[0]
+                cat_id = curseur.execute("""SELECT cat_id FROM categorie WHERE name=?""", (dico['cat'][:15],)).fetchone()[0]
                 chaine = """INSERT INTO article (code, des, cat_id, pv, ad) VALUES(?,?,?,?,1)"""
-                curseur.execute(chaine, (dico['code'],
+                curseur.execute(chaine, (dico['code'][:15],
                                          dico['des'],
                                          cat_id,
                                          int(float(dico['pv']))))
@@ -99,28 +101,28 @@ elif choix == '3':
             erreur = 0
             for dico in liste_article:
                 # recherche de la catégorie
-                code = dico['code']
-                cat_id = curseur.execute("""SELECT cat_id FROM categorie WHERE name=?""", (dico['cat'],)).fetchone()[0]
+                code = dico['code'][:15]
+                cat_id = curseur.execute("""SELECT cat_id FROM categorie WHERE name=?""", (dico['cat'][:15],)).fetchone()[0]
                 chaine = """INSERT INTO article (code, des, cat_id, pv, ad) VALUES(?,?,?,?,2)"""
-                curseur.execute(chaine, (code,
+                curseur.execute(chaine, (code[:15],
                                          dico['des'],
                                          cat_id,
                                          int(float(dico['pv']))))
                 # insertion des composants
                 # id de l'article
-                compo_id = curseur.execute("""SELECT art_id FROM article WHERE code=?""", (code,)).fetchone()[0]
+                compo_id = curseur.execute("""SELECT art_id FROM article WHERE code=?""", (code[:15],)).fetchone()[0]
                 
                 # composant1
-                code = dico['c1']
+                code = dico['c1'][:15]
                 prop = float(dico['p1'])
-                result = curseur.execute("""SELECT art_id FROM article WHERE code=?""", (code,)).fetchone()
+                result = curseur.execute("""SELECT art_id FROM article WHERE code=?""", (code[:15],)).fetchone()
                 if result:
                     component_id=result[0]
                 else:
                     print('composant', code, 'inexistant')
                     erreur = 1
                     break
-                dat = datetime.now()
+                dat = datetime(2015, 1, 1)
                 chaine = """INSERT INTO composition (compo_id, component_id, proportion, dat) VALUES(?,?,?,?)"""
                 curseur.execute(chaine, (compo_id,
                                          component_id,
@@ -128,11 +130,11 @@ elif choix == '3':
                                          dat))
                 
                 # composant2
-                code = dico['c2']
+                code = dico['c2'][:15]
                 if not code:
                     continue
                 prop = float(dico['p2'])
-                result = curseur.execute("""SELECT art_id FROM article WHERE code=?""", (code,)).fetchone()
+                result = curseur.execute("""SELECT art_id FROM article WHERE code=?""", (code[:15],)).fetchone()
                 if result:
                     component_id=result[0]
                 else:
@@ -146,11 +148,11 @@ elif choix == '3':
                                          dat))
                 
                 # composant3
-                code = dico['c3']
+                code = dico['c3'][:15]
                 if not code:
                     continue
                 prop = float(dico['p3'])
-                result = curseur.execute("""SELECT art_id FROM article WHERE code=?""", (code,)).fetchone()
+                result = curseur.execute("""SELECT art_id FROM article WHERE code=?""", (code[:15],)).fetchone()
                 if result:
                     component_id=result[0]
                 else:
