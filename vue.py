@@ -127,7 +127,7 @@ class Frame1(Frame):
         Label(self, **kw_50).pack(side='left')
         self.me2 = Menu(mb, **kw_3)
 
-        self.me2.add_command(label="Liste détaillée des articles", underline=0, command=self.command42,
+        self.me2.add_command(label="Analyse des articles", underline=0, command=self.command42,
                              state=NORMAL, **kw_2)
         self.me2.add_command(label="Traçage des enregistrements", underline=0, command=self.command52,
                              state=NORMAL, **kw_2)
@@ -686,7 +686,7 @@ class Frame42(Frame):
         self.comment = StringVar()
 
         # structure
-        Label(self, text='liste détaillée des articles'.upper(), **kw_42).pack(**pad_42)
+        Label(self, text='analyse des articles'.upper(), **kw_42).pack(**pad_42)
         cadre1 = Frame(self, **kw_c1)
         cadre1.pack(**pad_c1)
         cadre2 = Frame(self, **kw_c2)

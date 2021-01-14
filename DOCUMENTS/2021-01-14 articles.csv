@@ -5,7 +5,7 @@ Thu 14 Jan 2021
 CODE;DÉSIGNATION;STOCK_MIN;STOCK;EN VENTE;PA;PV
 
 BIÈRE
-beni;beninoise 33cl;0;11.0;V;200;1500
+beni;beninoise 33cl;0;0.0;V;0;1500
 bf;beaufort 33cl;0;0.0;V;0;1500
 bièreNA;bière non alcoolisée 25cl;0;0.0;V;0;2000
 cast;castel 33cl;0;0.0;V;0;1500
@@ -79,7 +79,7 @@ mojitoClassic;cocktail mojito classic;0;compo;V;0;3500
 mojitoParf;cocktail de mojito parfumé;0;compo;V;0;3000
 mojitoVierge;mojito sans alcool;0;compo;V;0;2500
 pinkMiami;1 cocktail pinkmiami;0;compo;V;0;2500
-planB;coctail plan B;;compo;V;1050;6000
+planB;coctail plan B;;compo;V;0;6000
 planteur;cocktail planteur;0;compo;V;0;2500
 punchCaraib;cocktail punch caraibénne;0;compo;V;0;2500
 quartierJac;cocktail quartier Jac;0;compo;V;0;3000
@@ -108,7 +108,7 @@ hennessyVSOP1L;hennessy vsop 1L;0;0.0;V;0;135000
 stRemyVSOP;saint remy vsop 70cl;0;0.0;V;0;0
 
 CONSO
-absentaC;1 conso de absenta;0;compo;V;1050;2000
+absentaC;1 conso de absenta;0;compo;V;0;2000
 agavitaC;conso de bout agavita;0;compo;V;0;2500
 baileysC;1 conso de baileys;;compo;V;0;2500
 blackLabC;conso black label 0.7L;0;compo;V;0;4000
@@ -289,7 +289,7 @@ viandeNem;1 portion de viande pour nems;0;0.0;V;0;0
 wangache;1 portion de wangache;0;0.0;V;0;0
 
 DIVERSALCOOL
-absenta;absenta;0;0.86;V;15000;0
+absenta;absenta;0;0.0;V;0;0
 agavita;tequila agavita;0;0.0;V;0;0
 baileys;baileys;0;0.0;V;0;0
 bols;vodka bols 70cl;0;0.0;V;0;0

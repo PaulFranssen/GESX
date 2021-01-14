@@ -65,8 +65,9 @@ STOCKS
 	alertes-STOCKS				: liste des articles commençant à manquer (doc CSV)
 		
 ANALYSE							
-	liste détaillée des articles:	
-	traçage des enregistrements	: liste des enregistrements effectuées lors des 15 derniers jours (doc CSV)
+	analyse des articles		: décrit l'état actuel des articles (stock, prix d'achat, prix de vente,...)	
+	traçage des enregistrements	: liste des enregistrements effectuées lors des 15 derniers jours (doc CSV),
+								  permet de vérifier si les enregistrements prévus (factures,...) ont bien été réalisés
 	ouvrir un document			: permet d'ouvrir un document créé précédemment
 	bilan intermédiaire			: effectue un bilan financier entre 2 dates (doc CSV)
 	bilan annuel				: effectue un bilan annuel (doc CSV),
