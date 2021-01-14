@@ -382,7 +382,6 @@ class Base:
         # initialisation des limites à None pour chaque jour
         if not self.curseur.execute("""SELECT lim_id FROM limitation""").fetchall():
             for jour in range(7):
-                print(jour)
                 self.insert_limitation(jour)
                                
         self.enregistrer()
@@ -537,7 +536,6 @@ class Base:
         self.insert_fixecat(tup)
 
     def update_limitation(self, tup):
-        print(tup)
         chaine = """UPDATE limitation SET limite=?  WHERE jour=?"""
         self.curseur.execute(chaine, tup)
 
@@ -893,9 +891,6 @@ class Base:
                     dico[cat_id] = [pc*montant/100, 0]
                     total_pc += pc
             dico[0] = [montant - total_pc*montant/100, 0]               
-            print('dico_quotas', dico)
-            
-        
             
         ### corps principal ###
         
@@ -2434,7 +2429,6 @@ class Base:
 
     def record_45(self, **kw):
         p = kw['p']
-        print(p)    
         comment = kw['comment']
         com = ''
         
@@ -2621,8 +2615,6 @@ class Base:
         barre = "_" * 31
 
         dicoVenteTrie = OrderedDict(sorted(dicoVente.items(), key=lambda t: t[0]))
-        print(dicoVente, dicoVenteTrie)
-
         with open(nomF, 'w', encoding='utf-8') as fichier:
 
             fichier.write('{:^31}'.format(etoile))
@@ -2647,7 +2639,6 @@ class Base:
             if dicoVente:
                 fichier.write('\n{:<16}{:^3}{:>12}'.format('  REF', 'QTE', 'TTC  ') + '\n')
                 for cle, valeur in dicoVenteTrie.items():
-                    print(cle, valeur)
                     quant = int(float(valeur['QUANT']))
                     quant = '{:,}'.format(quant).replace(',', '.')
                     prix = int(float(valeur['PRIX']))
@@ -3372,7 +3363,6 @@ class Base:
             dif = tup[7]
             if not dif:
                 dif = ' '
-                print(dat[:-5], num, type, tiers, montant, dif)
             list_box.append(ligne_3.format(dat[:-5], num, type, tiers, montant, dif))
         var_box.set(list_box)
 
@@ -3932,8 +3922,6 @@ class Base:
                         AND dat=?"""
             result = self.curseur.execute(chaine, (art_id, dat)).fetchall()
             res = () if not result else result
-            
-        print('liste des composants de', art_id, res, dat)
         return res
 
     def function_16(self, art_id, dat):
@@ -4010,7 +3998,7 @@ class Base:
             for code_id, qte, dat in result:
                 if code_id == art_id:  # code_id est l'article recherché
                     q += qte
-                    print('article comptaboilisé', art_id, qte, dat)
+                   
                 elif self.function_6(code_id):  # l'article est un autre article inventorié
                     continue
                 elif self.function_7(code_id):  # code_id est un composé
@@ -4388,7 +4376,6 @@ class Base:
                     AND dat<?"""
         result = self.curseur.execute(chaine, (art_id, func_18(y))).fetchall()
         if result:
-            print('date compo', art_id, max(result)[0])
             return max(result)[0] 
         else:
             return False
@@ -4540,7 +4527,6 @@ class Base:
         Returns:
             float: quantité de l article art_id à la date y
         """
-
         v = self.function_16(art_id, y)  # q vendue à une date <= y de l'exercice
         a = self.function_17(art_id, y)  # q achetée à une date <= y de l'exercice
         c = self.function_18(art_id, y)  # q corrigée à une date <= y de l'exercice
@@ -4574,9 +4560,20 @@ class Base:
         liste = []
         v = ''
         line = []
+        
+        # dictionnaire dicoPa : clé : art_id inventorié, valeur : (stock,pA)
+        chaine = """SELECT art_id FROM article WHERE ad=1"""
+        result = self.curseur.execute(chaine).fetchall()
+        dicoPa={}
+        if result:
+            for art_id in result:
+                q = self.function_46(art_id[0], dat)
+                p = self.function_43(art_id[0], dat)
+                dicoPa[art_id[0]]= q, p  
 
+        # construction de la liste de sortie
         liste += [['ARTICLES', self.database], line, [func_9(date.today())], line]
-        titre = ['CODE', 'désignation'.upper(), 'MIN', 'STOCK', '', 'PA', 'PV']
+        titre = ['CODE', 'désignation'.upper(), 'STOCK_MIN', 'STOCK', 'EN VENTE', 'PA', 'PV']
 
         liste.append(titre)
         list_categorie = self.function_21()
@@ -4588,20 +4585,20 @@ class Base:
             for article in list_article:
                 code, art_id, des, mini, envente, pv, ad = article
                 if ad == 1:
-                    pa = self.function_43(art_id, dat)
-                    stock = func_6(self.function_46(art_id, dat))
+                    pa = dicoPa[art_id][1]
+                    stock = dicoPa[art_id][0]
                     mini = func_6(mini)
                 elif ad == 2:
-                    pa = self.function_42(art_id, dat)
-                    stock = v
-                else:
+                    pa = self.function_42(art_id, dat, dicoPa)
+                    stock = 'compo'
+                else: # situation impossible
                     pa = v
                     pv = v
                     stock = v
                 if envente:
                     envente = 'V'
                 else:
-                    envente = v
+                    envente = '-'
                 liste.append([code, des, mini, stock, envente, pa, pv])
 
         return liste
@@ -5106,7 +5103,7 @@ class Base:
         else:
             list_code = []
             list_id = []
-        print(list_id)
+       
 
         # sélection à l'aide de list_id
         liste = []

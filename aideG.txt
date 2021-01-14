@@ -69,7 +69,8 @@ ANALYSE
 	traçage des enregistrements	: liste des enregistrements effectuées lors des 15 derniers jours (doc CSV)
 	ouvrir un document			: permet d'ouvrir un document créé précédemment
 	bilan intermédiaire			: effectue un bilan financier entre 2 dates (doc CSV)
-	bilan annuel				: effectue un bilan annuel (doc CSV)
+	bilan annuel				: effectue un bilan annuel (doc CSV),
+								  le bilan comprend notamment l'inventaire de fin d'année
 
 DATABASE
 	partager					: permet d'effectuer un partage de la base de donnée,
@@ -103,6 +104,10 @@ DETAILS TECHNIQUES
 	import base					: importer une base permet de récupérer une base sauvegardée ou une base partagée,
 								  la base est alors placée dans le dossier GESX/BASE et remplace celle du même nom si existante
 	export base 				: exporter une base permet de la copier dans un répertoire indiqué par l'utilisateur
+
+	CSV							: les documents de sortie (inventaire, ...) s'effectuent au format CSV avec pour paramètres :
+								  delimiter = ";" et encoding = "utf-8"
+								  l'utilisation de open-office permet de régler ces paramètres avant l'ouverture du fichier
 
 GENERATION
 	limite journalière			: limitations du prix des articles selon le jour de vente,
