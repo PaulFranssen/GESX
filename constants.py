@@ -1,6 +1,17 @@
 # -*- coding: utf-8 -*-
 
+from tkinter import *
+import sys
 from os.path import join
+
+# détermination des paramètres de l'affichage
+fenetre = Tk()
+w, h = fenetre.winfo_screenwidth(), fenetre.winfo_screenheight()
+
+# test à réaliser pour la conformité de l'affichage
+if h not in {1080, 900}:
+    print(f"paramètres d'affichage {w}x{h} non pris en compte")
+    sys.exit()
 
 # liste des couleurs non-utilisées
 color_1 = 'wheat1'
@@ -90,21 +101,32 @@ taille_5 = 22       # taille du titre
 taille_7 = 13       # taille petit checkbutton (par défaut)
 taille_8 = 100       # taille logo
 
-# distanciation
-p_02 = 40
+# distanciation entre cadres selon paramètres d'affichage
+if h == 1080:
+    p_02 = 40
+elif h == 900:
+    p_02 = 25
 p_03 = 60
 p_04 = 10
 p_05 = 15
 
-# hauteur de box
-h_03 = 20       # listbox choix avec selection et button nouveau en bas
-h_15 = 13       # listbox de facture de vente
-h_27 = h_15     # idem
-h_08 = 23       # lisbox choix avec selevction mais sans button ni comment en bas
-h_09 = 5        # lisbox composition
-h_10 = 21       # listbox sans button mais avec comment
+# hauteur de box selon paramètres d'affichage
+if h == 1080:
+    h_03 = 20       # 20 pour 1920 listbox choix avec selection et button nouveau en bas
+    h_15 = 13       # 13 listbox de facture de vente
+    h_27 = h_15 - 0     # -0 idem
+    h_08 = 23       # 23 pour 1920 lisbox choix avec selevction mais sans button ni comment en bas
+    h_09 = 5        # lisbox composition
+    h_10 = 21       # 21 pour 1920 listbox sans button mais avec comment
+elif h == 900:
+    h_03 = 15       # 20 pour 1920 listbox choix avec selection et button nouveau en bas
+    h_15 = 10       # 13 listbox de facture de vente
+    h_27 = h_15 -2     # -0 idem
+    h_08 = 18       # 23 pour 1920 lisbox choix avec selevction mais sans button ni comment en bas
+    h_09 = 5        # lisbox composition
+    h_10 = 16       # 21 pour 1920 listbox sans button mais avec comment
 
-
+# fixation des hauteurs pour écran 1080
 # couleur
 color_32 = 'grey15'         # fond écran
 color_37 = 'grey80'         # écriture claire

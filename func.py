@@ -3,15 +3,12 @@
 # importation des modules
 
 from datetime import *
-from constants import *
 import csv
 from calendar import monthrange
 
-
+from constants import *
 
 f = lambda x: int(x) if x == int(x) else x  # renvoie un integer si x est un integer
-
-
 
 def func_2(x):
     """détermine la nature entière et positive de x
@@ -29,7 +26,6 @@ def func_2(x):
             x = int(x)
         except:
             return False
-
         return x >= 0
 
 def func_1(x):
@@ -37,7 +33,6 @@ def func_1(x):
         x = int(x)
     except:
         return False
-
     return x >= 0
 
 def func_18(x):

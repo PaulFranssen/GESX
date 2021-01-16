@@ -3,19 +3,10 @@
 # -*- coding: utf-8 -*-
 
 # importation des modules
-
-
-#from sqlite3 import *
-from random import choice, randint
-from os import startfile
-#from tkinter import *
-from time import time
-import sys
-#from vue import *  # vue comprend les différents objets FRAME qui seront affichés
 from control import Base, PF  # les vues sont contrôlées par la base se trouvant dans control
 
 if __name__ == '__main__':
-
+   
     # création de la DATABASE
     base = Base()
 
@@ -34,6 +25,7 @@ if __name__ == '__main__':
     # boucle principale (attente des événements)
     
     pf.mainloop()
+    
     
                 
                                     

@@ -3,18 +3,14 @@
 # -*- coding: utf-8 -*-
 
 # importation des modules
-
 from sqlite3 import *
 from random import choice, randint, randrange
 from os import startfile, listdir, getcwd, mkdir, rename
-from os.path import isdir, join, exists, splitext, isfile
+from os.path import isdir, exists, splitext, isfile
 import shutil
-from tkinter import *
-from time import time
-from datetime import *
 from collections import OrderedDict
-import sys
 
+from func import *
 from vue import *
 
 class E(Exception):

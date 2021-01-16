@@ -2,18 +2,9 @@
 
 # importation des modules
 
-from sqlite3 import *
-from random import choice, randint
-from os import startfile
-from tkinter import *
-from time import time
-from shutil import copyfile
-
-import sys
 from constants import *
 from model import *
-from func import *
-#from control import *
+
 
 class PF(Frame):
     def __init__(self, base, boss=None):
@@ -27,24 +18,27 @@ class PF(Frame):
         self.base = base
         self.an = IntVar()
         self.database = StringVar()
-
+        
         # childs
         self.frame1 = Frame1(self)
         self.frame1.pack(**pad_f1)
         self.frame2 = Frame2(self, self.frame1)
         self.frame2.pack(**pad_f2)
-
+        
         # dimensionnement
+        self.master.wm_attributes('-fullscreen', 'true')
+        self.master.resizable(width=False, height=False)
+        
+        """
         w, h = self.master.winfo_screenwidth(), self.master.winfo_screenheight()
         merge_x, merge_y = int((w - 1500) / 2), int((h - 800) / 2)
         if merge_x < 0 or merge_y < 0:
             print('écran non conforme')
-        # dim = "{}x{}+{}+{}".format(1500, 800, merge_x, merge_y)
-        self.master.wm_attributes('-fullscreen', 'true')
+            # exit(0)
+        # dim = "{}x{}+{}+{}".format(1500, 800, merge_x, merge_y)      
         # self.master.geometry(dim)
         # self.master.overrideredirect(True)
-        self.master.resizable(width=False, height=False)
-
+        """
     def fix_exercice(self, year):
         self.an.set(year)
         # active ou désactive les items du menu lors du changement d'exercices
@@ -3233,9 +3227,11 @@ class Frame6(Frame):
 
         cadre20 = Frame(cadre1, **kw_c20)
         cadre20.pack(side=TOP, **pad_c20)
+        
         Label(cadre20, text='SÉLECTION', **kw_11).pack(side=LEFT, **pad_11)
         self.e0 = Entry(cadre20, textvariable=self.code, width=l_code, **kw_12)
         self.e0.pack(side=LEFT, **pad_12)
+        print('cat', h_03)
         self.box = Listbox(cadre1, listvariable=self.var_box, width=l_code + 2, height=h_03, **kw_28)
         self.box.pack(side=BOTTOM, **pad_28)
         Label(cadre1, text="catégorie".upper(), **kw_40, width=l_code).pack(**pad_40, side=BOTTOM)
