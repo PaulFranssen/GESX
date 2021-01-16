@@ -4788,7 +4788,6 @@ class Frame27(Frame):
             self.focus_set()
             root.bell()
             root.after(attenteCourte, refresh)
-            back()
 
         def on_enter(event):
             e = event.widget
