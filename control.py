@@ -589,7 +589,7 @@ class Base:
         # recopiage de la base et ouverture du clone
         clone_path = join('BASE', nom + '.db')
         shutil.copy(self.database_path, clone_path)
-        comment.set(nom + ' est un clône de ' + self.database)
+        comment.set('OK')
         self.fix_database(nom)
         self.ouvrir()
         
@@ -1940,9 +1940,7 @@ class Base:
 
         arg = kw['arg']
         code = kw['code'].get().strip()
-
         cat_id = self.function_8(code)
-
         com = ''
 
         if not code:
@@ -1953,7 +1951,6 @@ class Base:
             com = "ERREUR catégorie (contient des articles)"
 
         kw['comment'].set(com)
-
         if not com:
             self.curseur.execute("""DELETE FROM fixecat WHERE cat_id=?""", (cat_id,))
             self.curseur.execute("""DELETE FROM categorie WHERE cat_id=?""", (cat_id,))    
@@ -1966,9 +1963,7 @@ class Base:
 
         arg = kw['arg']
         code = kw['code'].get().strip()
-
         cat_id = self.function_30(arg)
-
         com = ''
 
         if not code:

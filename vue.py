@@ -60,6 +60,7 @@ class Frame1(Frame):
         self.g = IntVar()
         self.var_spin = IntVar(value=self.master.an)
         self.num_display = 0
+        
         # enfants
         self.list_display = [None] * 60
 
@@ -341,6 +342,7 @@ class Frame1(Frame):
         self.list_display[29].display(arg)
 
     def command30(self):
+        # commande inactive si je ne suis pas dans l'année active
         if int(self.master.an.get()) == date.today().year:
             self.list_display[self.num_display].hide()
             self.num_display = 30
@@ -707,7 +709,6 @@ class Frame42(Frame):
             self.master.master.base.document_42(path=self.path,
                                                 filename=self.filename,
                                                 comment=self.comment)
-
         def on_enter(event):
             e = event.widget
             e['bg'] = color_6
@@ -2403,7 +2404,8 @@ class Frame4(Frame):
     def __init__(self, boss=None):
         Frame.__init__(self, boss)
         self.configure(**kw_fx)
-
+        root = self.master.master.master
+        
         ### VARIABLES DE CONTROLE ###
 
         self.code, self.des, self.cat, self.pv, self.stockmin = \
@@ -2463,19 +2465,29 @@ class Frame4(Frame):
         b2 = Button(cadre2, text="ENREGISTRER", width=l_button1, **kw_45)
         b2.pack(side='left', **pad_45)
 
+        def refresh():
+            self.comment.set('')
+            back(arg=self.arg)
+            
         def record(event):
-            arg = self.master.master.base.record_4(code=self.code,
+            self.arg = self.master.master.base.record_4(code=self.code,
                                                    des=self.des,
                                                    cat=self.cat,
                                                    pv=self.pv,
                                                    envente=self.envente,
                                                    stockmin=self.stockmin,
                                                    comment=self.comment)
-            if arg:
-                back(arg=arg)
+            if self.arg:
+                self.comment.set('Enregistré')
+                self.focus_set()
+                root.bell()
+                root.after(attenteCourte, refresh)
+            else:
+                self.e1.focus_set()
+                self.e1.icursor(END)
 
         def back(event=None, arg=False):
-            self.master.menu.command10(arg)
+            self.master.menu.command10(arg=self.arg)
 
         def on_enter(event):
             e = event.widget
@@ -2899,6 +2911,7 @@ class Frame7(Frame):
     def __init__(self, boss=None):
         Frame.__init__(self, boss)
         self.configure(**kw_fx)
+        root = self.master.master.master
 
         ### VARIABLES DE CONTROLE ###
 
@@ -2923,13 +2936,22 @@ class Frame7(Frame):
         self.e1.pack(**pad_12, side=LEFT)
 
         ### DETAILS STRUCTURE CADRE 2 ###
+        def refresh():
+            self.comment.set('')
+            back(arg=self.arg)
 
         def record(event):
-            arg = self.master.master.base.record_7(code=self.code,
+            self.arg = self.master.master.base.record_7(code=self.code,
                                                    comment=self.comment)
-            if arg:
-                back(arg=arg)
-
+            if self.arg:
+                self.comment.set('Enregistré')
+                self.focus_set()
+                root.bell()
+                root.after(attenteCourte, refresh)
+            else:
+                self.e1.focus_set()
+                self.e1.icursor(END)
+                
         def back(event=None, arg=False):
             self.master.menu.command6(arg)
 
@@ -3060,6 +3082,7 @@ class Frame16(Frame):
     def __init__(self, boss=None):
         Frame.__init__(self, boss)
         self.configure(**kw_fx)
+        root = self.master.master.master
 
         self.comment = StringVar()
         self.var_spin = IntVar()
@@ -3074,8 +3097,8 @@ class Frame16(Frame):
 
         # détails cadre1
         def select(event=None):
-            self.master.master.base.fix_exercice(self.var_spin.get())
-
+            pass
+        
         cadre7 = Frame(cadre1, **kw_c7)
         cadre7.pack(side=LEFT, **pad_c7)
         Label(cadre7, text='EXERCICE', **kw_11).pack(**pad_11, side=LEFT)
@@ -3087,6 +3110,36 @@ class Frame16(Frame):
         b1 = Button(cadre2, text=" ← ", takefocus=0, **kw_45)
         b1.pack(side='left', **pad_45)
         b1.pack_forget()
+        
+        def refresh():
+            self.comment.set('')
+            
+        def record(event):
+            self.master.master.base.fermer()
+            self.master.master.base.fix_exercice(self.var_spin.get())
+            self.focus_set()
+            self.comment.set('OK')
+            root.bell()
+            root.after(attenteLongue, refresh)
+        
+        def on_enter(event):
+            e = event.widget
+            e['bg'] = color_6
+
+        def on_leave(event):
+            e = event.widget
+            e['bg'] = color_33
+
+       
+        b2 = Button(cadre2, text="CONFIRMER", width=l_button1, **kw_45)
+        b2.pack(side='left', **pad_45)
+
+        b2.bind('<ButtonRelease-1>', record)
+        b2.bind('<Return>', record)
+        b2.bind('<Enter>', on_enter)
+        b2.bind('<FocusIn>', on_enter)
+        b2.bind('<Leave>', on_leave)
+        b2.bind('<FocusOut>', on_leave)
 
     def display(self):
         self.master.master.base.fermer()
@@ -3120,7 +3173,6 @@ class Frame21(Frame):
         def select(event=None):
             pass
             
-
         cadre7 = Frame(cadre1, **kw_c7)
         cadre7.pack(side=LEFT, **pad_c7)
         Label(cadre7, text='DATABASE', **kw_11).pack(**pad_11, side=LEFT)
@@ -3710,7 +3762,8 @@ class Frame11(Frame):
     def __init__(self, boss=None):
         Frame.__init__(self, boss)
         self.configure(**kw_fx)
-
+        root = self.master.master.master
+        
         ### VARIABLES DE CONTROLE ###
         self.code, self.des, self.cat, self.pv, self.stockmin = \
             StringVar(), StringVar(), StringVar(), StringVar(), StringVar()
@@ -3767,9 +3820,13 @@ class Frame11(Frame):
         b1.pack(side='left', **pad_45)
         b2 = Button(cadre2, text="ENREGISTRER", width=l_button1, **kw_45)
         b2.pack(side='left', **pad_45)
-
+        
+        def refresh():
+                self.comment.set('')
+                back(arg=self.arg)
+        
         def record(event):
-            arg = self.master.master.base.record_11(art_id=self.art_id,
+            self.arg = self.master.master.base.record_11(art_id=self.art_id,
                                                  code=self.code,
                                                  envente=self.envente,
                                                  des=self.des,
@@ -3777,11 +3834,14 @@ class Frame11(Frame):
                                                  pv=self.pv,
                                                  stockmin=self.stockmin,
                                                  comment=self.comment)
-            if arg:
-                 back(arg=arg)
+            if self.arg:
+                self.comment.set('Enregistré')
+                self.focus_set()
+                root.bell()
+                root.after(attenteCourte, refresh)
 
         def back(event=None, arg=''):
-            self.master.menu.command10(arg)
+            self.master.menu.command10(arg = self.arg)
 
         def on_enter(event):
 
@@ -4562,7 +4622,8 @@ class Frame27(Frame):
     def __init__(self, boss=None):
         Frame.__init__(self, boss)
         self.configure(**kw_fx)
-
+        root = self.master.master.master
+        
         ### VARIABLES DE CONTROLE ###
 
         self.arg = ''
@@ -4698,7 +4759,7 @@ class Frame27(Frame):
         def record(event):
             etoile()
             hide_selection()
-            arg2 = self.master.master.base.record_27(code=self.code,
+            self.arg2 = self.master.master.base.record_27(code=self.code,
                                                      des=self.des,
                                                      qte=self.qte,
                                                      prix=self.prix,
@@ -4711,11 +4772,22 @@ class Frame27(Frame):
                                                      dat=self.dat,
                                                      num=self.num,
                                                      arg=self.arg)
-            if arg2 is not None:
-                back(arg2=arg2)
-
+            if self.arg2 is not None:
+                self.comment.set('Enregistré')
+                self.focus_set()
+                root.bell()
+                root.after(attenteCourte, refresh)
+        
+        def refresh():
+                self.comment.set('')
+                back(arg2=self.arg2)
+                
         def erase(event=None):
             self.master.master.base.erase_27(arg=self.arg)
+            self.comment.set('Supprimé')
+            self.focus_set()
+            root.bell()
+            root.after(attenteCourte, refresh)
             back()
 
         def on_enter(event):
@@ -4830,7 +4902,8 @@ class Frame15(Frame):
     def __init__(self, boss=None):
         Frame.__init__(self, boss)
         self.configure(**kw_fx)
-
+        root = self.master.master.master
+        
         # VARIABLES DE CONTROLE #
         self.arg = False
         self.titre = StringVar()
@@ -4943,7 +5016,7 @@ class Frame15(Frame):
         def record(event):
             etoile()
             hide_selection()
-            arg = self.master.master.base.record_15(code=self.code,
+            self.arg = self.master.master.base.record_15(code=self.code,
                                                     des=self.des,
                                                     qte=self.qte,
                                                     prix=self.prix,
@@ -4954,14 +5027,23 @@ class Frame15(Frame):
                                                     caisse=self.caisse,
                                                     dat=self.dat,
                                                     arg=self.arg)
-            if arg:
-                self.arg = arg
+            if self.arg:
+                self.comment.set('Enregistré')
+                self.focus_set()
+                root.bell()
+                root.after(attenteCourte, refresh)
+        
+        def refresh():
+                self.comment.set('')
                 back()
-
+                
         def erase(event=None):
             if self.master.master.base.erase_15(arg=self.arg):
                 self.arg = False
-                back()
+                self.comment.set('Supprimé')
+                self.focus_set()
+                root.bell()
+                root.after(attenteCourte, refresh)
 
         def on_enter(event):
             e = event.widget
@@ -5156,6 +5238,7 @@ class Frame23(Frame):
     def __init__(self, boss=None):
         Frame.__init__(self, boss)
         self.configure(**kw_fx)
+        root = self.master.master.master
 
         ### VARIABLES DE CONTROLE ###
 
@@ -5283,7 +5366,7 @@ class Frame23(Frame):
 
         def record(event):
             hide_selection()
-            arg = self.master.master.base.record_23(code=self.code,
+            self.arg = self.master.master.base.record_23(code=self.code,
                                                     des=self.des,
                                                     cat=self.cat,
                                                     pv=self.pv,
@@ -5293,9 +5376,19 @@ class Frame23(Frame):
                                                     envente=self.envente,
                                                     list_ref=self.list_ref,
                                                     comment=self.comment)
-            if arg:
-                back(arg=arg)
-
+            if self.arg:
+                self.comment.set('Enregistré')
+                self.focus_set()
+                root.bell()
+                root.after(attenteCourte, refresh)
+            else:
+                self.e1.focus_set()
+                self.e1.icursor(END)
+            
+        def refresh():
+            self.comment.set('')
+            back(arg=self.arg)    
+                
         def on_enter(event):
             e = event.widget
             e['bg'] = color_6
@@ -5374,7 +5467,8 @@ class Frame24(Frame):
     def __init__(self, boss=None):
         Frame.__init__(self, boss)
         self.configure(**kw_fx)
-
+        root = self.master.master.master
+        
         ### VARIABLES DE CONTROLE ###
         self.code = StringVar()
         self.des = StringVar()
@@ -5498,7 +5592,7 @@ class Frame24(Frame):
 
         def record(event):
             hide_selection()
-            arg = self.master.master.base.record_24(compo_id=self.compo_id,
+            self.arg = self.master.master.base.record_24(compo_id=self.compo_id,
                                                     code=self.code,
                                                     des=self.des,
                                                     cat=self.cat,
@@ -5509,9 +5603,16 @@ class Frame24(Frame):
                                                     envente=self.envente,
                                                     list_ref=self.list_ref,
                                                     comment=self.comment)
-            if arg:
-                back(arg=arg)
-
+            if self.arg:
+                self.comment.set('Enregistré')
+                self.focus_set()
+                root.bell()
+                root.after(attenteCourte, refresh)
+        
+        def refresh():
+                self.comment.set('')
+                back(arg=self.arg)
+                
         def on_enter(event):
             e = event.widget
             e['bg'] = color_6
@@ -5873,6 +5974,7 @@ class Frame25(Frame):
     def __init__(self, boss=None):
         Frame.__init__(self, boss)
         self.configure(**kw_fx)
+        root = self.master.master.master
 
         ### VARIABLES DE CONTROLE ###
 
@@ -5907,14 +6009,25 @@ class Frame25(Frame):
             if self.master.master.base.record_25(arg=self.arg,
                                                  code=self.code,
                                                  comment=self.comment):
+                self.comment.set('Enregistré')
+                self.focus_set()
+                root.bell()
+                root.after(attenteCourte, refresh)
+                
+        def refresh():
+                self.comment.set('')
                 back()
 
         def erase(event):
             if self.master.master.base.erase_25(arg=self.arg,
                                                 code=self.code,
                                                 comment=self.comment):
-                back()
-
+                
+                self.comment.set('Supprimé')
+                self.focus_set()
+                root.bell()
+                root.after(attenteCourte, refresh)
+                
         def back(event=None):
             self.master.menu.command6()
 
