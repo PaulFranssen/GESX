@@ -112,11 +112,12 @@ DETAILS TECHNIQUES
 
 GENERATION
 	fonctionnement général		: la vente d' articles qui sont "en vente" et de prix non nuls peuvent être générés selon certains paramètres
-								  réglables dans les onglets
+								  définis par l'utilisateur, par exemple pour privilégier certains jours, fixer une limite du prix d'articles pour certains jours,
+								  imposer un pourcentage de ventes pour cetyaines catégories d'articles
 	limite journalière			: limitations du prix des articles selon le jour de vente,
 								  exemple : lundi 5000, signifie ne pas vendre le lundi des articles de plus de 5000,
 	pondérer les jours			: par défaut, la pondération journalière est de 1, 
-								  indique l'importance des ventes selon le jour de la semaine
+								  indique l'importance (la proportion) des ventes selon le jour de la semaine
 	fixer des catégories        : permet de fixer un % de vente lié à une ou plusieures catégorie,
 	                              par exemple, 'cuisine' à 20% des ventes, donc sous-entendu le reste des articles sera de 80%
 								  à noter que les ventes sont également liés à leur quantité en stock						  

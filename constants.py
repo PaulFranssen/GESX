@@ -157,10 +157,10 @@ reglage_2 = 33
 reglage_3 = 65
 
 # coefficient de placement des composés dans la liste générée
-# indique la proportion minimale d'article inventorié à prendre en compte
-coef_compose = 0.5
+# indique la proportion minimale et maximale d'article inventorié à prendre en compte pour G
+coef_compose_inf, coef_compose_sup = 0.2, 0.4
 # maximum de recherche itérations pour générer
-max_iteration = 20000
+max_iteration = 3000
 # nombre de catégories fixées (pour générer)
 nbr_categorie_fix = 5
 

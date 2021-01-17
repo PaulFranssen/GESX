@@ -671,22 +671,6 @@ class Base:
                 for tup in result:
                     # stock de chaque article avant le premier jour de vente + les achats et corrections pendant la période de vente
                     dico[tup[0]] = self.function_46(tup[0], func_20(x)) + self.function_17b(tup[0], x, y) + self.function_18b(tup[0], x, y)
-                    
-                """
-                # augmentation du stock suite aux achats entre les la date initiale incluse et le dernier jour de génération   
-                chaine = "SELECT art_id, qte FROM recordA, factureA
-                            WHERE recordA.fact_id=factureA.fact_id
-                            AND dat>=?
-                            AND dat<?"
-                res = self.curseur.execute(chaine, (x, func_18(y)))
-                if res:
-                    # ajout des quantités achetées dans le dictionnaire
-                    for tup in res:
-                        dico[tup[0]] += tup[1]
-                # modification du stock suite aux corrections
-                """
-                
-                
             return dico
 
         def f_2(dico, dat):
@@ -719,7 +703,7 @@ class Base:
                             for tupl in list_c:
                                 a_id, proportion = tupl
                                 # reglage du poids des composés
-                                weight += dico[a_id] * max(coef_compose, proportion)
+                                weight += dico[a_id] * min(max(coef_compose_inf, proportion), coef_compose_sup)
                         else:
                             # le composé n'était pas créé à cette date
                             continue
@@ -781,7 +765,6 @@ class Base:
                                 del list_choix[i]
                             else:
                                 i +=1
-                            
                 elif dico_quota[0][1] > dico_quota[0][0]:
                     # dépassement dans le reste des catégories
                     res = False    
@@ -799,7 +782,8 @@ class Base:
                 ad = result[0]
                 if ad == 1:
                     # article inventorié
-                    if dico[art_id] - 1 - self.function_17b(art_id, y, z) - self.function_18b(art_id, y, z)< 0:
+                    retrait = 0 if y >= z else self.function_17b(art_id, func_18(y), z)  
+                    if dico[art_id] - 1 - retrait< 0:
                         res = False
                     else:
                         # retrait des stocks
@@ -809,12 +793,15 @@ class Base:
                     liste = self.function_15(art_id, y)
                     for tup in liste:
                         component_id, proportion = tup
-                        if dico[component_id] - proportion - self.function_17b(component_id, y, z) - self.function_18b(component_id, y, z)< 0:
+                        retrait = 0 if y >= z else self.function_17b(component_id, func_18(y), z)
+                        if dico[component_id] - proportion - retrait < 0:
                             res = False
+                            break
                     # retrait des stocks
-                    for tup in liste:
-                        component_id, proportion = tup
-                        dico[component_id] -= proportion        
+                    if res:
+                        for tup in liste:
+                            component_id, proportion = tup
+                            dico[component_id] -= proportion        
             return res
           
         def f_4(dico, x, y, nulle, dico_quota):
@@ -906,7 +893,7 @@ class Base:
                     dico[cat_id] = [pc*montant/100, 0]
                     total_pc += pc
             dico[0] = [montant - total_pc*montant/100, 0]               
-            
+        
         ### corps principal ###
         
         # récupération des variables
@@ -916,15 +903,16 @@ class Base:
         montant = kw['montant'].get().strip()
         vente_nulle = kw['vente_nulle'].get().strip()
         caisse = kw['caisse'].get().strip()
-
+        
         # test
         com = test()
-        comment.set(com)
         if com:
+            comment.set(com)
             return False
+        
         montant = int(montant)
         vente_nulle = int(vente_nulle)
-
+        
         # dictionnaire des stocks
         dico_stock = f_1(d_i, d_f)
         if not len(dico_stock):
@@ -962,16 +950,14 @@ class Base:
         dico_vente = {}
         t = 0
         iteration = 0
-        comment.set('en cours...')
-
+        
         # boucle principale     
         while t < montant and len(list_choix) and iteration < max_iteration:
-           
             # choix aléatoire de l'article et du jour
             article = choice(list_choix)  # article est un triplet (art_id, cat_id, pv)
             jour = choice(list_jour)
 
-            # validité des choix          
+            # validité des choix    
             if not f_3(dico_stock, article, jour, d_f, dico_quota):
                 iteration +=1
                 continue
@@ -1083,7 +1069,6 @@ class Base:
             kw['pv_widget'].configure(state='disabled')
 
         # display composition
-
         list_box = kw['list_box']
         list_ref = kw['list_ref']
 
@@ -1109,7 +1094,6 @@ class Base:
         arg = kw['arg']
 
         # récupérer les éléments de la facture dans la base de données
-
         chaine = """SELECT num, tiers_id, dat, remise, total 
                     FROM factureA 
                     WHERE fact_id=?"""
@@ -1124,7 +1108,6 @@ class Base:
         kw['total'].set(func_5(result[4]))
 
         # recupérer les enregistrements et les ajouter dans la boite
-
         chaine = """SELECT art_id, qte, prix 
                     FROM recordA  
                     WHERE fact_id = ?"""
@@ -1145,7 +1128,6 @@ class Base:
         arg = kw['arg']
 
         # récupérer les éléments de la facture dans la base de données
-
         chaine = """SELECT dat,caisse_id,total 
                     FROM vente 
                     WHERE vente_id=?"""
@@ -1156,7 +1138,6 @@ class Base:
         kw['total'].set(func_5(result[2]))
 
         # recupérer les enregistrements et les ajouter dans la boite
-
         chaine = """SELECT codeV_id, qte, prix 
                         FROM recordV 
                         WHERE vente_id = ?"""
@@ -1260,7 +1241,6 @@ class Base:
         pc = kw['pc']
         couplage = kw['couplage']
         
-        
         # effacement
         couplage.set(0)
         kw['comment'].set('')
@@ -1315,9 +1295,7 @@ class Base:
 
         code_i = kw['code_i'].get().strip()
         p = kw['proportion'].get().strip()
-
         com = ''
-
         if not (code_i or p):
             return True
         elif not code_i:
@@ -1332,11 +1310,9 @@ class Base:
                     com = 'ERREUR composition (proportion non conforme)'
             except:
                 com = 'ERREUR composition (proportion non conforme)'
-
         if com:
             kw['comment'].set(com)
             return False
-
         list_box.append(ligne_7.format(code_i, kw['des_i'].get(), proportion))
         var_box.set(list_box)
         list_ref.append({'code': code_i, 'proportion': proportion})
@@ -1384,14 +1360,11 @@ class Base:
 
         if not func_2(remise):
             com = 'ERREUR remise (non conforme)'
-
         kw['comment'].set(com)
-
         if com:
             return False
 
         # calcul du total
-
         tot = 0
         for dico in list_ref:
             tot += int(dico['prix'])
@@ -1402,12 +1375,10 @@ class Base:
             kw['remise'].set(func_5(remise))
 
         # retour si pas d'encodage
-
         if not (code and qte and prix):
             return True
 
         # ajout à la box
-
         qte = func_6(float(qte))
         list_ref.append({'code': code, 'qte': qte, 'prix': prix})
         list_box.append(ligne_8.format(code, self.function_3(code), qte, func_5(int(prix))))
@@ -1429,9 +1400,7 @@ class Base:
         d_f = kw['d_f']
         comment = kw['comment']
         kw['def_rep'].set(0)
-
         comment.set('')
-
         try:
             with open(f_ticket, "r", encoding="utf-8") as f:
                 p = f.readline()
@@ -1443,12 +1412,9 @@ class Base:
     def display_38(self, **kw):
 
         partage = kw['partage']
-       
         kw['partage'].set(0)
-       
         comment = kw['comment']
         comment.set('')
-
         try:
             with open(f_partage, "r", encoding="utf-8") as f:
                 p = f.readline()
@@ -1457,12 +1423,9 @@ class Base:
             comment.set(error)
             return False
 
-
     def display_56(self, **kw):
     
-        
         sauvegarde = kw['sauvegarde']
-       
         kw['def_sauvegarde'].set(0)
         comment = kw['comment']
         comment.set('')
@@ -1483,9 +1446,7 @@ class Base:
         comment = kw['comment']
         kw['def_importe'].set(0)
         kw['def_nom'].set(0)
-
         comment.set('')
-
         try:
             with open(f_dirImport, "r", encoding="utf-8") as f:
                 p = f.readline()
@@ -2492,7 +2453,6 @@ class Base:
         elif not arg and (n or n_prim):
             com = 'ERREUR N° PIÈCE (déjà utilisé)'
         elif arg and not ((n == arg or not n) and not n_prim):
-            print('arg', arg, 'n', n, 'nprim', n_prim)
             com = 'ERREUR N° PIÈCE (déjà utilisé)'
         elif not montant:
             com = "ERREUR montant (vide)"
@@ -4061,7 +4021,7 @@ class Base:
                     AND dat < ?
                     """
         result = self.curseur.execute(chaine, (art_id, y, func_18(z))).fetchall()
-       
+        
         return 0 if not result else sum([tup[0] for tup in result])
 
     def function_18(self, art_id, dat):
@@ -4671,7 +4631,6 @@ class Base:
         result = self.curseur.execute(chaine, (1,)).fetchall()
         if result:
             for tup in result:
-                # print('pa, qte', self.function_43(tup[0], x), self.function_46(tup[0], x))
                 tot += self.function_43(tup[0], x) * self.function_46(tup[0], x)
         return tot
 
@@ -4890,7 +4849,7 @@ class Base:
 
         else:
             # situation abandonnée
-            print("ad=0 calcul de la marge brute")
+            # print("ad=0 calcul de la marge brute")
             # article non-inventorié (rechercher la quantité achetée)
             marge -= self.function_41b(art_id, y, z)
 

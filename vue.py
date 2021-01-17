@@ -2274,15 +2274,17 @@ class Frame46(Frame):
         def action(event):
             etoile1()
             etoile2()
-            if self.master.master.base.action_46(dat_i=self.dat_i,
+            self.comment.set('en cours...') # ne fonctionne pas
+            
+            self.master.master.base.action_46(dat_i=self.dat_i,
                                                  dat_f=self.dat_f,
                                                  caisse=self.caisse,
                                                  montant=self.montant,
                                                  vente_nulle=self.vente_nulle,
-                                                 comment=self.comment):
-                self.focus_set()
-                root.bell()
-                #root.after(attenteCourte, refresh)
+                                                 comment=self.comment)
+            #self.focus_set()
+            root.bell()
+            #root.after(attenteCourte, refresh)
 
         def on_enter(event):
             e = event.widget
