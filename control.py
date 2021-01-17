@@ -171,6 +171,22 @@ class Base:
                     FOREIGN KEY(cat_id) REFERENCES categorie(cat_id))"""
         self.curseur.execute(chaine)
         self.enregistrer()
+       
+        # ajout et adaptation des prix de vente
+        # with open(join('BASE', 'prixVente.csv'),'r',newline='', encoding = "latin-1") as fichier:
+        #   fiche=csv.DictReader(fichier,fieldnames=['code', 'des', 'pv'])
+        #    liste=[dico for dico in fiche]
+        #for dico in liste:
+            # code, pv = dico['code'], dico['pv']
+            # result = self.curseur.execute("""SELECT art_id, ad FROM article WHERE code=?""", (code,)).fetchall()
+            # if not result:
+            #     print(code, pv, 'inconnu')
+            # else:
+            #     ad = result[0][1]
+            #     self.curseur.execute("""UPDATE article SET pv=? WHERE code=?""", (pv, code))
+            #     if pv == 0 and ad==1:
+            #         self.curseur.execute("""UPDATE article SET envente=? WHERE code=?""", (0, code))
+            # self.enregistrer()
 
     def create_tiers(self):
         chaine = """CREATE TABLE IF NOT EXISTS tiers (
@@ -674,7 +690,7 @@ class Base:
             return dico
 
         def f_2(dico, dat):
-            """détermine la liste des articles seront choisis
+            """détermine la liste des articles qui seront choisis
 
             Args:
                 dico (dict ): dictionnaire des articles inventoriés
@@ -690,6 +706,9 @@ class Base:
             if result:
                 for tup in result:
                     art_id, cat_id, pv, ad = tup
+                    if pv == 0:
+                        # les articles au prix de vente nulle ne sont pas vendus
+                        continue
                     if ad == 1:
                         # article inventorié : le poids est égal au stock
                         weight = dico[art_id]

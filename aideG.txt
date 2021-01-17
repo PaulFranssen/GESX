@@ -111,6 +111,8 @@ DETAILS TECHNIQUES
 								  l'utilisation de open-office permet de régler ces paramètres avant l'ouverture du fichier
 
 GENERATION
+	fonctionnement général		: la vente d' articles qui sont "en vente" et de prix non nuls peuvent être générés selon certains paramètres
+								  réglables dans les onglets
 	limite journalière			: limitations du prix des articles selon le jour de vente,
 								  exemple : lundi 5000, signifie ne pas vendre le lundi des articles de plus de 5000,
 	pondérer les jours			: par défaut, la pondération journalière est de 1, 
