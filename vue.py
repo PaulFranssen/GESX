@@ -731,6 +731,7 @@ class Frame42(Frame):
         self.e2.bind('<Return>', next)
 
     def display(self, arg=''):
+        self.arg=arg
         self.master.master.base.fermer()
         self.master.master.base.ouvrir()
 
@@ -861,6 +862,7 @@ class Frame59(Frame):
         self.e2.bind('<Return>', next)
 
     def display(self, arg=''):
+        self.arg=arg
         self.master.master.base.fermer()
         self.master.master.base.ouvrir()
 
@@ -942,6 +944,7 @@ class Frame47(Frame):
         self.e1.bind('<Return>', next)
 
     def display(self, arg=''):
+        self.arg=arg
         self.master.master.base.fermer()
         self.master.master.base.ouvrir()
 
@@ -1021,6 +1024,7 @@ class Frame57(Frame):
         self.e1.bind('<Return>', next)
 
     def display(self, arg=''):
+        self.arg=arg
         self.master.master.base.fermer()
         self.master.master.base.ouvrir()
 
@@ -1129,6 +1133,7 @@ class Frame30(Frame):
         self.e2.bind('<Return>', next)
 
     def display(self, arg=''):
+        self.arg=arg
         self.master.master.base.fermer()
         self.master.master.base.ouvrir()
 
@@ -1229,6 +1234,7 @@ class Frame43(Frame):
         b2.bind('<FocusOut>', on_leave)
 
     def display(self, arg=''):
+        self.arg=arg
         self.master.master.base.fermer()
         self.master.master.base.ouvrir()
 
@@ -1305,6 +1311,7 @@ class Frame51(Frame):
         b2.bind('<FocusOut>', on_leave)
 
     def display(self, arg=''):
+        self.arg=arg
         self.master.master.base.fermer()
         self.master.master.base.ouvrir()
 
@@ -1382,6 +1389,7 @@ class Frame52(Frame):
         b2.bind('<FocusOut>', on_leave)
 
     def display(self, arg=''):
+        self.arg=arg
         self.master.master.base.fermer()
         self.master.master.base.ouvrir()
 
@@ -1474,9 +1482,7 @@ class Frame38(Frame):
         self.master.master.base.fermer()
         self.master.master.base.ouvrir()
         self.master.master.base.display_38(partage=self.partage,
-                                          
                                            def_partage=self.def_partage,
-                                          
                                            comment=self.comment)
         self.e1.focus_set()
         self.e1.icursor(END)
@@ -2382,7 +2388,8 @@ class Frame31(Frame):
         b2.bind('<FocusOut>', on_leave)
         self.e2.bind('<Return>', next)
 
-    def display(self, arg=''):
+    def display(self, arg=''):                                 
+        self.arg = arg
         self.master.master.base.fermer()
         self.master.master.base.ouvrir()
 
@@ -2508,6 +2515,7 @@ class Frame4(Frame):
         b2.bind('<Leave>', on_leave)
 
     def display(self, arg=''):
+        self.arg = arg
         self.master.master.base.fermer()
         self.master.master.base.ouvrir()
 
@@ -2606,6 +2614,7 @@ class Frame33(Frame):
         b2.bind('<FocusOut>', on_leave)
 
     def display(self, arg=''):
+        self.arg = arg
         self.master.master.base.fermer()
         self.master.master.base.ouvrir()
 
@@ -2715,6 +2724,7 @@ class Frame18(Frame):
         b2.bind('<FocusOut>', on_leave)
 
     def display(self, arg):
+        self.arg = arg
         self.master.master.base.fermer()
         self.master.master.base.ouvrir()
 
@@ -3329,12 +3339,13 @@ class Frame6(Frame):
         self.box.bind('<Return>', select)
 
     def display(self, arg=False):
+        self.arg = arg
         self.master.master.base.fermer()
         self.master.master.base.ouvrir()
         self.master.master.base.list_6(code=self.code,
                                        list_box=self.list_box,
                                        var_box=self.var_box,
-                                       arg=arg,
+                                       arg=self.arg,
                                        box=self.box)
         self.box.focus_set()
         self.pack(**pad_fx)
@@ -3415,12 +3426,13 @@ class Frame35(Frame):
         self.box.bind('<Return>', select)
 
     def display(self, arg=None):
+        self.arg = arg
         self.master.master.base.fermer()
         self.master.master.base.ouvrir()
         self.master.master.base.list_35(code=self.code,
                                         list_box=self.list_box,
                                         var_box=self.var_box,
-                                        arg=arg,
+                                        arg=self.arg,
                                         box=self.box)
         self.box.focus_set()
         self.pack(**pad_fx)
@@ -3500,6 +3512,7 @@ class Frame10(Frame):
         self.box.bind('<Return>', select)
 
     def display(self, arg=None):
+        self.arg = arg
         self.master.master.base.fermer()
         self.master.master.base.ouvrir()
 
@@ -3507,7 +3520,7 @@ class Frame10(Frame):
                                         list_box=self.list_box,
                                         var_box=self.var_box,
                                         box=self.box,
-                                        arg=arg)
+                                        arg=self.arg)
         self.box.focus_set()
         self.pack(**pad_fx)
 
@@ -3584,13 +3597,14 @@ class Frame32(Frame):
         self.box.bind('<Return>', select)
 
     def display(self, arg=False):
+        self.arg = arg
         self.master.master.base.fermer()
         self.master.master.base.ouvrir()
 
         self.master.master.base.list_32(list_box=self.list_box,
                                         var_box=self.var_box,
                                         code=self.code,
-                                        arg=arg,
+                                        arg=self.arg,
                                         box=self.box)
 
         self.box.focus_set()
@@ -3744,12 +3758,13 @@ class Frame5(Frame):
         self.box.bind('<Return>', select)
 
     def display(self, arg=False):
+        self.arg = arg
         self.master.master.base.fermer()
         self.master.master.base.ouvrir()
         self.master.master.base.list_5(code=self.code,
                                        list_box=self.list_box,
                                        var_box=self.var_box,
-                                       arg=arg,
+                                       arg=self.arg,
                                        box=self.box)
         self.box.focus_set()
         self.pack(**pad_fx)
@@ -3865,6 +3880,7 @@ class Frame11(Frame):
 
     def display(self, arg):
 
+        self.arg = arg
         self.master.master.base.fermer()
         self.master.master.base.ouvrir()
 
@@ -4191,6 +4207,7 @@ class Frame34(Frame):
         b2.bind('<Leave>', on_leave)
 
     def display(self, arg):
+        self.arg=arg
         self.master.master.base.fermer()
         self.master.master.base.ouvrir()
 
@@ -4287,13 +4304,14 @@ class Frame12(Frame):
         self.e0.bind('<Return>', filtrer)
 
     def display(self, arg):
+        self.arg=arg
         self.master.master.base.fermer()
         self.master.master.base.ouvrir()
         self.master.master.base.list_12(list_box=self.list_box,
                                         var_box=self.var_box,
                                         list_ref=self.list_ref,
                                         filtre=self.filtre,
-                                        arg=arg,
+                                        arg=self.arg,
                                         box=self.box)
 
         # module de sélection
@@ -4402,13 +4420,14 @@ class Frame3(Frame):
         self.e0.bind('<Return>', filtrer)
 
     def display(self, arg):
+        self.arg=arg
         self.master.master.base.fermer()
         self.master.master.base.ouvrir()
         self.master.master.base.list_3(filtre=self.filtre,
                                        list_box=self.list_box,
                                        var_box=self.var_box,
                                        list_ref=self.list_ref,
-                                       arg=arg,
+                                       arg=self.arg,
                                        box=self.box)
 
         ## module de sélection
@@ -4508,13 +4527,14 @@ class Frame9(Frame):
         self.e0.bind('<Return>', filtrer)
 
     def display(self, arg2=None):
+        self.arg2=arg2
         self.master.master.base.fermer()
         self.master.master.base.ouvrir()
         self.master.master.base.list_9(list_box=self.list_box,
                                        var_box=self.var_box,
                                        list_ref=self.list_ref,
                                        filtre=self.filtre,
-                                       arg2=arg2,
+                                       arg2=self.arg2,
                                        box=self.box)
         # module de sélection
         if self.indice == self.box.size():
@@ -4604,12 +4624,13 @@ class Frame13(Frame):
         self.box.bind('<Return>', select)
 
     def display(self, arg=False):
+        self.arg=arg
         self.master.master.base.fermer()
         self.master.master.base.ouvrir()
         self.master.master.base.list_13(code=self.code,
                                         list_box=self.list_box,
                                         var_box=self.var_box,
-                                        arg=arg,
+                                        arg=self.arg,
                                         box=self.box)
         self.box.focus_set()
         self.pack(**pad_fx)
@@ -5217,13 +5238,14 @@ class Frame22(Frame):
         self.box.bind('<Return>', select)
 
     def display(self, arg):
+        self.arg=arg
         self.master.master.base.fermer()
         self.master.master.base.ouvrir()
 
         self.master.master.base.list_22(list_box=self.list_box,
                                         var_box=self.var_box,
                                         code=self.code,
-                                        arg=arg,
+                                        arg=self.arg,
                                         box=self.box)
 
         self.box.focus_set()
@@ -5437,6 +5459,7 @@ class Frame23(Frame):
         self.box.bind("<FocusOut>", hide_selection)
 
     def display(self, arg=''):
+        self.arg=arg
         self.master.master.base.fermer()
         self.master.master.base.ouvrir()
 
@@ -5661,6 +5684,7 @@ class Frame24(Frame):
         self.box.bind('<FocusOut>', hide_selection)
 
     def display(self, arg):
+        self.arg=arg
         self.master.master.base.fermer()
         self.master.master.base.ouvrir()
 
