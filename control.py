@@ -344,6 +344,29 @@ class Base:
                                     FOREIGN KEY(art_id) REFERENCES article (art_id))"""
         self.curseur.execute(chaine)
         self.enregistrer()
+        
+         # ajout de l'inventaire code, pa, quantité JANVIER 2021
+        
+        # with open(join('BASE', 'invFin2020.csv'),'r',newline='', encoding = "latin-1") as fichier:
+        #    fiche=csv.DictReader(fichier,fieldnames=['code', 'pa', 'q'])
+        #    liste=[dico for dico in fiche]
+        
+        # if liste:
+        #     # création d'une vente
+        #     fact_id = self.insert2_factureA(('AINIT',1,datetime(2020, 1, 5), 0, 1000)) # num,tiers_id,dat,remise,total
+        #     total = 0
+        #     for dico in liste: # pour chaque article de l'inventaire
+        #         code, pa, q = dico['code'].strip(), round(float(dico['pa'])), 0 if float(dico['q'])<=0 else round(float(dico['q']),2)
+        #         if not pa*q:
+        #             continue
+        #         result = self.curseur.execute("""SELECT art_id, ad FROM article WHERE code=? AND ad=?""", (code,1)).fetchall()
+        #         if not result:
+        #             print(code, ' inventorié de invFin2020 inconnu')
+        #         else:
+        #             total += pa*q
+        #             art_id = result[0][0]
+        #             self.insert_recordA((fact_id, art_id, q, pa*q))
+        # self.enregistrer()
 
     def create_recordV(self):
         chaine = """CREATE TABLE IF NOT EXISTS recordV (
@@ -357,7 +380,7 @@ class Base:
                                         )"""
         self.curseur.execute(chaine)
         self.enregistrer()
-
+        
     def create_ponderation(self):
         chaine = """CREATE TABLE IF NOT EXISTS ponderation (
                                             pond_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
@@ -456,6 +479,14 @@ class Base:
 
         # chaine = """SELECT fact_id FROM factureA"""
         # return self.curseur.execute(chaine).fetchall()[-1][0]
+        
+    # def insert2_factureA(self, tup=(None, None, None, None, None)):
+    
+    #     chaine = """INSERT INTO factureA (num,tiers_id,dat,remise,total) VALUES(?,?,?,?,?)"""
+    #     self.curseur.execute(chaine, tup)
+
+    #     chaine = """SELECT fact_id FROM factureA"""
+    #     return self.curseur.execute(chaine).fetchall()[-1][0]
 
     def insert_charge(self, tup=(None, None, None, None, None, None, None, None, None)):
 
@@ -2585,7 +2616,7 @@ class Base:
         barre = "_" * 31
 
         dicoVenteTrie = OrderedDict(sorted(dicoVente.items(), key=lambda t: t[0]))
-        with open(nomF, 'w', encoding='utf-8') as fichier:
+        with open(nomF, 'w', encoding=encoTic) as fichier:
 
             fichier.write('{:^31}'.format(etoile))
             fichier.write('\n{:^31}'.format(NomBar))

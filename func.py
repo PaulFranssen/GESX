@@ -81,7 +81,7 @@ def func_11(xx):
 def func_12(x, y):
     com = ''
     try:
-        with open(y, 'w', newline='', encoding='utf-8') as fichier:
+        with open(y, 'w', newline='', encoding=encoDoc) as fichier:
             fiche = csv.writer(fichier, delimiter=";")
             fiche.writerows(x)
     except OSError as err:
@@ -211,7 +211,7 @@ def func_8(x):
 
 def print_dict_csv(file_name, lis):
     """enregistre un fichier csv, de nom file, de 2 colonnes à partir d'une liste de dictionnaire lis"""
-    with open(file_name, 'w', newline='', encoding = "utf-8") as file:
+    with open(file_name, 'w', newline='', encoding = encoDoc) as file:
         fi = csv.DictWriter(file, fieldnames=[1, 2], delimiter=";")
         fi.writerows(lis)
 
