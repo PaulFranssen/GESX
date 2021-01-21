@@ -164,9 +164,11 @@ max_iteration = 3000
 # nombre de catégories fixées (pour générer)
 nbr_categorie_fix = 5
 
-# encoding Ticket
-encoDoc="latin-1"
-encoTic="latin-1"
+# encoding 
+
+encoDoc = 'latin-1'
+
+encoTic = 'latin-1'
 
 
 

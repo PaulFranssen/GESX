@@ -1,10 +1,10 @@
-ARTICLES;data6;;;;;
-;;;;;;
-Wed 20 Jan 2021;;;;;;
-;;;;;;
+ARTICLES;data6
+
+Wed 20 Jan 2021
+
 CODE;DÉSIGNATION;STOCK_MIN;STOCK;EN VENTE;PA;PV
-;;;;;;
-BIÈRE;;;;;;
+
+BIÈRE
 beni;beninoise 33cl;0;70.0;V;267;2000
 bf;beaufort 33cl;0;146.0;V;327;2000
 bièreNA;bière non alcoolisée 25cl;0;0.0;V;0;2000
@@ -18,8 +18,8 @@ lef25;leffe 25 cl;0;20.0;V;1115;2000
 panach25;panachee 25cl;0;0.0;V;0;2000
 pils;pils 33cl;0;443.0;V;292;2000
 skol;skol 33cl;0;0.0;V;0;2000
-;;;;;;
-BOISSONCHAUDE;;;;;;
+
+BOISSONCHAUDE
 cafeCap;café en capsule;0;46.0;V;336;1000
 cafeSac;sachet de café;0;96.0;V;47;1000
 cappuccino;1 tasse de cappuccino;0;10.0;V;315;1500
@@ -28,8 +28,8 @@ theCitron;thé lipton au citron;0;compo;V;48;1500
 thé;un thé avec lipton;0;compo;V;48;1000
 théCitron;1 thé de citron;0;0.0;V;0;1500
 théTGV;thé spécial TGV;0;compo;V;147;2500
-;;;;;;
-CHAMPAGNE;;;;;;
+
+CHAMPAGNE
 affinity;champagne sans alcool;0;0.0;V;0;30000
 champNA;champagne non alcoolisé;0;0.0;V;0;30000
 champNARo;champagne non alcoolisé rosé;0;0.0;V;0;0
@@ -57,16 +57,16 @@ ruinRo;ruinart rosé;0;3.0;V;46250;150000
 toso;toso;0;0.0;V;0;0
 trouillard;champagne trouillard;0;1.0;V;20000;60000
 veuveClicot;veuve clicot;0;0.0;V;0;80000
-;;;;;;
-CHICHA;;;;;;
+
+CHICHA
 chicha;chicha;0;0.0;V;0;0
-;;;;;;
-CIGARE;;;;;;
+
+CIGARE
 cHabano;cigare cohiba habano;0;2.0;V;7500;5000
 cHabanoCM;cigare habano cm;0;2.0;V;3299;0
 cHoyo;cigare cohiba hoyo;0;0.0;V;0;0
-;;;;;;
-COCKTAIL;;;;;;
+
+COCKTAIL
 akpakpa;cocktail akpakpa;0;compo;V;534;3500
 amour;cocktail Amour;0;compo;V;350;4000
 dapaong;cocktail dapaong;;compo;V;1182;4000
@@ -84,7 +84,7 @@ planteur;cocktail planteur;0;compo;V;521;2500
 punchCaraib;cocktail punch caraibénne;0;compo;V;411;3000
 quartierJac;cocktail quartier Jac;0;compo;V;335;3000
 sexAple;cocktail sex apple;0;compo;V;215;2500
-stadeAmitie;'cocktail stade d''amitié';;compo;V;1649;4000
+stadeAmitie;cocktail stade d'amitié;;compo;V;1649;4000
 tgv1;cocktail tgv1;0;compo;V;1196;4000
 tgv2;cocktail tgv2;0;compo;V;680;4000
 tgv3;tequila, grenatdine, vodka;0;compo;V;491;4000
@@ -93,8 +93,8 @@ tgvRoyal;cocktail tgv royal;0;compo;V;912;8000
 toiMoi;cocktail toi et moi;0;compo;V;683;4000
 tropical;cocktal NA tropical;0;compo;V;172;3000
 tvg1;cocktail tgv1;0;compo;V;1196;4000
-;;;;;;
-COGNAC;;;;;;
+
+COGNAC
 calvaVSOP;calvados vsop 70cl;0;0.0;V;0;80000
 camusVS;camus vs 70cl;0;3.0;V;21000;80000
 camusVSOP;bout camus VSOP;0;3.0;V;22950;90000
@@ -106,8 +106,8 @@ hennessyVS1L;bouteille 1L hennessyVS;0;0.0;V;0;70000
 hennessyVSOP;hennessy vsop;0;5.0;V;29704;60000
 hennessyVSOP1L;hennessy vsop 1L;0;0.0;V;0;135000
 stRemyVSOP;saint remy vsop 70cl;0;1.88;V;5298;20000
-;;;;;;
-CONSO;;;;;;
+
+CONSO
 absentaC;1 conso de absenta;0;compo;V;491;3000
 agavitaC;conso de bout agavita;0;compo;V;0;3000
 baileysC;1 conso de baileys;;compo;V;0;3000
@@ -145,8 +145,8 @@ verreMousCC;1/14 bout vin mousseux;0;0.0;V;0;2500
 verreMoussCC;1/14 vin mousseux;0;compo;V;492;2500
 vinR1V;un verre de vin rouge;0;compo;V;896;5000
 willC;conso bout de william;0;compo;V;382;5000
-;;;;;;
-CUISINE;;;;;;
+
+CUISINE
 agbama;une portion de agbama;0;0.0;V;0;0
 agneau;viande agneau sans os;0;18.0;V;1169;5000
 agneauOs;viande agneau avec os;0;54.0;V;1119;0
@@ -193,10 +193,10 @@ emincePoule;emincé de poulet;0;compo;V;586;4000
 emincePoulet;emincée de poulet;0;0.0;V;0;4000
 escalPoulet;escalope de poulet;;compo;V;586;5000
 escalPouletSC;escalope de poulet sauce creme;;compo;V;912;4000
-farineBle;farine de blé;0;0.0;-0;0;0
-farinePatNoire;1 kg farine pate noire;0;0.0;-0;0;0
-farinePateBlanc;farine pour pate blanche;0;22.0;-0;11;0
-farineRouge;farine pour patte rouge;0;0.0;-0;0;0
+farineBle;farine de blé;0;0.0;-;0;0
+farinePatNoire;1 kg farine pate noire;0;0.0;-;0;0
+farinePateBlanc;farine pour pate blanche;0;22.0;-;11;0
+farineRouge;farine pour patte rouge;0;0.0;-;0;0
 filetBoeuf;1 portion de filet de boeuf;0;123.5;V;973;5000
 filetBoeufSauP;filet de boeuf sauce piquante;;compo;V;973;5000
 filetPoisson;filet de poisson;0;0.0;V;0;5000
@@ -233,14 +233,14 @@ patRouges;patte rouge;0;compo;V;0;1000
 pateBlanche;portion de pate blanche;0;compo;V;11;1000
 pateRouge;pate rouge;0;0.0;V;0;1000
 pateRougeB;pate rouge;0;compo;V;11;1000
-petitPois;1 portion de petit pois;0;9.0;-0;575;0
+petitPois;1 portion de petit pois;0;9.0;-;575;0
 petitPoisPain;plat petit pois;;compo;V;538;2000
 petitPoisPlat;plat de petit pois;;compo;V;1548;2000
 pintade;1 portion de pintade;0;0.0;V;0;5000
 piron;plat de piron;0;0.0;V;0;1000
 poisson;1 portion de poisson;0;129.0;V;1169;5000
 poissonFume;poisson fumé;0;54.0;V;222;0
-pommeKg;pomme en kg;0;0.0;-0;0;0
+pommeKg;pomme en kg;0;0.0;-;0;0
 pommeSaute;portion de pomme;0;compo;V;0;1000
 poulet;1 portion de poulet;0;73.0;V;912;0
 pouletBi;1 portie de poulet bicyclette;0;167.0;V;981;5000
@@ -287,8 +287,8 @@ viandeChaw;viande pour chawarma;0;3.0;V;500;0
 viandeH;viande hachée une portion;0;128.0;V;594;0
 viandeNem;1 portion de viande pour nems;0;44.0;V;385;0
 wangache;1 portion de wangache;0;46.0;V;339;0
-;;;;;;
-DIVERSALCOOL;;;;;;
+
+DIVERSALCOOL
 absenta;absenta;0;8.65;V;7021;0
 agavita;tequila agavita;0;0.0;V;0;0
 baileys;baileys;0;0.0;V;0;30000
@@ -339,18 +339,18 @@ vodkaFili;vodka filirt;0;3.0;V;3450;20000
 vodkaKavenina;vodka;0;0.0;V;0;20000
 vodkaPoliakov;vodka poliakov;0;7.0;V;2667;20000
 yeniRaki;bout de yeni raki;0;0.0;V;0;25000
-;;;;;;
-EAU;;;;;;
+
+EAU
 eau;eau 50cl;0;379.0;V;124;1000
 eau1.5;eau 1.5L;0;215.0;V;192;2000
 eauGaz;eau gazefiee 50cl;0;37.0;V;283;1000
 perrier;perrier 33cl;0;19.0;V;574;2000
-;;;;;;
-GADGETSEVENT;;;;;;
+
+GADGETSEVENT
 gadget;tshirt;0;0.0;V;0;5000
 gadgetStval;coffret, coeur petit et grand;0;0.0;V;0;0
-;;;;;;
-JUS;;;;;;
+
+JUS
 jAnanas;jus ananas 1L;0;0.0;V;0;0
 jBanane;jus banane 1L;0;0.0;V;0;0
 jGoyave;jus goyave 1L;0;0.0;V;0;0
@@ -361,11 +361,11 @@ jPomme;jus pomme 1L;0;0.0;V;0;0
 jRaisin;jus raisin 1L;0;0.0;V;0;0
 jTamarin25;jus tamarin 25cl;0;3.0;V;278;0
 jus1L;1 L jus;0;124.15;V;859;0
-;;;;;;
-LAIT;;;;;;
+
+LAIT
 lait;lait 1L;0;0.0;V;0;0
-;;;;;;
-SIROP;;;;;;
+
+SIROP
 sBanane;sirop banane 1L;0;0.0;V;0;0
 sCanne;sirop de canne;0;0.0;V;0;0
 sCassis;sirop de cassis;0;0.0;V;0;0
@@ -380,19 +380,19 @@ sTamarin;sirop tamarin 1 L;0;0.0;V;0;0
 sTomate;sirop tomate 1L;0;0.0;V;0;0
 sirop1L;bout sirop;0;0.21;V;2390;0
 sirop1V;sirop;0;compo;V;478;2000
-;;;;;;
-SODA;;;;;;
+
+SODA
 coca;coca 33cl;0;452.0;V;186;2000
 cocaSS;cannette de coca sans sucre;0;0.0;V;0;2000
 sprite;sprite;0;246.0;V;188;1000
 spriteP;sprite plastique 33cl;0;80.18;V;109;0
 tonic;tonic 33cl;0;0.0;V;0;1000
-;;;;;;
-VERRECASSE;;;;;;
+
+VERRECASSE
 verreBW;verre a bierre ou wisky;0;0.0;V;0;2000
 verreCV;verre à vin casse;0;0.0;V;0;2000
-;;;;;;
-VINBLANC;;;;;;
+
+VINBLANC
 baumeB;bout dom baume blanc;0;3.0;V;4500;0
 chastSauvB;bout chastagnac Sauv. blanc;0;3.0;V;3908;20000
 chretBM;chretienne blanc moelleux;0;5.0;V;3325;15000
@@ -409,8 +409,8 @@ premius;vin blanc Premius;0;0.0;V;0;25000
 rocheMazB;bout roche mazet blanc;0;0.0;V;0;0
 taraniB;bout tarani blanc;0;0.0;V;0;15000
 taraniBM;tarani blanc Moeulleux;0;2.0;V;3753;15000
-;;;;;;
-VINMOUSSEUX;;;;;;
+
+VINMOUSSEUX
 celeneCRBrut;bouteil de vin mouseux;0;0.0;V;0;35000
 coolR;bouteille de vin mousseux;0;0.0;V;0;15000
 cremAlsM;bou crément Alsace mousseux;0;10.0;V;7031;30000
@@ -422,8 +422,8 @@ jpRo1.5;jp chenet rosé 1.5 L;0;0.0;V;0;30000
 martiPeRo;bout martini pétillant rosé;0;2.0;V;5400;20000
 musca;bout muscador mousseux;0;0.0;V;0;0
 prosecco;bouteil de vin mousseux;0;0.0;V;0;35000
-;;;;;;
-VINROSÉ;;;;;;
+
+VINROSÉ
 bePink;cannette de vin rosé Be Pink;0;0.0;V;0;2500
 bePinkPack;4 cannettes de vin Rosé;;compo;V;0;7500
 calend;bout les calendières vin rosé;0;0.0;V;0;0
@@ -432,8 +432,8 @@ haussSyRo;haussmann Syrah Rosé;0;3.0;V;2965;15000
 monsBordRo;monsieur Bordeaux rosé;0;1.0;V;5250;20000
 rocheMazRo;bout roche mazet rosé;0;0.0;V;0;0
 taraniRo;bout tarani rosé;0;9.0;V;3551;15000
-;;;;;;
-VINROUGE;;;;;;
+
+VINROUGE
 alexanderGreat;vin rouge alexander the great;0;2.0;V;3667;15000
 armEmil;bout A-R st emilion rouge;0;0.0;V;0;0
 balast;bout haut balastard rouge;0;3.0;V;3500;0
@@ -487,12 +487,12 @@ puissantEleg;puissant et elegant cabSauv;0;3.0;V;3183;15000
 rempVirou;remparts du virou;0;0.0;V;0;25000
 rocheMazR;bout roche mazet rouge;0;11.0;V;2972;15000
 sagesse;bout sagesse rouge;0;0.0;V;0;30000
-seigneurieEnclo;'seigneurie de l''enclos 2015';0;1.0;V;5917;20000
+seigneurieEnclo;seigneurie de l'enclos 2015;0;1.0;V;5917;20000
 taraniR;bout tarani rouge;0;21.0;V;3610;15000
 vinB1V;un verre de vin blanc;0;compo;V;831;0
 vinRouge1V;une coupe de chret rouge;0;compo;V;914;5000
-;;;;;;
-WHISKY;;;;;;
+
+WHISKY
 aber;bout aberlour ;0;3.0;V;22000;0
 ben;bout benriach;0;0.0;V;0;0
 blackLab;bout black label 70 cl ;0;2.96;V;14950;40000
@@ -526,8 +526,8 @@ redLab70;bout red label 70cl;0;0.0;V;0;0
 redLab75;red label 0.75 L;0;15.16;V;5742;35000
 single;bout singleton 75cl;0;0.0;V;0;0
 will;bout williams lawson 70cl;0;22.53;V;5456;30000
-;;;;;;
-ÉNERGÉTIQUE;;;;;;
+
+ÉNERGÉTIQUE
 atomic;atomic 33cl;0;0.0;V;0;2000
 blackColaEnergy;black cola Energy drink;0;0.0;V;0;2000
 power;black power ;0;0.0;V;0;2000
