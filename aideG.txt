@@ -1,3 +1,4 @@
+
 GESX
 Programme de gestion pour bar-restaurant
 
@@ -12,7 +13,7 @@ FONCTIONNEMENT GENERAL
 	
 	Au quotidien, l'utilisateur encode les factures d'achats, les charges et les ventes effectuées.
 	
-	Les ventes peuvent être encodées ou importées via un fichier généré par le programme de caisse compatible.
+	Les ventes peuvent être encodées ou importées via un fichier généré sous un certain format.
 
 	Pour réaliser l'inventaire, on imprime l'inventaire théorique et le gestionnaire de stock compte le réel.
 	On encode ainsi les corrections de stocks et justifications pour un contrôle contradictoire et le maintient du stock à jour.
@@ -107,8 +108,11 @@ DETAILS TECHNIQUES
 	export base 				: exporter une base permet de la copier dans un répertoire indiqué par l'utilisateur
 
 	CSV							: les documents de sortie (inventaire, ...) s'effectuent au format CSV avec pour paramètres :
-								  delimiter = ";" et encoding = "utf-8"
+								  delimiter = ";" et encoding = "utf-8" par défaut
 								  l'utilisation de open-office permet de régler ces paramètres avant l'ouverture du fichier
+	import vente				: un fichier externe des ventes peut-être importé, le format de ce fichier est un fichier CSV,
+								  configuré par défaut avec delimiter=";" et encoding="utf-8",
+								  sa structure : colonne1=code de l'article, colonne2=quantité vendue, quantité3=montant de la vente
 
 GENERATION
 	fonctionnement général		: la vente d' articles qui sont "en vente" et de prix non nuls peuvent être générés selon certains paramètres
