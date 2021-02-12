@@ -165,10 +165,12 @@ max_iteration = 3000
 nbr_categorie_fix = 5
 
 # encoding 
-
 encoDoc = 'latin-1'
-
 encoTic = 'latin-1'
+
+# heure fermeture
+HEURE_FERMETURE_WEEKEND = (5, 6)
+HEURE_FERMETURE_SEMAINE = (3, 4)
 
 
 

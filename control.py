@@ -2669,6 +2669,7 @@ class Base:
         year = self.exercice
         com = ''
         if not isdir(repertoire):
+            print(repertoire)
             com = 'ERREUR répertoire-cible (non conforme)'
         elif not (d_i and d_f):
             com = "ERREUR date (non conforme)"
@@ -2713,10 +2714,10 @@ class Base:
                     dicoVente[code] = dict(QUANT=qte, PRIX=prix)
 
             # fabrication de la date de cloture
-            if jour.weekday() in {4, 5}:
-                h = '0' + str(randint(5, 6))
+            if jour.weekday() in {4, 5}:  
+                h = '0' + str(randint(*HEURE_FERMETURE_WEEKEND))
             else:
-                h = '0' + str(randint(3, 5))
+                h = '0' + str(randint(*HEURE_FERMETURE_SEMAINE))
             m = randrange(60)
             if m < 10:
                 m = '0' + str(m)
@@ -4534,7 +4535,8 @@ class Base:
         c = self.function_18(art_id, y)  # q corrigée à une date <= y de l'exercice
         s = self.function_19(art_id, y)  # q su stock de cloture de l'année précédente la date y
 
-        return s + a + c - v
+        res = s + a + c - v
+        return int(res) if res == int(res) else round(res, 2) 
 
     def function_47(self, x):
         liste = []
