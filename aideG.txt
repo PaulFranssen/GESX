@@ -111,7 +111,7 @@ DETAILS TECHNIQUES
 								  delimiter = ";" et encoding = "utf-8" par défaut
 								  l'utilisation de open-office permet de régler ces paramètres avant l'ouverture du fichier
 	import vente				: un fichier externe des ventes peut-être importé, le format de ce fichier est un fichier CSV,
-								  configuré par défaut avec delimiter=";" et encoding="utf-8",
+								  configuré par défaut avec delimiter=";" et encoding défini "latin-1",
 								  sa structure : colonne1=code de l'article, colonne2=quantité vendue, quantité3=montant de la vente
 
 GENERATION

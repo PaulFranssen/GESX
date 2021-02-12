@@ -16,6 +16,7 @@ from vue import *
 class E(Exception):
     pass
 
+
 class Base:
 
     def __init__(self):
