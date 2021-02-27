@@ -1163,7 +1163,7 @@ class Frame43(Frame):
         self.dat_f = StringVar()
 
         # structure
-        Label(self, text='''BILAN INTERMÉDIAIRE''', **kw_42).pack(**pad_42)
+        Label(self, text='BILAN INTERMÉDIAIRE', **kw_42).pack(**pad_42)
         cadre1 = Frame(self, **kw_c1)
         cadre1.pack(**pad_c1)
         cadre2 = Frame(self, **kw_c2)

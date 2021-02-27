@@ -6,7 +6,7 @@
 from sqlite3 import *
 from random import choice, randint, randrange
 from os import startfile, listdir, getcwd, mkdir, rename
-from os.path import isdir, exists, splitext, isfile
+from os.path import isdir, exists, splitext, isfile, join
 import shutil
 from collections import OrderedDict
 
@@ -2960,38 +2960,38 @@ class Base:
                 comment.set(com)
                 return False
             else:
-                startfile(f)
+                # startfile(f)
                 return True
 
-    def select_23(self, **kw):
-        # ne concerne pas le code 23
-        list_ref = kw['list_ref']
-        indice = kw['indice']
+    # def select_23(self, **kw):
+    #     # ne concerne pas le code 23
+    #     list_ref = kw['list_ref']
+    #     indice = kw['indice']
 
-        art_id = self.function_2(list_ref[indice]['code'])
+    #     art_id = self.function_2(list_ref[indice]['code'])
 
-        chaine = """SELECT rec_id, art_id, component_id, proportion 
-                       FROM composition
-                       WHERE rec_id=?"""
+    #     chaine = """SELECT rec_id, art_id, component_id, proportion 
+    #                    FROM composition
+    #                    WHERE rec_id=?"""
 
-        result = self.curseur.execute(chaine, (rec_id,)).fetchone()
+    #     result = self.curseur.execute(chaine, (rec_id,)).fetchone()
 
-        code = self.set(result[0])
-        kw['code'].set(code)
-        kw['des'].set(self.function_3(code))
-        kw['qte'].set(result[1])
-        kw['prix'].set(result[2])
+    #     code = self.set(result[0])
+    #     kw['code'].set(code)
+    #     kw['des'].set(self.function_3(code))
+    #     kw['qte'].set(result[1])
+    #     kw['prix'].set(result[2])
 
-        del list_box[indice]
-        del list_rec_id[indice]
-        var_box.set(list_box)
-        chaine = """DELETE FROM recordA where rec_id=?"""
-        self.curseur.execute(chaine, (rec_id,))
+    #     del list_box[indice]
+    #     del list_rec_id[indice]
+    #     var_box.set(list_box)
+    #     chaine = """DELETE FROM recordA where rec_id=?"""
+    #     self.curseur.execute(chaine, (rec_id,))
 
-        tot = self.total_factureA(fact_id, remise)
-        chaine = """UPDATE  factureA  SET total=?  WHERE fact_id=?"""
-        self.curseur.execute(chaine, (tot, fact_id))
-        total.set(tot)
+    #     tot = self.total_factureA(fact_id, remise)
+    #     chaine = """UPDATE  factureA  SET total=?  WHERE fact_id=?"""
+    #     self.curseur.execute(chaine, (tot, fact_id))
+    #     total.set(tot)
 
     def select_24(self, **kw):
 
@@ -3494,7 +3494,7 @@ class Base:
                 comment.set(com)
                 return False
             else:
-                startfile(f)
+                # startfile(f)
                 return True
 
     def document_43(self, **kw):
@@ -3521,12 +3521,13 @@ class Base:
             return False
         else:
             f = join(path, filename + '.csv')
+            print(f)
             com = func_12(x=self.function_55(d_i, d_f), y=f)
             if com:
                 comment.set(com)
                 return False
             else:
-                startfile(f)
+                # startfile(f)
                 return True
 
     def document_51(self, **kw):
@@ -3554,7 +3555,7 @@ class Base:
                 comment.set(com)
                 return False
             else:
-                startfile(f)
+                #  startfile(f)
                 return True
 
     def document_31(self, **kw):
@@ -3577,7 +3578,7 @@ class Base:
                 comment.set(com)
                 return False
             else:
-                startfile(f)
+                # startfile(f)
                 return True
 
     def document_59(self, **kw):
@@ -3753,7 +3754,7 @@ class Base:
                 comment.set(com)
                 return False
             else:
-                startfile(f)
+                # startfile(f)
                 return True
 
     def function_1(self):
@@ -4150,10 +4151,18 @@ class Base:
 
     def function_23(self, x):
         art_id = self.function_2(x)
+        print(datetime.now(), "début ventes")
         v = self.function_16(art_id, datetime.now())
+        print(datetime.now(), "début achats")
+        
+        
         a = self.function_17(art_id, datetime.now())
+        print(datetime.now(), "début correction")
         c = self.function_18(art_id, datetime.now())
+        print(datetime.now(), "début stock initial")
         s = self.function_19(art_id, datetime.now())
+        print(datetime.now(), "fin ")
+        
         return func_6(s + a + c - v)
 
     def function_24(self):
