@@ -79,7 +79,7 @@ class Frame1(Frame):
 
         me.add_command(label='Tiers', command=self.command5, **kw_2)
         me.add_command(label='Employés', command=self.command13, **kw_2)
-        me.add_command(label='Types de charges', underline=0, command=self.command35, **kw_2)
+        # me.add_command(label='Types de charges', underline=0, command=self.command35, **kw_2)
         me.add_separator()
         me.add_command(label='Imprimer les données', underline=0, command=self.command59, **kw_2)
         mb.configure(menu=me)
@@ -91,7 +91,7 @@ class Frame1(Frame):
         me = Menu(mb, **kw_3)
         me.add_command(label='Ventes', underline=0, command=self.command3, **kw_2)
         me.add_command(label='Achats', underline=0, command=self.command12, **kw_2)
-        me.add_command(label='Charges', underline=0, command=self.command9, **kw_2)
+        # me.add_command(label='Charges', underline=0, command=self.command9, **kw_2)
         mb.configure(menu=me)
 
         # PARAMETRES
@@ -100,7 +100,7 @@ class Frame1(Frame):
         Label(self, **kw_50).pack(side='left')
         me = Menu(mb, **kw_3)
         me.add_command(label="Changer d'exercice", underline=0, command=self.command16, **kw_2)
-        me.add_checkbutton(label="Afficher G", variable=self.g, command=self.command48, selectcolor=kw_54['col_spec'], **kw_2)
+        # me.add_checkbutton(label="Afficher G", variable=self.g, command=self.command48, selectcolor=kw_54['col_spec'], **kw_2)
         mb.configure(menu=me)
 
         # STOCK
@@ -816,7 +816,8 @@ class Frame59(Frame):
         Checkbutton(cadre14, text="articles en vente".upper(), variable=self.ven, **kw_47).pack(**pad_48) #11
         Checkbutton(cadre11, text="tiers".upper(), variable=self.tie, **kw_47).pack(**pad_48) # 15
         Checkbutton(cadre15, text="employés".upper(), variable=self.emp, **kw_47).pack(**pad_48)#12
-        Checkbutton(cadre12, text="types de charges".upper(), variable=self.typ, **kw_47).pack(**pad_48)#16
+        #Checkbutton(cadre12, text="types de charges".upper(), variable=self.typ, **kw_47).pack(**pad_48)#16
+        Label(cadre12, text='',**kw_47b).pack(**pad_48)
         Label(cadre16, text='', **kw_47b).pack(**pad_48)
         # détails cadre t
         Label(cadre7, text='RÉPERTOIRE-CIBLE', **kw_11).pack(**pad_11, side=LEFT)

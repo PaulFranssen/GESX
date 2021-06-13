@@ -1,0 +1,538 @@
+ARTICLES;data6
+
+Sun 30 May 2021
+
+CODE;DÉSIGNATION;STOCK_MIN;STOCK;EN VENTE;PA;PV
+
+BIÈRE
+beni;beninoise 33cl;0;18;V;267;2000
+bf;beaufort 33cl;0;266;V;333;2000
+bièreNA;bière non alcoolisée 25cl;0;0;V;0;2000
+cast;castel 33cl;0;123;V;315;2000
+despe;desperados 33cl;0;97;V;792;2500
+doppel;Doppel Munich Lager;0;65;V;400;2000
+eku;eku 33cl;0;209;V;380;2000
+grimbergen;grimbergen bière kriet;0;0;V;823;2000
+gui;guinness 33cl;0;280;V;525;2500
+hein25;heineken 25 cl;0;16;V;563;2500
+lef25;leffe 25 cl;0;7;V;1115;2000
+panach25;panachee 25cl;0;0;V;0;2000
+pils;pils 33cl;0;171;V;290;2000
+skol;skol 33cl;0;0;V;0;2000
+
+BOISSONCHAUDE
+cafeCap;café en capsule;0;22;V;336;1000
+cafeSac;sachet de café;0;54;V;47;1000
+cappuccino;1 tasse de cappuccino;0;4;V;315;1500
+lipton;1 sachet de lipton;0;131;V;48;0
+theCitron;thé lipton au citron;0;compo;V;48;1500
+thé;un thé avec lipton;0;compo;V;48;1000
+théCitron;1 thé de citron;0;0;V;0;1500
+théTGV;thé spécial TGV;0;compo;V;147;2500
+
+CHAMPAGNE
+affinity;champagne sans alcool;0;0;V;0;30000
+champNA;champagne non alcoolisé;0;0;V;0;30000
+champNARo;champagne non alcoolisé rosé;0;0;V;0;0
+fereix;champagne fereixnet prosecco;0;0;V;0;40000
+lagaBrut1.5L;lagache brut M 1.5L;0;0;V;0;0
+lagaBrutRes;lagache brut réservée ;0;0;V;0;50000
+lagaNatB;lagache nature blanc;0;1;V;20000;80000
+lagaPrestD1.5L;lagache prestige d1.5L;0;0;V;0;0
+lagaRo;lagache rosée;0;1;V;20000;80000
+laurentPer;laurent perrier;0;0;V;0;65000
+lucBelFantome;bout luc bellaire fantome;0;2;V;24300;60000
+lucBelRo;luc bellaire rosé;0;1;V;22757;65000
+moetB1.5L;moet brut 1.5L;0;0;V;0;0
+moetBrut;moet brut simple;0;0;V;0;65000
+moetIceImp;moet ice impérial ;0;2;V;40650;120000
+moetNect;moet chandon nectar;0;1;V;36000;115000
+moetNectRo;meot nectar Rosé;0;3;V;41850;115000
+moetNectar;bout moet c. nectar;0;1;V;39262;80000
+moetRo;moet rosé;0;0;V;0;90000
+princessFr;princesse de france;0;2;V;23500;60000
+remyTresBrut;remy trésor brut;0;3;V;20000;50000
+ruinBlBl;ruinart blanc de blanc;0;1;V;63625;150000
+ruinBrut;ruinart brut;0;0;V;0;110000
+ruinRo;ruinart rosé;0;3;V;46250;150000
+toso;toso;0;0;V;0;0
+trouillard;champagne trouillard;0;1;V;20000;60000
+veuveClicot;veuve clicot;0;0;V;0;80000
+
+CHICHA
+chicha;chicha;0;0;V;0;0
+
+CIGARE
+cHabano;cigare cohiba habano;0;0;V;7500;5000
+cHabanoCM;cigare habano cm;0;2;V;3299;0
+cHoyo;cigare cohiba hoyo;0;0;V;0;0
+
+COCKTAIL
+akpakpa;cocktail akpakpa;0;compo;V;534;3500
+amour;cocktail Amour;0;compo;V;350;4000
+dapaong;cocktail dapaong;;compo;V;1182;4000
+elom;cocktail elom;0;compo;V;618;4000
+ganhi;cocktail ganhi;0;compo;V;504;4000
+haieVive;cocktail haie vive;0;compo;V;1519;4000
+laitCoco;une boite de lait de coco;0;1;V;1200;0
+malibuOrange;cocktail malibu avec du jus;0;compo;V;505;3000
+mojitoClassic;cocktail mojito classic;0;compo;V;339;4000
+mojitoParf;cocktail de mojito parfumé;0;compo;V;339;4000
+mojitoVierge;mojito sans alcool;0;compo;V;94;3000
+pinkMiami;1 cocktail pinkmiami;0;compo;V;401;2500
+planB;coctail plan B;;compo;V;1866;6000
+planteur;cocktail planteur;0;compo;V;521;2500
+punchCaraib;cocktail punch caraibénne;0;compo;V;411;3000
+quartierJac;cocktail quartier Jac;0;compo;V;335;3000
+sexAple;cocktail sex apple;0;compo;V;215;2500
+stadeAmitie;cocktail stade d'amitié;;compo;V;1649;4000
+tgv1;cocktail tgv1;0;compo;V;1196;4000
+tgv2;cocktail tgv2;0;compo;V;680;4000
+tgv3;tequila, grenatdine, vodka;0;compo;V;491;4000
+tgvNA;cocktail TGV non alcoolisé;0;compo;V;73;3000
+tgvRoyal;cocktail tgv royal;0;compo;V;912;8000
+toiMoi;cocktail toi et moi;0;compo;V;683;4000
+tropical;cocktal NA tropical;0;compo;V;172;3000
+tvg1;cocktail tgv1;0;compo;V;1196;4000
+
+COGNAC
+calvaVSOP;calvados vsop 70cl;0;0;V;0;80000
+camusVS;camus vs 70cl;0;3;V;21000;80000
+camusVSOP;bout camus VSOP;0;3;V;22950;90000
+comteJoseph;comte Joseph;0;0;V;0;110000
+comteJosephHA;comte Joseph Hors Age;0;0;V;0;120000
+comteJosephVS;comte Joseph VS;0;0;V;0;55000
+hennessyVS;hennessy vs 70cl;0;5.29;V;19982;55000
+hennessyVS1L;bouteille 1L hennessyVS;0;0;V;0;70000
+hennessyVSOP;hennessy vsop;0;5;V;29704;60000
+hennessyVSOP1L;hennessy vsop 1L;0;0;V;0;135000
+stRemyVSOP;saint remy vsop 70cl;0;1.88;V;5298;20000
+
+CONSO
+absentaC;1 conso de absenta;0;compo;V;491;3000
+agavitaC;conso de bout agavita;0;compo;V;0;3000
+baileysC;1 conso de baileys;;compo;V;0;3000
+blackLabC;conso black label 0.7L;0;compo;V;1196;4000
+campariC;1/16 de campari 1L;;compo;V;0;4000
+champagneV;une coupe de champagne;0;compo;V;0;10000
+chivas12-1C;conso chivas12 1L;0;compo;V;1043;4000
+chivas12C;conso chivas12 0.7L;0;compo;V;1050;4000
+gingerC;un verre de gingembre dilué;0;compo;V;73;1000
+gingerShort;une short de gingmbre;0;compo;V;73;500
+glenB12C;conso glenfiddich 12 ans ;0;compo;V;2800;6000
+gordonsC;1 conso de gordons;0;compo;V;888;4000
+grdMarnierC;conso grand marnier;0;compo;V;2840;5000
+hennessyVSC;1 conso hennessy vs;0;compo;V;2198;5000
+jackC;1 conso de jack daniels;0;compo;V;879;5000
+jbC;jb conso;0;compo;V;526;3000
+jusCaraf;caraffe de jus;0;0;V;0;2500
+jusCarafe;carafe de jus;0;compo;V;430;2500
+jusV;1 verre de jus;0;compo;V;215;2000
+martiniBC;conso martini blanc;0;compo;V;386;4000
+martiniRC;1 conso martini rouge;0;compo;V;320;4000
+orangeSecC;conso orange Sec;0;compo;V;311;3000
+pachucaC;1 conso de Pachuca;0;compo;V;0;2500
+redLabC;1 conso de red label;0;compo;V;459;5000
+ricardC;1 conso de ricard;0;compo;V;479;2000
+sGinger1V;verre de sirop ginger;0;compo;V;147;1000
+sanjoseSC;conso de sanjose;0;compo;V;595;2000
+siropC;1 conso de sirop ;0;compo;V;120;1000
+stJamesBC;conso st james Blanc;0;compo;V;454;4000
+stJamesRC;conso saint James;0;compo;V;421;4000
+stoliC;conso stoli;0;compo;V;420;4000
+suzeC;conso de suze;0;compo;V;364;4000
+tripleSecC;conso de triple sec;0;compo;V;214;4000
+verreMousCC;1/14 bout vin mousseux;0;0;V;0;2500
+verreMoussCC;1/14 vin mousseux;0;compo;V;492;2500
+vinR1V;un verre de vin rouge;0;compo;V;896;5000
+willC;conso bout de william;0;compo;V;382;5000
+
+CUISINE
+agbama;une portion de agbama;0;0;V;0;0
+agneau;viande agneau sans os;0;14;V;1169;5000
+agneauOs;viande agneau avec os;0;33;V;1119;0
+agneauSauce;agneau sauce arachide;0;compo;V;1119;0
+agneauSauté;agneau sauté;0;compo;V;1119;0
+akassan;akassan;0;3;V;100;1000
+alloco;1 portion de alloco;0;compo;V;0;1000
+assokui;sauce légume;;compo;V;1370;5000
+atieke;atiéké une portion;0;0;V;0;1000
+attieke;une portion de attieke;0;2;V;250;1000
+beignetCrevet;Beignets de crevettes;;compo;V;1466;0
+blancPoulet;blanc de poulet une portion;0;3;V;586;0
+boeuf;1 portion de boeuf;0;0;V;0;0
+boyau;1 portion de boyau;0;65;V;664;5000
+broBoeuf;une brochette de boeuf;0;compo;V;486;4000
+broMerguez;brochette de merguez;0;compo;V;585;2000
+broMixte;mini brochette mixte;0;compo;V;1072;2000
+broPoisson;1 portion darne de poisson;0;compo;V;1169;5000
+broPoulet;1 brochette de poulet;0;compo;V;293;2000
+calamar;calamar une portion;0;0;V;0;0
+chawPoulet;chawarma poulet;0;compo;V;564;3000
+chawTGV;chawarma tgv;0;compo;V;1200;3000
+chawViande;chawarma de viande;0;compo;V;757;3000
+cheeseBurger;cheese burger;0;compo;V;1412;2500
+chickenBurg;chicken burger;0;compo;V;1969;3000
+choucMouton;choucouya de mouton;0;compo;V;1169;3000
+choucPoule;choucouyta de poulet;0;compo;V;586;2500
+choucPoulet;choucouya de poulet;0;compo;V;586;2000
+crabe;portion de crabe;0;52;V;249;0
+crepe;un plat de crepe;0;compo;V;83;1000
+crevette;1 portion de crevette;0;86;V;1383;5000
+cuisPoulet;cuisse de poulet braisée;0;0;V;0;4000
+cuissPoulet;cuisse de poulet;0;compo;V;0;4000
+darnePoisson;darne de poisson;0;34.5;V;1128;4000
+doubleHamb;double hamburger;0;compo;V;2571;4000
+duoBroBoeuf;duo brochette boeuf;0;compo;V;973;4000
+duoBroMerguez;duo brochette merguez;0;compo;V;1170;4000
+duoBroPoulet;duo brochette au poulet;0;compo;V;586;4000
+eggCheese;egg cheese burger;;compo;V;2060;3500
+eminceBoeufSc;emince boeuf sauce creme;0;compo;V;973;5000
+eminceP;un émince de poulet;0;0;V;0;0
+emincePoul;emincé de poulet;0;compo;V;586;4000
+emincePoule;emincé de poulet;0;compo;V;586;4000
+emincePoulet;emincée de poulet;0;0;V;0;4000
+escalPoulet;escalope de poulet;;compo;V;586;5000
+escalPouletSC;escalope de poulet sauce creme;;compo;V;912;4000
+farineBle;farine de blé;0;0;-;0;0
+farinePatNoire;1 kg farine pate noire;0;0;-;0;0
+farinePateBlanc;farine pour pate blanche;0;16;-;11;0
+farineRouge;farine pour patte rouge;0;0;-;0;0
+filetBoeuf;1 portion de filet de boeuf;0;21.5;V;973;5000
+filetBoeufSauP;filet de boeuf sauce piquante;;compo;V;973;5000
+filetPoisson;filet de poisson;0;0;V;0;5000
+filetPoissonSc;filet poisson sauce creme;0;compo;V;1169;5000
+filetPoissons;plat filet de poisson;0;compo;V;1169;5000
+frite;1 portion de frites;0;308;V;243;1000
+fromage;fromage en tranche;0;0;V;565;0
+gambas;1 portion de gambas;0;9;V;2709;12000
+gateauRiz;1 portion gateau de riz;0;3;V;10;0
+gbekuin;légume;;compo;V;1370;5000
+gesier;1 portion de gesier;0;1;V;500;0
+hamburger;hamburger;0;compo;V;968;2000
+haricotV;haricot vert;0;0;V;0;1000
+langueB;1 portion de langue de boeuf;0;3;V;1800;0
+langueBoeuf;1 portion de langue de boeuf;0;36;V;1356;5000
+legumeSaut;1 portion de légume sauté;0;compo;V;0;1000
+mais300G;maïs doux, boite de 300g;0;23;V;358;0
+maisDoux;1 portion de maïs doux;0;3;V;400;0
+merguez;1 portion merguez;0;78;V;585;0
+miniBroBoeuf;1 plat de 4 mini broch de boeuf;0;compo;V;486;0
+miniBroMergez;mini brochette mergez;0;compo;V;585;4000
+nemBoeuf;1 portion de 4 nems de boeuf;0;compo;V;385;2000
+nemPoulet;nems de poulet;0;compo;V;586;2000
+oeuf;un oeuf;0;1;V;83;0
+omelFromage;omelette au fromage;0;compo;V;1296;2500
+omelNature;omelette nature;0;compo;V;166;1500
+pain;pain pour soupe;0;0;V;0;500
+painChaw;1 portion de pain chawarma;0;0;V;149;0
+painHamb;1 portion de pain hamburger;0;0;V;253;0
+painSandw;1 portion de pain sandwich;0;0;V;306;0
+patNoire;1 portion de patte noire;0;compo;V;0;1000
+patRouge;portion de pate rouge;0;0;V;0;1000
+patRouges;patte rouge;0;compo;V;0;1000
+pateBlanche;portion de pate blanche;0;compo;V;11;1000
+pateRouge;pate rouge;0;0;V;0;1000
+pateRougeB;pate rouge;0;compo;V;11;1000
+petitPois;1 portion de petit pois;0;1;-;575;0
+petitPoisPain;plat petit pois;;compo;V;538;2000
+petitPoisPlat;plat de petit pois;;compo;V;1548;2000
+pintade;1 portion de pintade;0;0;V;0;5000
+piron;plat de piron;0;0;V;0;1000
+poisson;1 portion de poisson;0;60;V;1169;5000
+poissonFume;poisson fumé;0;12;V;222;0
+pommeKg;pomme en kg;0;0;-;0;0
+pommeSaute;portion de pomme;0;compo;V;0;1000
+poulet;1 portion de poulet;0;56;V;912;0
+pouletBi;1 portie de poulet bicyclette;0;125.5;V;981;5000
+pouletBraise;poulet braisé;0;compo;V;912;2500
+pouletCuisse;cuisses de poulet ;0;0;V;0;3000
+purePomme;purée de pomme;0;compo;V;0;1000
+riz;1 portion de riz;0;158;V;193;1000
+rizCant;1 portion de riz cantonais;0;0;V;0;2000
+rizCanto;riz cantonais;0;compo;V;442;1000
+rizCantonais;riz cantonai;0;compo;V;359;10000
+saladeAvoCrevet;salade avocat aux crevettes;;compo;V;1536;4000
+saladeAvoPoulet;salade avocat au poulet;0;compo;V;739;3000
+saladeCompo;salade compose;;compo;V;2117;6000
+saladeCrudite;salade de crudité;0;compo;V;0;2500
+saladeFruit;plat salade de fruit;0;0;V;0;2000
+saladeMixte;salade mixte;;compo;V;811;3000
+saladePoulet;salade au poulet;0;compo;V;663;3000
+saladePouletBi;salade au poulet bicyclette;0;compo;V;860;4500
+saladeTGV;salade tgv;0;compo;V;625;3000
+sandwPoulet;sandwich de poulet;0;compo;V;599;2000
+sandwSteak;sandwich steak;;compo;V;1716;2500
+sandwViande;sandwich avec viande de boeuf;0;compo;V;1279;2000
+sandwich;sandwich;0;compo;V;792;2000
+sandwichTGV;sandwich TGV;0;compo;V;1922;2500
+sauceArachide;sauce arachide;;compo;V;1370;5000
+sauceBlokoto;sauce de blokoto;0;0;V;0;5000
+sauceCreme;sauceCreme;0;compo;V;586;4000
+sauceCrinCrin;sauce crincrin;;compo;V;1370;5000
+sauceGombo;sauce de gombo;;compo;V;1370;5000
+soupeBoyau;soupe de boyau;0;compo;V;817;5000
+soupePoisson;soupe de poisson;0;compo;V;1169;4000
+spagBolo;spaghetti bolognaise;0;compo;V;1312;4000
+spagh;1 portion de spaghettis;0;15.25;V;122;1000
+steakChamp;steak au champignon;0;compo;V;973;4000
+thon;1 portion de thon;0;9.5;V;434;0
+tilapiaG;poisson tilapia;0;0;V;1279;5000
+tilapiaM;poisson tilapia moyen;0;2;V;857;4000
+trioBroBoeuf;trio brochette de boeuf;0;compo;V;1460;4000
+trioBroMerguez;trio brochette de merguez;;compo;V;1755;5000
+trioBroPoisson;trio brochette de poisson;0;compo;V;1692;7500
+trioBroPoulet;trio brochette de poulet;0;compo;V;879;5000
+viandeBro;1 portion de boeuf pour 1 brochette;0;0;V;0;0
+viandeChaw;viande pour chawarma;0;3;V;500;0
+viandeH;viande hachée une portion;0;98;V;594;0
+viandeNem;1 portion de viande pour nems;0;33;V;385;0
+wangache;1 portion de wangache;0;4;V;339;0
+
+DIVERSALCOOL
+absenta;absenta;0;8.65;V;7021;0
+agavita;tequila agavita;0;0;V;0;0
+baileys;baileys;0;0;V;0;30000
+bols;vodka bols 70cl;0;3;V;3330;0
+boris;vodka boris;0;0;V;0;0
+bottega;liqueur bottega 70cl;0;0;V;0;0
+brizL;liqueur marie brizard mp;0;0;V;0;0
+campari;liqueur campari 1L;0;0;V;0;30000
+cointreau;liqueur cointreau;0;3.92;V;12038;0
+cointreau350;cointreau 350 cl;0;3;V;16668;0
+cointreauC;conso cointreau;0;compo;V;963;2000
+diplomatico;rhum diplomatico;0;0;V;0;0
+disaronno;disaronno;0;1;V;20000;50000
+droitBouchon;droit de bouchon;0;0;V;0;10000
+get27;Get 27;0;2;V;3333;2500
+gordons;bout gordons;0;4.72;V;11095;20000
+grants;liqueur grants;0;0;V;0;0
+grdMarnier;bout grand marnier;0;0.02;V;14200;0
+jelzin;vodka jelzin 70cl;0;0;V;0;0
+kamel;rhum kamel 70cl;0;1.9;V;2549;0
+litchiL;liqueur litchi;0;3;V;2300;0
+malibu;malibu;0;0.02;V;4759;0
+mangPaL;liqueur mangue passion;0;1;V;2300;0
+martiniB;martini blanc 1L;0;0.08;V;6425;20000
+martiniR;martini rouge;0;5.04;V;5336;20000
+martiniRo;martini rosé;0;6;V;2558;0
+molinari;bout de molinari;0;0;V;0;25000
+orangeSec;orange sec ;0;2.95;V;4445;0
+pachuca;tequila pachuca 70cl;0;0;V;0;0
+podere;bout de podere;0;0;V;0;25000
+ricard;liqueur ricard;0;1.7;V;7978;0
+sanjoseS;tequila sanjose silver;0;1;V;8500;0
+savoy;vodka savoy ;0;3;V;3042;0
+smirnof;vodka smirnof;0;0;V;0;0
+stJamesB;rhum saint james blanc 1L;0;3.14;V;7561;30000
+stJamesR;rhum saint james rouge 1L;0;2.05;V;7010;30000
+stPaul;rhum saint paul 70cl;0;0;V;0;0
+stoli;vodka stolichnaya 70cl;0;4.34;V;5997;30000
+sucreCan;bout sucre de canne 0.7L;0;14.46;V;1796;0
+suze;liqueur suze;0;0.4;V;6061;25000
+tBlanc;tequila blanc 70cl;0;1;V;4408;25000
+tBlancC;conso tequila blanco;0;compo;V;0;4000
+tChoco;tequila chocolat;0;0;V;0;25000
+tElCobrizo;tequila el cobrizo;0;0;V;0;20000
+tOnOffHecho;bout tequ. on off hecho 70 cl;0;0;V;0;20000
+tripleSec;liqueur triple sec 70cl;0;2.02;V;3060;0
+vodkaFili;vodka filirt;0;1;V;3450;20000
+vodkaKavenina;vodka;0;0;V;0;20000
+vodkaPoliakov;vodka poliakov;0;6;V;2667;20000
+yeniRaki;bout de yeni raki;0;0;V;0;25000
+
+EAU
+eau;eau 50cl;0;191;V;147;1000
+eau1.5;eau 1.5L;0;128;V;224;2000
+eauGaz;eau gazefiee 50cl;0;13;V;283;1000
+perrier;perrier 33cl;0;3;V;574;2000
+
+GADGETSEVENT
+gadget;tshirt;0;0;V;0;5000
+gadgetStval;coffret, coeur petit et grand;0;0;V;0;0
+
+JUS
+jAnanas;jus ananas 1L;0;0;V;0;0
+jBanane;jus banane 1L;0;0;V;0;0
+jGoyave;jus goyave 1L;0;0;V;0;0
+jMangue;jus mangue 1L;0;0;V;0;0
+jOrange;jus orange 1L;0;1;V;835;0
+jPamplem;jus pamplemousse 1L;0;2;V;1000;0
+jPomme;jus pomme 1L;0;0;V;0;0
+jRaisin;jus raisin 1L;0;0;V;0;0
+jTamarin25;jus tamarin 25cl;0;3;V;278;0
+jus1L;1 L jus;0;100.8;V;859;0
+
+LAIT
+lait;lait 1L;0;0;V;0;0
+
+SIROP
+sBanane;sirop banane 1L;0;0;V;0;0
+sCanne;sirop de canne;0;0;V;0;0
+sCassis;sirop de cassis;0;0;V;0;0
+sFraise;sirop fraise 1L;0;0;V;0;0
+sGinger1L;sirop gingembre 1 L;0;54.35;V;1469;0
+sGrenadine;sirop grenadine 1L;0;0;V;0;0
+sMenthe;sirop menthe 1L;0;0;V;0;0
+sPamplem;sirop pamplemousse 1L;0;0;V;0;0
+sPassion;sirop passion;0;0;V;0;0
+sPeche;sirop pêche 1L;0;0;V;0;0
+sTamarin;sirop tamarin 1 L;0;0;V;0;0
+sTomate;sirop tomate 1L;0;0;V;0;0
+sirop1L;bout sirop;0;0.01;V;2390;0
+sirop1V;sirop;0;compo;V;478;2000
+
+SODA
+coca;coca 33cl;0;265;V;188;2000
+cocaSS;cannette de coca sans sucre;0;0;V;0;2000
+sprite;sprite;0;186;V;189;1000
+spriteP;sprite plastique 33cl;0;75.89;V;109;0
+tonic;tonic 33cl;0;42;V;190;1000
+
+VERRECASSE
+verreBW;verre a bierre ou wisky;0;0;V;0;2000
+verreCV;verre à vin casse;0;0;V;0;2000
+
+VINBLANC
+baumeB;bout dom baume blanc;0;3;V;4500;0
+chastSauvB;bout chastagnac Sauv. blanc;0;1;V;3908;20000
+chretBM;chretienne blanc moelleux;0;4;V;3325;15000
+cotLayon;coteaux du Layon;0;0;V;0;25000
+granitierBM;granitier blanc moelleux;0;0;V;0;20000
+haussB;bout haussmann blanc;0;2;V;4587;20000
+luisEsB;bout luis esch blanc;0;0;V;0;0
+marBernB;bout marquis bern blanc;0;0;V;0;0
+marsanB;bout chat marsan blanc;0;3;V;5167;0
+messidor;messidor;0;0;V;5917;25000
+monbazB;bout monbazillac blanc;0;3;V;5500;0
+muscadetAntique;muscadet antiqe;0;0;V;0;20000
+premius;vin blanc Premius;0;0;V;0;25000
+rocheMazB;bout roche mazet blanc;0;0;V;0;0
+taraniB;bout tarani blanc;0;0;V;0;15000
+taraniBM;tarani blanc Moeulleux;0;1;V;3753;15000
+
+VINMOUSSEUX
+celeneCRBrut;bouteil de vin mouseux;0;0;V;0;35000
+coolR;bouteille de vin mousseux;0;0;V;0;15000
+cremAlsM;bou crément Alsace mousseux;0;5.51;V;7031;30000
+jourSpB;bout journée spéciale blanc;0;0;V;0;0
+jourSpRo;bout journée spéciale rosée;0;1;V;2833;12000
+jpB;bout jp chenet blanc;0;17;V;3929;20000
+jpRo;bout jp chenet rosé;0;1;V;3709;20000
+jpRo1.5;jp chenet rosé 1.5 L;0;0;V;0;30000
+martiPeRo;bout martini pétillant rosé;0;2;V;5400;20000
+musca;bout muscador mousseux;0;0;V;0;0
+prosecco;bouteil de vin mousseux;0;0;V;0;35000
+
+VINROSÉ
+bePink;cannette de vin rosé Be Pink;0;0;V;0;2500
+bePinkPack;4 cannettes de vin Rosé;;compo;V;0;7500
+calend;bout les calendières vin rosé;0;0;V;0;0
+chastSyRo;bout chastagnac syrah rosé;0;0;V;0;0
+haussSyRo;haussmann Syrah Rosé;0;1;V;2965;15000
+monsBordRo;monsieur Bordeaux rosé;0;1;V;5250;20000
+rocheMazRo;bout roche mazet rosé;0;0;V;0;0
+taraniRo;bout tarani rosé;0;5;V;3551;15000
+
+VINROUGE
+alexanderGreat;vin rouge alexander the great;0;1;V;3667;15000
+armEmil;bout A-R st emilion rouge;0;0;V;0;0
+balast;bout haut balastard rouge;0;3;V;3500;0
+baumeR;bout domaine de la baume rouge;0;0;V;0;30000
+bordEru;bout bordeaux sup eru rouge;0;3;V;9200;0
+bouey;bout maison bouey rouge;0;3;V;9000;30000
+cadiot;cadiot 2016;0;2;V;6917;30000
+calvetRes;bout calvet grde reserve rouge;0;3;V;6300;0
+carilloR;bouteille de vin rouge carillonade;0;0;V;0;25000
+chastMerl;chastagnac merlot;0;0;V;3040;15000
+chastR;chastagnac  cabernet sauvignon;0;0;V;0;15000
+chatBelAir;chateau Bel Air;0;0;V;0;25000
+chatCol;bout chateau colombier rouge;0;1;V;4500;25000
+chatFer;bout chateau ferrande rouge;0;0;V;0;20000
+chatFerboy;chateau Ferboy;0;0;V;0;15000
+chatGrandJardin;vin rouge chat grand jardin;0;0;V;0;20000
+chatHautRoulet;chateau Haut Roulet;0;0;V;0;20000
+chatMarl;bouteille chateau marlene;0;7;V;3300;12000
+chatMartin;bout chateau martin rouge;0;0;V;0;20000
+chatMoinesMen;chateau moines menodin;0;1;V;3750;20000
+chateauLary;chateau lary;0;0;V;0;20000
+chevalierLand;chevalier Landerac bx sup;0;9;V;4845;20000
+chretMerl;bout chretienne merlot rouge;0;3;V;3585;0
+chretR;bout chretienne rouge;0;55;V;3658;15000
+fiolePap;bout fiole pape rouge;0;1;V;17808;40000
+gPalais;bout grand palais rouge;0;3;V;6500;0
+gPuch;bout grand puch rouge;0;3;V;6500;0
+grandNoir;bout le grd noir ;0;3;V;6500;25000
+hMedoc;bout le haut medoc rouge;0;0;V;0;20000
+haussCabS;haussmann cabernet sauvignon;0;1;V;3583;15000
+haussCabSauv;haussmann cabernet sauvignon;0;1;V;2965;20000
+haussMerl;haussmann merlot rouge;0;1;V;4267;15000
+haussR;bout haussmann rouge;0;0;V;0;20000
+leBellevue;Le Belleue;0;0;V;0;12000
+loireMarchaisCa;Cabernet Loire Marchais;0;0;V;0;12000
+luisEsR;bout luis eschenauer rouge;0;0;V;0;0
+magnumRempVir;magnum les remparts du Virou;0;0;V;0;45000
+malesan;bout malesan bordeau rouge;0;3;V;3500;0
+marBois;bout marquis bois rouge;0;0;V;0;0
+marsanR;bout chateau marsan rouge;0;0;V;0;0
+mazMerl;bout roche mazet merlot rouge;0;0;V;0;0
+mazSauv;bout roche mazet sauv rouge;0;0;V;0;0
+monsBord;bout monsieur bordeaux rouge;0;0;V;0;0
+monsBordSup;monsieur de bordeau superieur;0;1;V;6675;25000
+moutCadNor;bout mouton cadet normal rouge;0;0;V;0;20000
+moutCadRes;bout mouton cadet reserve;0;3;V;10917;0
+noirMerl;bout le grd noir merlot rouge;0;1;V;6500;25000
+oustric;bout domaine oustric rouge;0;1;V;5000;0
+picnicR;vin rouge picnic;0;0;V;0;12000
+puissantEleg;puissant et elegant cabSauv;0;2;V;3183;15000
+rempVirou;remparts du virou;0;0;V;0;25000
+rocheMazR;bout roche mazet rouge;0;5;V;2972;15000
+sagesse;bout sagesse rouge;0;0;V;0;30000
+seigneurieEnclo;seigneurie de l'enclos 2015;0;1;V;5917;20000
+taraniR;bout tarani rouge;0;13;V;3610;15000
+vinB1V;un verre de vin blanc;0;compo;V;831;0
+vinRouge1V;une coupe de chret rouge;0;compo;V;914;5000
+
+WHISKY
+aber;bout aberlour ;0;3;V;22000;0
+ben;bout benriach;0;0;V;0;0
+blackLab;bout black label 70 cl ;0;2.96;V;14950;40000
+blackLab1;bout black label 1L;0;0;V;0;55000
+cardhu;bout cardhu;0;1;V;21120;60000
+chivas12;bout chivas 12 ans 70cl;0;19.92;V;13123;40000
+chivas12-1;bout chivas 12 ans 1L;0;0.22;V;17389;45000
+chivas18;bout chivas 18 ans 70cl;0;0;V;0;45000
+chivas18-1;bout chivas 18 ans 1L;0;3;V;43000;70000
+chivasEx;bout chivas extra 70cl;0;3;V;27000;0
+dimple;bouteille dimple;0;0;V;0;60000
+dimpleC;conso a-r Dimple;;compo;V;0;6000
+doubleB1;bout double black 1L;0;0;V;0;0
+doubleBlack;bout double black 70cl;0;2;V;29700;80000
+glenB12;bout glenf. blanc 12 ans 70cl;0;12.76;V;18721;60000
+glenB12L;glenfiddich 12 ans un litre;0;3;V;35000;80000
+glenRo15;bout glenf. rosé 15 ans 70cl;0;1;V;18000;0
+glenRo18;bout glenf. rosé 18 ans 70cl;0;4;V;32942;80000
+glenlivet;bout glenlivet 70cl;0;3;V;50000;0
+goldBar;bout gold bar 70cl;0;0;V;0;80000
+goldLab;bout gold label 70cl;0;3;V;34825;100000
+jack;bout jack daniel 70cl;0;9.84;V;10982;40000
+jack1;bout jack daniel 1L;0;1;V;16500;0
+jackBar;bout jack barrel 70cl;0;11;V;10833;60000
+jackGent;bout jack gentleman 70cl;0;0;V;0;0
+jackHo;bout jack honey 70cl;0;6;V;12760;40000
+jackSilv;bout jack silver 70cl;0;0;V;0;0
+jb;bout jb 70cl;0;0.84;V;6570;30000
+jbRes;bout de jb réserve 15 ans;0;2;V;20000;60000
+redLab70;bout red label 70cl;0;0;V;0;0
+redLab75;red label 0.75 L;0;11.08;V;5742;35000
+single;bout singleton 75cl;0;0;V;0;0
+will;bout williams lawson 70cl;0;15.53;V;5456;30000
+
+ÉNERGÉTIQUE
+atomic;atomic 33cl;0;0;V;0;2000
+blackColaEnergy;black cola Energy drink;0;0;V;0;2000
+power;black power ;0;0;V;0;2000
+redBull;red bull 33cl;0;1;V;623;2000
+rox;rox 33cl;0;33;V;486;2000
+speedEnergy;speed energy;0;15.5;V;312;2000
+xxl;xxl 33cl;0;110;V;400;2000

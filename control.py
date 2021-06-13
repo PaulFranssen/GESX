@@ -3,6 +3,7 @@
 # -*- coding: utf-8 -*-
 
 # importation des modules
+import time
 from sqlite3 import *
 from random import choice, randint, randrange
 from os import startfile, listdir, getcwd, mkdir, rename
@@ -64,6 +65,7 @@ class Base:
         self.create_recordA()
         self.create_vente()
         self.create_recordV()
+        self.create_recordV2()
         self.create_stocloture()
         self.create_correction()
         self.create_ponderation()
@@ -381,6 +383,19 @@ class Base:
                                         )"""
         self.curseur.execute(chaine)
         self.enregistrer()
+    
+    def create_recordV2(self):
+        chaine = """CREATE TABLE IF NOT EXISTS recordV2 (
+                                        v_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+                                        vente_id INTEGER,
+                                        codeV_id INTEGER,
+                                        qte REAL,
+                                        prix INTEGER,
+                                        FOREIGN KEY(codeV_id) REFERENCES article (art_id),
+                                        FOREIGN KEY(vente_id) REFERENCES vente (vente_id)
+                                        )"""
+        self.curseur.execute(chaine)
+        self.enregistrer()
         
     def create_ponderation(self):
         chaine = """CREATE TABLE IF NOT EXISTS ponderation (
@@ -512,6 +527,10 @@ class Base:
 
     def insert_recordV(self, tup):
         chaine = """INSERT INTO recordV (vente_id, codeV_id, qte, prix) VALUES(?,?,?,?)"""
+        self.curseur.execute(chaine, tup)
+        
+    def insert_recordV2(self, tup):
+        chaine = """INSERT INTO recordV2 (vente_id, codeV_id, qte, prix) VALUES(?,?,?,?)"""
         self.curseur.execute(chaine, tup)
 
     def insert_categorie(self, name):
@@ -890,6 +909,7 @@ class Base:
                     qte = dico[dat][art_id][0]
                     prix = dico[dat][art_id][1]
                     self.insert_recordV(tup=(vente_id, art_id, qte, prix))
+                
 
         def f_7(begin, end):
             """suppression des ventes 
@@ -2352,6 +2372,11 @@ class Base:
             # suppression des enregistrements
             chaine = """DELETE FROM recordV WHERE vente_id=?"""
             self.curseur.execute(chaine, (vente_id,))
+            
+            # suppression prim
+            chaine = """DELETE FROM recordV2 WHERE vente_id=?"""
+            self.curseur.execute(chaine, (vente_id,))
+            
         else:
             vente_id = self.insert_vente(tup)
 
@@ -2359,15 +2384,41 @@ class Base:
 
         for dico in list_ref:
             art_id = self.function_5(dico['code'])
-            # vérification qu'un composé possède des composants à la date d
-            if self.function_7(art_id):
-                if not self.function_40(art_id, d):
+            
+            if self.function_7(art_id): # cas article composé
+                
+                date_compose = self.function_40(art_id, d)
+                if not date_compose:
+                    # à retravailler avant ou après(à vérifier lors de la vérif)
                     com = "ERREUR " + dico['code'] + " non défini à cette date"
                     break
+                
+                else:
+                    liste = self.function_15(art_id, d) # liste des composants
+                    if not liste:
+                        continue # composé sans composants
+                    else:
+                        for cod, prop in liste:
+                            self.insert_recordV2(tup=(vente_id,
+                                    cod,
+                                    float(dico['qte'].replace(',', '.'))*prop,
+                                    100)) # prix pas en considération (car pour inventaire)
+                
+            else:
+                self.insert_recordV2(tup=(vente_id,
+                                     art_id,
+                                     dico['qte'].replace(',', '.'),
+                                     dico['prix']))
+                    
+            
             self.insert_recordV(tup=(vente_id,
                                      art_id,
                                      dico['qte'].replace(',', '.'),
                                      dico['prix']))
+            # insertion dans le record parallèle(décomposer)
+            ## voir si l'article est composé, si oui le décomposer et insérer
+            ## à faire
+            
         if com:
             kw['comment'].set(com)
             self.fermer()
@@ -3425,6 +3476,10 @@ class Base:
         # effacement
         chaine = """DELETE FROM recordV WHERE vente_id=?"""
         self.curseur.execute(chaine, (arg,))
+        
+        chaine = """DELETE FROM recordV2 WHERE vente_id=?"""
+        self.curseur.execute(chaine, (arg,))
+        
         chaine = """DELETE FROM vente WHERE vente_id=?"""
         self.curseur.execute(chaine, (arg,))
 
@@ -3527,7 +3582,7 @@ class Base:
                 comment.set(com)
                 return False
             else:
-                # startfile(f)
+                startfile(f)
                 return True
 
     def document_51(self, **kw):
@@ -3754,7 +3809,7 @@ class Base:
                 comment.set(com)
                 return False
             else:
-                # startfile(f)
+                startfile(f)
                 return True
 
     def function_1(self):
@@ -3947,6 +4002,8 @@ class Base:
         end = dat
         begin = datetime(dat.year, 1, 1)
         
+        tr = time.time()
+        
         # récupération de toutes les ventes avec leurs quantités et la date de vente
         chaine = """SELECT codeV_id, qte, dat 
                     FROM recordV, vente 
@@ -3955,7 +4012,11 @@ class Base:
                     AND dat<?"""
         result = self.curseur.execute(chaine, (begin, func_18(end))).fetchall()
         
+        print('chargement all_vente', time.time()-tr)
+        
         # calcule de la quantité q vendue
+        
+        tr = time.time()
         q = 0
         if result:
             for code_id, qte, dat in result:
@@ -3974,6 +4035,62 @@ class Base:
                 else:  # code_id est non-inventorié et non-composé
                     print('cet article ne devrait pas se trouvé dans  vente')
                     continue
+        print('temps de traitement 1 code dans vente', tr-time.time())
+        return q
+    
+    def function_16i(self, art_id, dat):
+        """détermine la quantité vendue d'un article inventorié art_id 
+        pendant l'exercice jusqu'à une date donnée
+
+        Args:
+            art_id (int): id de l'article inventorié
+            dat (datetime): date limite pour la vente
+
+        Returns:
+            float: quantité vendue de l'article art_id jusqu'à la date y
+        """        
+        if dat.year < self.exercice:
+            # cas où la date initiale est le 1er janvier, donc x est le 31 decembre de l'année pécédente
+            return 0
+        
+        # dates initiales et finales
+        end = dat
+        begin = datetime(dat.year, 1, 1)
+        
+        tr = time.time()
+        
+        # récupération de toutes les ventes avec leurs quantités et la date de vente
+        chaine = """SELECT qte
+                    FROM recordV2, vente 
+                    WHERE  recordV2.vente_id=vente.vente_id 
+                    AND codeV_id = ?
+                    AND dat>=? 
+                    AND dat<?"""
+        result = self.curseur.execute(chaine, (art_id, begin, func_18(end))).fetchall()
+        
+        print(result)
+        
+        print('chargement all_vente', time.time()-tr)
+        
+        # calcule de la quantité q vendue
+        
+        tr = time.time()
+        q = 0
+        if result:
+            for (qte,) in result:
+                # if self.function_7(art_id):  # code_id est un composé
+                #     print("ce n'est plus possible")
+                #     liste = self.function_15(art_id, dat)
+                #     if not liste:
+                #         continue # composé sans composants
+                #     else: # à refaire
+                #         pass
+                #         # for cod, prop in liste:
+                #         #     if cod == art_id:
+                #         #         q += prop * qte
+                # else: 
+                    q += qte
+        print('temps de traitement 1 code dans vente', tr-time.time())
         return q
 
     def function_16b(self, art_id, y, z):
@@ -4017,7 +4134,36 @@ class Base:
                     continue
         
         return q
+    
+    def function_16bi(self, art_id, y, z):
+        """détermine la quantité vendue d'un article inventorié donné entre 2 dates.
+        cet article a peut se trouvé dans un composé
 
+        Args:
+            art_id (int): id de l'article inventorié
+            y (datetime): date initiale
+            z (datetime): datefinale
+
+        Returns:
+            float: quantité vendue de l'article
+        """        
+    
+        
+        chaine = """SELECT qte
+                    FROM recordV2, vente 
+                    WHERE  recordV2.vente_id=vente.vente_id 
+                    AND codeV_id = ?
+                    AND dat>=? 
+                    AND dat<?"""
+        result = self.curseur.execute(chaine, (art_id, y, func_18(z))).fetchall()
+        
+       
+        q = 0
+        if result:
+            for (qte,) in result:
+                    q += qte
+        return q
+    
     def function_17(self, art_id, dat):
         if dat.year < self.exercice:
             return 0
@@ -4150,18 +4296,20 @@ class Base:
         return liste
 
     def function_23(self, x):
+        tempo = time.time()
+        print('tempo', tempo)
         art_id = self.function_2(x)
-        print(datetime.now(), "début ventes")
-        v = self.function_16(art_id, datetime.now())
-        print(datetime.now(), "début achats")
+        print(time.time()-tempo, "début ventes")
+        v = self.function_16i(art_id, datetime.now())
+        print(time.time()-tempo, "début achats")
         
         
         a = self.function_17(art_id, datetime.now())
-        print(datetime.now(), "début correction")
+        print(time.time()-tempo, "début correction")
         c = self.function_18(art_id, datetime.now())
-        print(datetime.now(), "début stock initial")
+        print(time.time()-tempo, "début stock initial")
         s = self.function_19(art_id, datetime.now())
-        print(datetime.now(), "fin ")
+        print(time.time()-tempo, "fin ", tempo)
         
         return func_6(s + a + c - v)
 
@@ -4175,16 +4323,35 @@ class Base:
         liste.append(v)
         liste.append(['CODE', 'DÉSIGNATION', 'TH.', 'PHYSIQUE'])
 
-        liste1 = self.function_21()
+        liste1 = self.function_21() # liste des catégories
+        
+        # nbr_categorie = 0
+        
         for name in liste1:
+            
+            # nbr_categorie +=1
+            # nbr_code = 0
+            
             passage = True
-            liste2 = self.function_22(name)
+            liste2 = self.function_22(name) # liste des codes inventoriés de la catégorie 
             for code in liste2:
                 if passage:
+                    # affichage du nom de la catégorie 
                     liste.append(v)
                     liste.append([name.upper()])
                     passage = False
-                liste.append([code, self.function_3(code), self.function_23(code)])
+                    
+                # nbr_code +=1
+                
+                inventaire_code =  self.function_23(code)  
+                
+                liste.append([code, self.function_3(code), inventaire_code])
+                
+            #     if nbr_code > 2:
+            #         break
+                
+            # if nbr_categorie > 0:
+            #     break
 
         return liste
 
@@ -4393,6 +4560,7 @@ class Base:
             return False
 
     def function_41(self, x, y):
+        """montant total d'achat de l'article x avant la date y"""
         if y.year < self.exercice:
             return 0
         tot = 0
@@ -4539,7 +4707,7 @@ class Base:
         Returns:
             float: quantité de l article art_id à la date y
         """
-        v = self.function_16(art_id, y)  # q vendue à une date <= y de l'exercice
+        v = self.function_16i(art_id, y)  # q vendue à une date <= y de l'exercice
         a = self.function_17(art_id, y)  # q achetée à une date <= y de l'exercice
         c = self.function_18(art_id, y)  # q corrigée à une date <= y de l'exercice
         s = self.function_19(art_id, y)  # q su stock de cloture de l'année précédente la date y
@@ -4717,7 +4885,7 @@ class Base:
                 dicoPa[art_id] = (q, pA)
                 
                 # calcul de la valeur du stock
-                qVendue = self.function_16b(art_id, x, y)
+                qVendue = self.function_16bi(art_id, x, y)
                 qCorr = self.function_18b(art_id, x, y)
                 deltaStock += montantAchat - pA * (qVendue - qCorr)
             return round(stockInitial), round(deltaStock), round(stockInitial) + round(deltaStock), dicoPa, dicoPaInit
@@ -4747,23 +4915,23 @@ class Base:
       
         
         # encore à vérifié ci-dessous
-        charge = self.function_56(x, y)
-        resultat_net = recette - achat - charge + delta_stock
+        # charge = self.function_56(x, y)
+        # resultat_net = recette - achat - charge + delta_stock
 
-        if recette:
-            marge_nette = func_19(resultat_net / recette)
-        else:
-            marge_nette = ''
+        # if recette:
+        #     marge_nette = func_19(resultat_net / recette)
+        # else:
+        #     marge_nette = ''
 
         liste += [v, ['RÉSULTATS GLOBAUX'], v]
         liste += [['RECETTES', func_6(recette)],
                   ['ACHATS', func_6(achat)],
                   ['VARIATION DE STOCK', func_6(delta_stock)],
-                  ['MARGE BRUTE', func_6(marge_brute)],
-                  ['CHARGES', func_6(charge)],
-                  ['RÉSULTAT NET', func_6(resultat_net)],
-                  ['MARGE NETTE', marge_nette]]
-
+                  ['MARGE BRUTE', func_6(marge_brute)]]
+                #   ['CHARGES', func_6(charge)],
+                #   ['RÉSULTAT NET', func_6(resultat_net)],
+                #   ['MARGE NETTE', marge_nette]
+        
         liste += [v, ['Résultats SELON CATÉGORIE'.upper()]]
         for c in self.function_21():
             recette, marge, qte = dicoMarge[self.function_8(c)]
@@ -4774,15 +4942,15 @@ class Base:
                       ['Recette', func_6(recette)],
                       ['Marge brute', func_6(marge)]]
 
-        liste += [v, ['CHARGES SELON TYPE']]
-        for tup in self.function_62():
-            liste += [[tup[0], func_6(self.function_63(tup[1], x, y))]]
-            amortissement = self.function_64(tup[1], x, y, 'A')
-            repartition = self.function_64(tup[1], x, y, 'R')
-            if amortissement:
-                liste += [['>amortissement', func_6(amortissement)]]
-            if repartition:
-                liste += [['>répartition', func_6(repartition)]]
+        # liste += [v, ['CHARGES SELON TYPE']]
+        # for tup in self.function_62():
+        #     liste += [[tup[0], func_6(self.function_63(tup[1], x, y))]]
+        #     amortissement = self.function_64(tup[1], x, y, 'A')
+        #     repartition = self.function_64(tup[1], x, y, 'R')
+        #     if amortissement:
+        #         liste += [['>amortissement', func_6(amortissement)]]
+        #     if repartition:
+        #         liste += [['>répartition', func_6(repartition)]]
 
         liste += [v, ['VALEUR STOCK'], ['Initial', func_6(stock_initial)],
                   ['Final', func_6(stock_final)]]

@@ -2,7 +2,7 @@
 
 # importation des modules
 
-from datetime import *
+from datetime import datetime, date, timedelta
 import csv
 from calendar import monthrange
 
