@@ -122,8 +122,8 @@ class Frame1(Frame):
         Label(self, **kw_50).pack(side='left')
         self.me2 = Menu(mb, **kw_3)
 
-        self.me2.add_command(label="Analyse des articles", underline=0, command=self.command42,
-                             state=NORMAL, **kw_2)
+        # self.me2.add_command(label="Analyse des articles", underline=0, command=self.command42,
+        #                      state=NORMAL, **kw_2)
         self.me2.add_command(label="Traçage des enregistrements", underline=0, command=self.command52,
                              state=NORMAL, **kw_2)
         self.me2.add_command(label="Ouvrir un document", underline=0, command=self.command53,

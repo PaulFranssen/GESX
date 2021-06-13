@@ -3011,7 +3011,7 @@ class Base:
                 comment.set(com)
                 return False
             else:
-                # startfile(f)
+                startfile(f)
                 return True
 
     # def select_23(self, **kw):
@@ -3633,11 +3633,166 @@ class Base:
                 comment.set(com)
                 return False
             else:
-                # startfile(f)
+                startfile(f)
                 return True
 
     def document_59(self, **kw):
-        def f_2():
+        # def f_2():
+        #     dicoPaInit = {}
+        #     chaine = """SELECT art_id FROM article WHERE ad=?"""
+        #     result = self.curseur.execute(chaine, (1,)).fetchall()
+        #     if result:
+        #         dat = datetime.now()
+        #         year = self.exercice
+        #         self.fix_exercice(dat.year)
+        #         for tup in result:
+        #             art_id = tup[0]
+        #             qInit = self.function_46(art_id, dat)
+        #             pInit = self.function_43(art_id, dat)
+        #             dicoPaInit[art_id] = (qInit, pInit)
+        #         self.fix_exercice(year)
+        #     return dicoPaInit
+
+        # def f_1():
+        #     v = []
+        #     liste = []
+        #     liste.append(['DONNÉES', self.database])
+        #     liste.append(v)
+        #     liste.append([func_9(date.today())])
+
+        #     chaine = """SELECT name FROM categorie"""
+        #     result = self.curseur.execute(chaine).fetchall()
+        #     if result:
+        #         liste_categorie = [c[0] for c in result]
+        #         liste_categorie.sort()
+        #     else:
+        #         liste_categorie = []
+
+        #     if kw['cat'].get():
+        #         liste.append(v)
+        #         liste.append(['catégories'.upper()])
+        #         if liste_categorie:
+        #             liste += [[c] for c in liste_categorie]
+
+        #     if kw['inv'].get():
+        #         liste.append(v)
+        #         liste.append(['ARTICLES INVENTORIÉS'])
+        #         if liste_categorie:
+        #             liste.append(['CODE', 'DÉSIGNATION', 'MIN', 'STOCK', 'PA', '', 'PV'])
+        #         for categorie in liste_categorie:
+        #             chaine = """SELECT art_id, code, des,  pv, stockmin, envente
+        #                         FROM article
+        #                         WHERE ad=1
+        #                         AND cat_id = ?"""
+        #             result = self.curseur.execute(chaine, (self.function_8(categorie),)).fetchall()
+        #             if result:
+        #                 dic = f_2()
+        #                 liste.append([])
+        #                 liste.append([categorie.upper()])
+        #                 l_result = list(result)
+        #                 l_result.sort()
+        #                 for tup in l_result:
+        #                     art_id, code, des, pv, stockmin, envente = tup
+        #                     stock, pa = dic[art_id]
+        #                     liste.append([code, des, stockmin, stock, pa, (lambda k: 'V' if k == 1 else '')(envente), pv])
+
+        #     if kw['comp'].get():
+        #         liste.append(v)
+        #         liste.append(['ARTICLES COMPOSÉS'])
+        #         if liste_categorie:
+        #             liste.append(['CODE', 'DÉSIGNATION', '', 'PV', 'COMPOSITION'])
+        #         for categorie in liste_categorie:
+        #             chaine = """SELECT code, des,  pv, envente
+        #                         FROM article
+        #                         WHERE ad=2
+        #                         AND cat_id = ?"""
+        #             result = self.curseur.execute(chaine, (self.function_8(categorie),)).fetchall()
+        #             if result:
+        #                 liste.append([])
+        #                 liste.append([categorie.upper()])
+        #                 l_result = list(result)
+        #                 l_result.sort()
+        #                 for tup in l_result:
+        #                     code, des, pv, envente = tup
+        #                     # ajout des compostions via liste_compo
+        #                     liste_c = self.function_15(self.function_5(code), datetime.now())
+        #                     liste_compo = []
+        #                     if liste_c:
+        #                         for tu in liste_c:
+        #                             liste_compo += [self.function_6(tu[0]), func_6(tu[1])]
+        #                     liste.append([code, des, (lambda k: 'V' if k == 1 else '')(envente), pv] + liste_compo)
+
+        #     if kw['non'].get():
+        #         liste.append(v)
+        #         liste.append(['ARTICLES COMPOSÉS'])
+        #         if liste_categorie:
+        #             liste.append(['CODE', 'DÉSIGNATION'])
+        #         for categorie in liste_categorie:
+        #             chaine = """SELECT code, des FROM article
+        #                         WHERE ad=0
+        #                         AND cat_id = ?"""
+        #             result = self.curseur.execute(chaine, (self.function_8(categorie),)).fetchall()
+        #             if result:
+        #                 liste.append([])
+        #                 liste.append([categorie.upper()])
+        #                 l_result = list(result)
+        #                 l_result.sort()
+        #                 for tup in l_result:
+        #                     code, des = tup
+        #                     liste += [[code, des]]
+
+        #     if kw['ven'].get():
+        #         liste.append(v)
+        #         liste.append(['ARTICLES EN VENTE'])
+        #         if liste_categorie:
+        #             liste.append(['CODE', 'DÉSIGNATION', 'PV'])
+        #         for categorie in liste_categorie:
+        #             chaine = """SELECT code, des, pv FROM article
+        #                         WHERE envente=1
+        #                         AND cat_id = ?"""
+        #             result = self.curseur.execute(chaine, (self.function_8(categorie),)).fetchall()
+        #             if result:
+        #                 liste.append([])
+        #                 liste.append([categorie.upper()])
+        #                 l_result = list(result)
+        #                 l_result.sort()
+        #                 for tup in l_result:
+        #                     code, des, pv = tup
+        #                     liste += [[code, des, pv]]
+
+        #     if kw['tie'].get():
+        #         liste.append(v)
+        #         liste.append(['TIERS'])
+        #         chaine = """SELECT nom FROM tiers"""
+        #         result = self.curseur.execute(chaine).fetchall()
+        #         if result:
+        #             l_result = list(result)
+        #             l_result.sort()
+        #             liste += [[t[0]] for t in l_result]
+
+        #     if kw['emp'].get():
+        #         liste.append(v)
+        #         liste.append(['TIERS'])
+        #         chaine = """SELECT nom FROM workers"""
+        #         result = self.curseur.execute(chaine).fetchall()
+        #         if result:
+        #             l_result = list(result)
+        #             l_result.sort()
+        #             liste += [[t[0]] for t in l_result]
+
+        #     if kw['typ'].get():
+        #         liste.append(v)
+        #         liste.append(['types de charges'.upper()])
+        #         chaine = """SELECT name FROM type"""
+        #         result = self.curseur.execute(chaine).fetchall()
+        #         if result:
+        #             l_result = list(result)
+        #             l_result.sort()
+        #             liste += [[t[0]] for t in l_result]
+
+        #     return liste
+        
+        def f_2i():
             dicoPaInit = {}
             chaine = """SELECT art_id FROM article WHERE ad=?"""
             result = self.curseur.execute(chaine, (1,)).fetchall()
@@ -3647,13 +3802,13 @@ class Base:
                 self.fix_exercice(dat.year)
                 for tup in result:
                     art_id = tup[0]
-                    qInit = self.function_46(art_id, dat)
+                    #qInit = self.function_46(art_id, dat)
                     pInit = self.function_43(art_id, dat)
-                    dicoPaInit[art_id] = (qInit, pInit)
+                    dicoPaInit[art_id] = pInit
                 self.fix_exercice(year)
             return dicoPaInit
-
-        def f_1():
+        
+        def f_1i():
             v = []
             liste = []
             liste.append(['DONNÉES', self.database])
@@ -3678,7 +3833,7 @@ class Base:
                 liste.append(v)
                 liste.append(['ARTICLES INVENTORIÉS'])
                 if liste_categorie:
-                    liste.append(['CODE', 'DÉSIGNATION', 'MIN', 'STOCK', 'PA', '', 'PV'])
+                    liste.append(['CODE', 'DÉSIGNATION', 'STOCK MIN', 'PA', '', 'PV'])
                 for categorie in liste_categorie:
                     chaine = """SELECT art_id, code, des,  pv, stockmin, envente
                                 FROM article
@@ -3686,15 +3841,15 @@ class Base:
                                 AND cat_id = ?"""
                     result = self.curseur.execute(chaine, (self.function_8(categorie),)).fetchall()
                     if result:
-                        dic = f_2()
+                        dic = f_2i()
                         liste.append([])
                         liste.append([categorie.upper()])
                         l_result = list(result)
                         l_result.sort()
                         for tup in l_result:
                             art_id, code, des, pv, stockmin, envente = tup
-                            stock, pa = dic[art_id]
-                            liste.append([code, des, stockmin, stock, pa, (lambda k: 'V' if k == 1 else '')(envente), pv])
+                            pa = dic[art_id]
+                            liste.append([code, des, stockmin, pa, (lambda k: 'V' if k == 1 else '')(envente), pv])
 
             if kw['comp'].get():
                 liste.append(v)
@@ -3772,7 +3927,7 @@ class Base:
 
             if kw['emp'].get():
                 liste.append(v)
-                liste.append(['TIERS'])
+                liste.append(['EMPLOYÉS'])
                 chaine = """SELECT nom FROM workers"""
                 result = self.curseur.execute(chaine).fetchall()
                 if result:
@@ -3792,6 +3947,7 @@ class Base:
 
             return liste
 
+
         path = kw['path'].get().strip()
         filename = kw['filename'].get().strip()
         comment = kw['comment']
@@ -3804,7 +3960,7 @@ class Base:
             return False
         else:
             f = join(path, filename + '.csv')
-            com = func_12(x=f_1(), y=f)
+            com = func_12(x=f_1i(), y=f)
             if com:
                 comment.set(com)
                 return False
@@ -4296,20 +4452,20 @@ class Base:
         return liste
 
     def function_23(self, x):
-        tempo = time.time()
-        print('tempo', tempo)
+        # tempo = time.time()
+        # print('tempo', tempo)
         art_id = self.function_2(x)
-        print(time.time()-tempo, "début ventes")
+        # print(time.time()-tempo, "début ventes")
         v = self.function_16i(art_id, datetime.now())
-        print(time.time()-tempo, "début achats")
+        # print(time.time()-tempo, "début achats")
         
         
         a = self.function_17(art_id, datetime.now())
-        print(time.time()-tempo, "début correction")
+        # print(time.time()-tempo, "début correction")
         c = self.function_18(art_id, datetime.now())
-        print(time.time()-tempo, "début stock initial")
+        # print(time.time()-tempo, "début stock initial")
         s = self.function_19(art_id, datetime.now())
-        print(time.time()-tempo, "fin ", tempo)
+        # print(time.time()-tempo, "fin ", tempo)
         
         return func_6(s + a + c - v)
 
@@ -5095,7 +5251,7 @@ class Base:
     """
     def function_61(self, x, y, dicoPa):
         """détermine la marge brute (montant des articles vendus - la valeur de ces articles en Pa)
-        entre kles dates x et y
+        entre les dates x et y
 
         Args:
             x (datetime): date initiale
