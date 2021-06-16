@@ -3633,7 +3633,7 @@ class Base:
                 comment.set(com)
                 return False
             else:
-                #  startfile(f)
+                startfile(f)
                 return True
 
     def document_31(self, **kw):
