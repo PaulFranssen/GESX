@@ -2743,7 +2743,7 @@ class Base:
         year = self.exercice
         com = ''
         if not isdir(repertoire):
-            print(repertoire)
+            
             com = 'ERREUR répertoire-cible (non conforme)'
         elif not (d_i and d_f):
             com = "ERREUR date (non conforme)"
@@ -3599,7 +3599,7 @@ class Base:
             return False
         else:
             f = join(path, filename + '.csv')
-            print(f)
+           
             com = func_12(x=self.function_55(d_i, d_f), y=f)
             if com:
                 comment.set(com)
@@ -4181,7 +4181,7 @@ class Base:
         end = dat
         begin = datetime(dat.year, 1, 1)
         
-        tr = time.time()
+  
         
         # récupération de toutes les ventes avec leurs quantités et la date de vente
         chaine = """SELECT codeV_id, qte, dat 
@@ -4191,11 +4191,11 @@ class Base:
                     AND dat<?"""
         result = self.curseur.execute(chaine, (begin, func_18(end))).fetchall()
         
-        print('chargement all_vente', time.time()-tr)
+      
         
         # calcule de la quantité q vendue
         
-        tr = time.time()
+ 
         q = 0
         if result:
             for code_id, qte, dat in result:
@@ -4214,7 +4214,7 @@ class Base:
                 else:  # code_id est non-inventorié et non-composé
                     print('cet article ne devrait pas se trouvé dans  vente')
                     continue
-        print('temps de traitement 1 code dans vente', tr-time.time())
+       
         return q
     
     def function_16i(self, art_id, dat):
@@ -4236,7 +4236,7 @@ class Base:
         end = dat
         begin = datetime(dat.year, 1, 1)
         
-        tr = time.time()
+       
         
         # récupération de toutes les ventes avec leurs quantités et la date de vente
         chaine = """SELECT qte
@@ -4247,13 +4247,10 @@ class Base:
                     AND dat<?"""
         result = self.curseur.execute(chaine, (art_id, begin, func_18(end))).fetchall()
         
-        print(result)
-        
-        print('chargement all_vente', time.time()-tr)
-        
+       
         # calcule de la quantité q vendue
         
-        tr = time.time()
+      
         q = 0
         if result:
             for (qte,) in result:
@@ -4269,7 +4266,7 @@ class Base:
                 #         #         q += prop * qte
                 # else: 
                     q += qte
-        print('temps de traitement 1 code dans vente', tr-time.time())
+      
         return q
 
     def function_16b(self, art_id, y, z):

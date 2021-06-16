@@ -1863,7 +1863,7 @@ class Frame49(Frame):
         Frame.__init__(self, boss)
         self.configure(**kw_fx)
         root = self.master.master
-        print('root', root)
+    
 
         self.importe = StringVar()
         self.nom = StringVar()                           
@@ -3298,7 +3298,8 @@ class Frame20(Frame):
 
         def export(event):
             print('passage dans export')
-            Inventory(base=self.master.master.base, file_name="inventaire01.csv").out()
+            
+            # Inventory(base=self.master.master.base, file_name="inventaire01.csv").out()
 
         b1 = Button(cadre1, text='EXPORTER', **kw_45)
         b1.pack(**pad_45)
@@ -3342,7 +3343,6 @@ class Frame6(Frame):
         Label(cadre20, text='SÉLECTION', **kw_11).pack(side=LEFT, **pad_11)
         self.e0 = Entry(cadre20, textvariable=self.code, width=l_code, **kw_12)
         self.e0.pack(side=LEFT, **pad_12)
-        print('cat', h_03)
         self.box = Listbox(cadre1, listvariable=self.var_box, width=l_code + 2, height=h_03, **kw_28)
         self.box.pack(side=BOTTOM, **pad_28)
         Label(cadre1, text="catégorie".upper(), **kw_40, width=l_code).pack(**pad_40, side=BOTTOM)
