@@ -100,7 +100,7 @@ class Frame1(Frame):
         Label(self, **kw_50).pack(side='left')
         me = Menu(mb, **kw_3)
         me.add_command(label="Changer d'exercice", underline=0, command=self.command16, **kw_2)
-        # me.add_checkbutton(label="Afficher G", variable=self.g, command=self.command48, selectcolor=kw_54['col_spec'], **kw_2)
+        me.add_checkbutton(label="Afficher G", variable=self.g, command=self.command48, selectcolor=kw_54['col_spec'], **kw_2)
         mb.configure(menu=me)
 
         # STOCK

@@ -661,7 +661,7 @@ class Base:
         self.ouvrir()
         
         # vidage de certaines tables
-        liste = ["""DELETE FROM recordA""", """DELETE FROM recordV""", """DELETE FROM stocloture""", """DELETE FROM charge""",
+        liste = ["""DELETE FROM recordA""", """DELETE FROM recordV""", """DELETE FROM recordV2""", """DELETE FROM stocloture""", """DELETE FROM charge""",
                  """DELETE FROM correction""", """DELETE FROM factureA""", """DELETE FROM vente""", """DELETE FROM fixecat""",
                  """DELETE FROM limitation""", """DELETE FROM ponderation""", """DELETE FROM trace"""]
         for chaine in liste:
@@ -908,6 +908,25 @@ class Base:
                 for art_id in dico[dat]:
                     qte = dico[dat][art_id][0]
                     prix = dico[dat][art_id][1]
+                    
+                    if self.function_7(art_id): # cas article composé
+                
+               
+                        liste = self.function_15(art_id, dat) # liste des composants
+                        if not liste:
+                            continue # composé sans composants
+                        else:
+                            for cod, prop in liste:
+                                self.insert_recordV2(tup=(vente_id,
+                                        cod,
+                                        qte*prop,
+                                        100)) # prix pas en considération (car pour inventaire)
+                        
+                    else:
+                        self.insert_recordV2(tup=(vente_id,
+                                            art_id,
+                                            qte,
+                                            prix))
                     self.insert_recordV(tup=(vente_id, art_id, qte, prix))
                 
 
@@ -924,6 +943,10 @@ class Base:
                 for tup in result:
                     chaine = """DELETE FROM recordV WHERE vente_id=?"""
                     self.curseur.execute(chaine, tup)
+                    # suppression primF
+                    chaine = """DELETE FROM recordV2 WHERE vente_id=?"""
+                    self.curseur.execute(chaine, tup)
+                    
                     chaine = """DELETE FROM vente WHERE vente_id=?"""
                     self.curseur.execute(chaine, tup)
         
@@ -2394,9 +2417,9 @@ class Base:
                     break
                 
                 else:
-                    liste = self.function_15(art_id, d) # liste des composants
+                    liste = self.function_15(art_id, d) # liste des composantsG
                     if not liste:
-                        continue # composé sans composants
+                        continue # composé sans composantsG
                     else:
                         for cod, prop in liste:
                             self.insert_recordV2(tup=(vente_id,
@@ -5080,13 +5103,16 @@ class Base:
         #     marge_nette = ''
 
         liste += [v, ['RÉSULTATS GLOBAUX'], v]
-        liste += [['RECETTES', func_6(recette)],
-                  ['ACHATS', func_6(achat)],
-                  ['VARIATION DE STOCK', func_6(delta_stock)],
-                  ['MARGE BRUTE', func_6(marge_brute)]]
+        liste += [['VENTES', func_6(recette)],
+                  ['MARGE BRUTE', func_6(marge_brute)],
+                  ['ACHATS', func_6(achat)]]
                 #   ['CHARGES', func_6(charge)],
                 #   ['RÉSULTAT NET', func_6(resultat_net)],
                 #   ['MARGE NETTE', marge_nette]
+                
+        liste += [v, ['VALEUR STOCK'], ['Initial', func_6(stock_initial)],
+                  ['Final', func_6(stock_final)],
+                  ['Variation', func_6(delta_stock)]]
         
         liste += [v, ['Résultats SELON CATÉGORIE'.upper()]]
         for c in self.function_21():
@@ -5095,7 +5121,7 @@ class Base:
 
             liste += [v, [c.upper()],
                       ['Quantité vendue', func_6(qte)],
-                      ['Recette', func_6(recette)],
+                      ['Ventes', func_6(recette)],
                       ['Marge brute', func_6(marge)]]
 
         # liste += [v, ['CHARGES SELON TYPE']]
@@ -5108,8 +5134,7 @@ class Base:
         #     if repartition:
         #         liste += [['>répartition', func_6(repartition)]]
 
-        liste += [v, ['VALEUR STOCK'], ['Initial', func_6(stock_initial)],
-                  ['Final', func_6(stock_final)]]
+       
 
         liste += [v, ['DÉTAILS STOCKS']]
         liste += [['CODE', 'INITIAL', 'PA', 'FINAL', 'PA']]

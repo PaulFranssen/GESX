@@ -160,7 +160,7 @@ reglage_3 = 65
 # indique la proportion minimale et maximale d'article inventorié à prendre en compte pour G
 coef_compose_inf, coef_compose_sup = 0.2, 0.4
 # maximum de recherche itérations pour générer
-max_iteration = 3000
+max_iteration = 300000
 # nombre de catégories fixées (pour générer)
 nbr_categorie_fix = 5
 
