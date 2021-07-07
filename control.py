@@ -174,6 +174,8 @@ class Base:
                     FOREIGN KEY(cat_id) REFERENCES categorie(cat_id))"""
         self.curseur.execute(chaine)
         self.enregistrer()
+        
+        
        
         # ajout et adaptation des prix de vente
         # with open(join('BASE', 'prixVente.csv'),'r',newline='', encoding = "latin-1") as fichier:
