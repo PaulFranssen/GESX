@@ -3705,7 +3705,7 @@ class Frame17(Frame):
                                                var_box=self.var_box,
                                                arg=False,
                                                box=self.box) == 1:
-                self.box.selection_set(0)
+                #self.box.selection_set(0)
                 self.box.focus_set()
 
         def select(event):
