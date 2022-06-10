@@ -1,0 +1,522 @@
+BILAN
+
+data9T
+
+Sun 05 Jun 2022
+> Fri 30 Sep 2022
+
+RÉSULTATS GLOBAUX
+
+VENTES;1000000
+MARGE BRUTE;757500
+ACHATS;550000
+
+VALEUR STOCK
+Initial;0
+Final;307500
+Variation;307500
+
+RÉSULTATS SELON CATÉGORIE
+
+BIÈRE
+Quantité vendue;0
+Ventes;0
+Marge brute;0
+
+BOISSONCHAUDE
+Quantité vendue;0
+Ventes;0
+Marge brute;0
+
+CHAMPAGNE
+Quantité vendue;0
+Ventes;0
+Marge brute;0
+
+CHICHA
+Quantité vendue;0
+Ventes;0
+Marge brute;0
+
+CIGARE
+Quantité vendue;0
+Ventes;0
+Marge brute;0
+
+COCKTAIL
+Quantité vendue;0
+Ventes;0
+Marge brute;0
+
+COGNAC
+Quantité vendue;0
+Ventes;0
+Marge brute;0
+
+CONSO
+Quantité vendue;0
+Ventes;0
+Marge brute;0
+
+CUISINE
+Quantité vendue;0
+Ventes;0
+Marge brute;0
+
+DIVERSALCOOL
+Quantité vendue;0
+Ventes;0
+Marge brute;0
+
+EAU
+Quantité vendue;0
+Ventes;0
+Marge brute;0
+
+GADGETSEVENT
+Quantité vendue;0
+Ventes;0
+Marge brute;0
+
+JUS
+Quantité vendue;0
+Ventes;0
+Marge brute;0
+
+LAIT
+Quantité vendue;0
+Ventes;0
+Marge brute;0
+
+SIROP
+Quantité vendue;0
+Ventes;0
+Marge brute;0
+
+SODA
+Quantité vendue;659
+Ventes;1000000
+Marge brute;757500
+
+VERRECASSE
+Quantité vendue;0
+Ventes;0
+Marge brute;0
+
+VINBLANC
+Quantité vendue;0
+Ventes;0
+Marge brute;0
+
+VINMOUSSEUX
+Quantité vendue;0
+Ventes;0
+Marge brute;0
+
+VINROSÉ
+Quantité vendue;0
+Ventes;0
+Marge brute;0
+
+VINROUGE
+Quantité vendue;0
+Ventes;0
+Marge brute;0
+
+WHISKY
+Quantité vendue;0
+Ventes;0
+Marge brute;0
+
+ÉNERGÉTIQUE
+Quantité vendue;0
+Ventes;0
+Marge brute;0
+
+DÉTAILS STOCKS
+CODE;INITIAL;PA;FINAL;PA
+
+BIÈRE
+beni;0;0;0;0
+bf;0;0;0;0
+bièreNA;0;0;0;0
+cast;0;0;0;0
+despe;0;0;0;0
+doppel;0;0;0;0
+eku;0;0;0;0
+grimbergen;0;0;0;0
+gui;0;0;0;0
+hein25;0;0;0;0
+lef25;0;0;0;0
+panach25;0;0;0;0
+pils;0;0;0;0
+skol;0;0;0;0
+
+BOISSONCHAUDE
+cafeCap;0;0;0;0
+cafeSac;0;0;0;0
+cappuccino;0;0;0;0
+lipton;0;0;0;0
+théCitron;0;0;0;0
+
+CHAMPAGNE
+affinity;0;0;0;0
+champNA;0;0;0;0
+champNARo;0;0;0;0
+fereix;0;0;0;0
+lagaBrut1.5L;0;0;0;0
+lagaBrutRes;0;0;0;0
+lagaNatB;0;0;0;0
+lagaPrestD1.5L;0;0;0;0
+lagaRo;0;0;0;0
+laurentPer;0;0;0;0
+lucBelFantome;0;0;0;0
+lucBelRo;0;0;0;0
+moetB1.5L;0;0;0;0
+moetBrut;0;0;0;0
+moetIceImp;0;0;0;0
+moetNect;0;0;0;0
+moetNectRo;0;0;0;0
+moetNectar;0;0;0;0
+moetRo;0;0;0;0
+princessFr;0;0;0;0
+remyTresBrut;0;0;0;0
+ruinBlBl;0;0;0;0
+ruinBrut;0;0;0;0
+ruinRo;0;0;0;0
+toso;0;0;0;0
+trouillard;0;0;0;0
+veuveClicot;0;0;0;0
+
+CHICHA
+chicha;0;0;0;0
+
+CIGARE
+cHabano;0;0;0;0
+cHabanoCM;0;0;0;0
+cHoyo;0;0;0;0
+
+COCKTAIL
+laitCoco;0;0;0;0
+
+COGNAC
+calvaVSOP;0;0;0;0
+camusVS;0;0;0;0
+camusVSOP;0;0;0;0
+comteJoseph;0;0;0;0
+comteJosephHA;0;0;0;0
+comteJosephVS;0;0;0;0
+hennessyVS;0;0;0;0
+hennessyVS1L;0;0;0;0
+hennessyVSOP;0;0;0;0
+hennessyVSOP1L;0;0;0;0
+stRemyVSOP;0;0;0;0
+
+CONSO
+jusCaraf;0;0;0;0
+verreMousCC;0;0;0;0
+
+CUISINE
+agbama;0;0;0;0
+agneau;0;0;0;0
+agneauOs;0;0;0;0
+akassan;0;0;0;0
+atieke;0;0;0;0
+attieke;0;0;0;0
+blancPoulet;0;0;0;0
+boeuf;0;0;0;0
+boyau;0;0;0;0
+calamar;0;0;0;0
+crabe;0;0;0;0
+crevette;0;0;0;0
+cuisPoulet;0;0;0;0
+darnePoisson;0;0;0;0
+eminceP;0;0;0;0
+emincePoulet;0;0;0;0
+farineBle;0;0;0;0
+farinePatNoire;0;0;0;0
+farinePateBlanc;0;0;0;0
+farineRouge;0;0;0;0
+filetBoeuf;0;0;0;0
+filetPoisson;0;0;0;0
+frite;0;0;0;0
+fromage;0;0;0;0
+gambas;0;0;0;0
+gateauRiz;0;0;0;0
+gesier;0;0;0;0
+haricotV;0;0;0;0
+langueB;0;0;0;0
+langueBoeuf;0;0;0;0
+mais300G;0;0;0;0
+maisDoux;0;0;0;0
+merguez;0;0;0;0
+oeuf;0;0;0;0
+pain;0;0;0;0
+painChaw;0;0;0;0
+painHamb;0;0;0;0
+painSandw;0;0;0;0
+patRouge;0;0;0;0
+pateRouge;0;0;0;0
+petitPois;0;0;0;0
+pintade;0;0;0;0
+piron;0;0;0;0
+poisson;0;0;0;0
+poissonFume;0;0;0;0
+pommeKg;0;0;0;0
+poulet;0;0;0;0
+pouletBi;0;0;0;0
+pouletCuisse;0;0;0;0
+riz;0;0;0;0
+rizCant;0;0;0;0
+saladeFruit;0;0;0;0
+sauceBlokoto;0;0;0;0
+spagh;0;0;0;0
+thon;0;0;0;0
+tilapiaG;0;0;0;0
+tilapiaM;0;0;0;0
+viandeBro;0;0;0;0
+viandeChaw;0;0;0;0
+viandeH;0;0;0;0
+viandeNem;0;0;0;0
+wangache;0;0;0;0
+
+DIVERSALCOOL
+absenta;0;0;0;0
+agavita;0;0;0;0
+baileys;0;0;0;0
+bols;0;0;0;0
+boris;0;0;0;0
+bottega;0;0;0;0
+brizL;0;0;0;0
+campari;0;0;0;0
+cointreau;0;0;0;0
+cointreau350;0;0;0;0
+diplomatico;0;0;0;0
+disaronno;0;0;0;0
+droitBouchon;0;0;0;0
+get27;0;0;0;0
+gordons;0;0;0;0
+grants;0;0;0;0
+grdMarnier;0;0;0;0
+jelzin;0;0;0;0
+kamel;0;0;0;0
+litchiL;0;0;0;0
+malibu;0;0;0;0
+mangPaL;0;0;0;0
+martiniB;0;0;0;0
+martiniR;0;0;0;0
+martiniRo;0;0;0;0
+molinari;0;0;0;0
+orangeSec;0;0;0;0
+pachuca;0;0;0;0
+podere;0;0;0;0
+ricard;0;0;0;0
+sanjoseS;0;0;0;0
+savoy;0;0;0;0
+smirnof;0;0;0;0
+stJamesB;0;0;0;0
+stJamesR;0;0;0;0
+stPaul;0;0;0;0
+stoli;0;0;0;0
+sucreCan;0;0;0;0
+suze;0;0;0;0
+tBlanc;0;0;0;0
+tChoco;0;0;0;0
+tElCobrizo;0;0;0;0
+tOnOffHecho;0;0;0;0
+tripleSec;0;0;0;0
+vodkaFili;0;0;0;0
+vodkaKavenina;0;0;0;0
+vodkaPoliakov;0;0;0;0
+yeniRaki;0;0;0;0
+
+EAU
+eau;0;0;0;0
+eau1.5;0;0;0;0
+eauGaz;0;0;0;0
+perrier;0;0;0;0
+
+GADGETSEVENT
+gadget;0;0;0;0
+gadgetStval;0;0;0;0
+
+JUS
+jAnanas;0;0;0;0
+jBanane;0;0;0;0
+jGoyave;0;0;0;0
+jMangue;0;0;0;0
+jOrange;0;0;0;0
+jPamplem;0;0;0;0
+jPomme;0;0;0;0
+jRaisin;0;0;0;0
+jTamarin25;0;0;0;0
+jus1L;0;0;0;0
+
+LAIT
+lait;0;0;0;0
+
+SIROP
+sBanane;0;0;0;0
+sCanne;0;0;0;0
+sCassis;0;0;0;0
+sFraise;0;0;0;0
+sGinger1L;0;0;0;0
+sGrenadine;0;0;0;0
+sMenthe;0;0;0;0
+sPamplem;0;0;0;0
+sPassion;0;0;0;0
+sPeche;0;0;0;0
+sTamarin;0;0;0;0
+sTomate;0;0;0;0
+sirop1L;0;0;0;0
+
+SODA
+coca;0;0;565;300
+cocaSS;0;0;0;0
+sprite;0;0;276;500
+spriteP;0;0;0;0
+tonic;0;0;0;0
+
+VERRECASSE
+verreBW;0;0;0;0
+verreCV;0;0;0;0
+
+VINBLANC
+baumeB;0;0;0;0
+chastSauvB;0;0;0;0
+chretBM;0;0;0;0
+cotLayon;0;0;0;0
+granitierBM;0;0;0;0
+haussB;0;0;0;0
+luisEsB;0;0;0;0
+marBernB;0;0;0;0
+marsanB;0;0;0;0
+messidor;0;0;0;0
+monbazB;0;0;0;0
+muscadetAntique;0;0;0;0
+premius;0;0;0;0
+rocheMazB;0;0;0;0
+taraniB;0;0;0;0
+taraniBM;0;0;0;0
+
+VINMOUSSEUX
+celeneCRBrut;0;0;0;0
+coolR;0;0;0;0
+cremAlsM;0;0;0;0
+jourSpB;0;0;0;0
+jourSpRo;0;0;0;0
+jpB;0;0;0;0
+jpRo;0;0;0;0
+jpRo1.5;0;0;0;0
+martiPeRo;0;0;0;0
+musca;0;0;0;0
+prosecco;0;0;0;0
+
+VINROSÉ
+bePink;0;0;0;0
+calend;0;0;0;0
+chastSyRo;0;0;0;0
+haussSyRo;0;0;0;0
+monsBordRo;0;0;0;0
+rocheMazRo;0;0;0;0
+taraniRo;0;0;0;0
+
+VINROUGE
+alexanderGreat;0;0;0;0
+armEmil;0;0;0;0
+balast;0;0;0;0
+baumeR;0;0;0;0
+bordEru;0;0;0;0
+bouey;0;0;0;0
+cadiot;0;0;0;0
+calvetRes;0;0;0;0
+carilloR;0;0;0;0
+chastMerl;0;0;0;0
+chastR;0;0;0;0
+chatBelAir;0;0;0;0
+chatCol;0;0;0;0
+chatFer;0;0;0;0
+chatFerboy;0;0;0;0
+chatGrandJardin;0;0;0;0
+chatHautRoulet;0;0;0;0
+chatMarl;0;0;0;0
+chatMartin;0;0;0;0
+chatMoinesMen;0;0;0;0
+chateauLary;0;0;0;0
+chevalierLand;0;0;0;0
+chretMerl;0;0;0;0
+chretR;0;0;0;0
+fiolePap;0;0;0;0
+gPalais;0;0;0;0
+gPuch;0;0;0;0
+grandNoir;0;0;0;0
+hMedoc;0;0;0;0
+haussCabS;0;0;0;0
+haussCabSauv;0;0;0;0
+haussMerl;0;0;0;0
+haussR;0;0;0;0
+leBellevue;0;0;0;0
+loireMarchaisCa;0;0;0;0
+luisEsR;0;0;0;0
+magnumRempVir;0;0;0;0
+malesan;0;0;0;0
+marBois;0;0;0;0
+marsanR;0;0;0;0
+mazMerl;0;0;0;0
+mazSauv;0;0;0;0
+monsBord;0;0;0;0
+monsBordSup;0;0;0;0
+moutCadNor;0;0;0;0
+moutCadRes;0;0;0;0
+noirMerl;0;0;0;0
+oustric;0;0;0;0
+picnicR;0;0;0;0
+puissantEleg;0;0;0;0
+rempVirou;0;0;0;0
+rocheMazR;0;0;0;0
+sagesse;0;0;0;0
+seigneurieEnclo;0;0;0;0
+taraniR;0;0;0;0
+
+WHISKY
+aber;0;0;0;0
+ben;0;0;0;0
+blackLab;0;0;0;0
+blackLab1;0;0;0;0
+cardhu;0;0;0;0
+chivas12;0;0;0;0
+chivas12-1;0;0;0;0
+chivas18;0;0;0;0
+chivas18-1;0;0;0;0
+chivasEx;0;0;0;0
+dimple;0;0;0;0
+doubleB1;0;0;0;0
+doubleBlack;0;0;0;0
+glenB12;0;0;0;0
+glenB12L;0;0;0;0
+glenRo15;0;0;0;0
+glenRo18;0;0;0;0
+glenlivet;0;0;0;0
+goldBar;0;0;0;0
+goldLab;0;0;0;0
+jack;0;0;0;0
+jack1;0;0;0;0
+jackBar;0;0;0;0
+jackGent;0;0;0;0
+jackHo;0;0;0;0
+jackSilv;0;0;0;0
+jb;0;0;0;0
+jbRes;0;0;0;0
+redLab70;0;0;0;0
+redLab75;0;0;0;0
+single;0;0;0;0
+will;0;0;0;0
+
+ÉNERGÉTIQUE
+atomic;0;0;0;0
+blackColaEnergy;0;0;0;0
+power;0;0;0;0
+redBull;0;0;0;0
+rox;0;0;0;0
+speedEnergy;0;0;0;0
+xxl;0;0;0;0
