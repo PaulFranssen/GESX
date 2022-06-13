@@ -1,0 +1,14 @@
+TRAÇAGE
+
+date10T
+
+Sat 14 May 2022
+> Mon 13 Jun 2022
+
+DATE;INFOS
+
+Mon 13 Jun 2022 (10:12);ajout;vente;Jacques;total: 1000;12 Jun 2022
+Mon 13 Jun 2022 (10:03);ajout;vente;Jacques;total: 1000;13 Jun 2022
+Mon 13 Jun 2022 (09:40);correction;filetBoeuf;théorique: 10;physique: 5;
+Mon 13 Jun 2022 (09:37);ajout;achat 002;lolo;total: 1000;10 jun 2022
+Mon 13 Jun 2022 (09:37);ajout;achat 001;lolo;total: 4000;10 jun 2022

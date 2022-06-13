@@ -71,6 +71,10 @@ l_button1 = len('enregistrer')+1
 # nombre de jours de traçage
 n_trace = 31
 
+# activation du module G
+
+module_activate = 1
+
 # titre et bas des colonnes en label, ainsi que largeur de ces labels
 
 ligne_2 = '{:^' + str(l_date) + '}   {:^' + str(l_num) + '}   {:^' + str(l_code) + '}   {:^' + str(l_prix) + '}'
