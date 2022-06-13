@@ -1,20 +1,20 @@
 BILAN
 
-data11T
+date10T
 
-Sun 12 Jun 2022
-> Mon 13 Jun 2022
+Fri 10 Jun 2022
+> Tue 14 Jun 2022
 
 RÉSULTATS GLOBAUX
 
-VENTES;0
-MARGE BRUTE;0
-ACHATS;0
+VENTES;4200
+MARGE BRUTE;3450
+ACHATS;5000
 
 VALEUR STOCK
 Initial;0
-Final;0
-Variation;0
+Final;3750
+Variation;3750
 
 RÉSULTATS SELON CATÉGORIE
 
@@ -59,9 +59,9 @@ Ventes;0
 Marge brute;0
 
 CUISINE
-Quantité vendue;0
-Ventes;0
-Marge brute;0
+Quantité vendue;15
+Ventes;4200
+Marge brute;3450
 
 DIVERSALCOOL
 Quantité vendue;0
@@ -223,7 +223,7 @@ agneauOs;0;0;0;0
 akassan;0;0;0;0
 atieke;0;0;0;0
 attieke;0;0;0;0
-blancPoulet;0;0;0;0
+blancPoulet;0;0;7,5;100
 boeuf;0;0;0;0
 boyau;0;0;0;0
 calamar;0;0;0;0
@@ -237,7 +237,7 @@ farineBle;0;0;0;0
 farinePatNoire;0;0;0;0
 farinePateBlanc;0;0;0;0
 farineRouge;0;0;0;0
-filetBoeuf;0;0;0;0
+filetBoeuf;0;0;2,5;100
 filetPoisson;0;0;0;0
 frite;0;0;0;0
 fromage;0;0;0;0
@@ -249,7 +249,7 @@ langueB;0;0;0;0
 langueBoeuf;0;0;0;0
 mais300G;0;0;0;0
 maisDoux;0;0;0;0
-merguez;0;0;0;0
+merguez;0;0;7,5;100
 oeuf;0;0;0;0
 pain;0;0;0;0
 painChaw;0;0;0;0
@@ -371,9 +371,9 @@ sTomate;0;0;0;0
 sirop1L;0;0;0;0
 
 SODA
-coca;0;0;0;0
+coca;0;0;10;100
 cocaSS;0;0;0;0
-sprite;0;0;0;0
+sprite;0;0;10;100
 spriteP;0;0;0;0
 tonic;0;0;0;0
 
@@ -486,7 +486,7 @@ blackLab1;0;0;0;0
 cardhu;0;0;0;0
 chivas12;0;0;0;0
 chivas12-1;0;0;0;0
-chivas18;0;0;0;0
+chivas18;0;0;-1;0
 chivas18-1;0;0;0;0
 chivasEx;0;0;0;0
 dimple;0;0;0;0
