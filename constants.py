@@ -171,6 +171,7 @@ nbr_categorie_fix = 5
 # encoding 
 encoDoc = 'latin-1'
 encoTic = 'latin-1'
+encoImport = 'latin-1'
 
 # heure fermeture
 HEURE_FERMETURE_WEEKEND = (5, 6)

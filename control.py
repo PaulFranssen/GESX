@@ -2887,7 +2887,7 @@ class Base:
         else:
             if kw['def_importe'].get():
                 try:
-                    with open(f_dirImportVente, 'w', encoding='utf-8') as f:
+                    with open(f_dirImportVente, 'w', encoding=encoImport) as f:
                         f.write(importe)
                 except OSError as com:
                     comment.set(com)
@@ -2895,8 +2895,8 @@ class Base:
             try:
                 comment.set('Importation en cours...')
                 # lire le fichier csv
-                with open(src, 'r', newline='', encoding='utf-8') as f:
-                    fi = csv.DictReader(f, fieldnames=['code', 'qte', 'prix'])
+                with open(src, 'r', newline='', encoding=encoImport) as f:
+                    fi = csv.DictReader(f, fieldnames=['code', 'qte', 'prix'], delimiter='\t')
                     liste = [dico for dico in fi]
             except csv.Error as com:
                 comment.set(com)
@@ -2908,12 +2908,19 @@ class Base:
                 comment.set(com)
                 return False
 
+            code, qte, prix = liste[0].values()
             # liste0 : date et caissier et total
+            # print(code, type(code), qte, type(qte), prix, type(prix))
+            if not (code and qte and prix):
+                com = 'ERREUR fichier (ligne 1 doit être : date caissier total)'
+                comment.set(com)
+                return False
             dat = liste[0]['code'].strip()
-            d = func_7(dat)
-            caissier = liste[0]['qte'].strip()
-            caisse_id = self.function_12(caissier)
+            caissier = liste[0]['qte'].strip()       
             total = liste[0]['prix'].strip()
+
+            caisse_id = self.function_12(caissier)
+            d = func_7(dat)
 
             if not d:
                 com = 'ERREUR fichier (date non conforme)'
@@ -2964,6 +2971,8 @@ class Base:
                 vente_id = result[0]
                 chaine = """DELETE FROM recordV WHERE vente_id=?"""
                 self.curseur.execute(chaine, (vente_id,))
+                chaine = """DELETE FROM recordV2 WHERE vente_id=?"""
+                self.curseur.execute(chaine, (vente_id,))
                 chaine = """DELETE FROM vente WHERE vente_id=?"""
                 self.curseur.execute(chaine, (vente_id,))
 
@@ -2972,6 +2981,7 @@ class Base:
             for dico in liste:
                 code, qte, prix = dico.values()
                 self.insert_recordV(tup=(vente_id, self.function_5(code), float(qte), int(prix)))
+                self.insert_recordV2(tup=(vente_id, self.function_5(code), float(qte), int(prix)))
 
             # traçage de l'enregistrement
             tup = (datetime.now(), 'import', 'vente', caissier, 'total: ' + str(total), dat)

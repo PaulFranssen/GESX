@@ -7,14 +7,14 @@ Sat 01 Jan 2022
 
 RÉSULTATS GLOBAUX
 
-VENTES;2000
-MARGE BRUTE;1700
+VENTES;9200
+MARGE BRUTE;7550
 ACHATS;5000
 
 VALEUR STOCK
 Initial;0
-Final;4200
-Variation;4200
+Final;2850
+Variation;2850
 
 RÉSULTATS SELON CATÉGORIE
 
@@ -59,9 +59,9 @@ Ventes;0
 Marge brute;0
 
 CUISINE
-Quantité vendue;12
-Ventes;2000
-Marge brute;1700
+Quantité vendue;15
+Ventes;4200
+Marge brute;3450
 
 DIVERSALCOOL
 Quantité vendue;0
@@ -94,9 +94,9 @@ Ventes;0
 Marge brute;0
 
 SODA
-Quantité vendue;0
-Ventes;0
-Marge brute;0
+Quantité vendue;9
+Ventes;5000
+Marge brute;4100
 
 VERRECASSE
 Quantité vendue;0
@@ -223,7 +223,7 @@ agneauOs;0;0;0;0
 akassan;0;0;0;0
 atieke;0;0;0;0
 attieke;0;0;0;0
-blancPoulet;0;0;9;100
+blancPoulet;0;0;7,5;100
 boeuf;0;0;0;0
 boyau;0;0;0;0
 calamar;0;0;0;0
@@ -237,7 +237,7 @@ farineBle;0;0;0;0
 farinePatNoire;0;0;0;0
 farinePateBlanc;0;0;0;0
 farineRouge;0;0;0;0
-filetBoeuf;0;0;4;100
+filetBoeuf;0;0;2,5;100
 filetPoisson;0;0;0;0
 frite;0;0;0;0
 fromage;0;0;0;0
@@ -249,7 +249,7 @@ langueB;0;0;0;0
 langueBoeuf;0;0;0;0
 mais300G;0;0;0;0
 maisDoux;0;0;0;0
-merguez;0;0;9;100
+merguez;0;0;7,5;100
 oeuf;0;0;0;0
 pain;0;0;0;0
 painChaw;0;0;0;0
@@ -371,9 +371,9 @@ sTomate;0;0;0;0
 sirop1L;0;0;0;0
 
 SODA
-coca;0;0;10;100
+coca;0;0;5;100
 cocaSS;0;0;0;0
-sprite;0;0;10;100
+sprite;0;0;6;100
 spriteP;0;0;0;0
 tonic;0;0;0;0
 

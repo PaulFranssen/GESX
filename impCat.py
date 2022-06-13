@@ -4,6 +4,8 @@ import csv
 from sqlite3 import *
 from datetime import *
 
+ENCODAGE= 'latin-1'
+
 print('IMPORT')
 print('------')
 print('1 catégorie')
@@ -22,7 +24,7 @@ if choix == '1':
 
     # récupération des catégories dans le fichier
     try:
-        with open(nameFichier, 'r', newline='', encoding='latin-1') as f:
+        with open(nameFichier, 'r', newline='', encoding=ENCODAGE) as f:
             lignes = csv.reader(f)
             liste_categorie = [cat[0] for cat in lignes]
             print(lignes)
@@ -50,7 +52,7 @@ elif choix == '2':
     print('choix2')
     # récupération des articles inventoriés  dans le fichier
     try:
-        with open(nameFichier, 'r', newline='', encoding='latin-1') as f:
+        with open(nameFichier, 'r', newline='', encoding=ENCODAGE) as f:
             lignes = csv.DictReader(f, fieldnames=['code', 'des', 'cat', 'pv'])
             liste_article = [dico for dico in lignes]
             print(lignes, liste_article)
@@ -81,7 +83,7 @@ elif choix == '3':
     print('articles composés')
     # récupération des articles inventoriés  dans le fichier
     try:
-        with open(nameFichier, 'r', newline='', encoding='latin-1') as f:
+        with open(nameFichier, 'r', newline='', encoding='ENCODAGE') as f:
             lignes = csv.DictReader(f,
                                     fieldnames=['code', 'des', 'cat', 'pv', 'pa',
                                                 'n', 'c1', 'p1', 'c2', 'p2', 'c3', 'p3'])
