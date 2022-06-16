@@ -3,20 +3,9 @@
 # importation des modules
 
 from func import *
-#from tkinter import *
-
-# variables dynamiques
-## hauteur des listbox
-#h_03i = Tk().IntVar()
-
-#h_15i, h_27i, h_08i, h_09i, h_10i = IntVar(), IntVar(), IntVar(), IntVar(), IntVar(), IntVar() 
-
-
-
 
 ##################################################
 kw_master = {'bg': color_30}
-
 
 ################ f ################################
 kw_pf = {'bg': color_32}
