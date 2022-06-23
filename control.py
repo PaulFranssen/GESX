@@ -662,7 +662,8 @@ class Base:
         self.fix_database(nom)
         self.ouvrir()
         
-        # vidage de certaines tables
+        # vidage de certaines tables (à noter que stocloture est également supprimer dans ce clonage)
+        # à faire : un clonage qui conserve stocloture des l'année précédente mais qui efface les ventes
         liste = ["""DELETE FROM recordA""", """DELETE FROM recordV""", """DELETE FROM recordV2""", """DELETE FROM stocloture""", """DELETE FROM charge""",
                  """DELETE FROM correction""", """DELETE FROM factureA""", """DELETE FROM vente""", """DELETE FROM fixecat""",
                  """DELETE FROM limitation""", """DELETE FROM ponderation""", """DELETE FROM trace"""]
@@ -671,7 +672,6 @@ class Base:
             
         chaine = """SELECT pond_id from ponderation"""
       
-        
         self.create_limitation()
         self.create_ponderation()
         self.enregistrer()

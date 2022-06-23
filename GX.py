@@ -24,7 +24,6 @@ if __name__ == '__main__':
     base.create_f()
 
     # boucle principale (attente des événements)
-    
     pf.mainloop()
     
     
