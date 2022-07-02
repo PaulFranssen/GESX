@@ -1063,8 +1063,12 @@ class Frame0(Frame):
         cadrex.pack(side=LEFT)
         cadre7 = Frame(cadrex, **kw_c7)
         cadre7.pack(**pad_c7)
+        
+        self.photo = PhotoImage(file = IMG_ICO)
 
-        Label(cadre7, text='GESX', **kw_13).pack(side=LEFT)
+        #Label(cadre7, text='GESX', **kw_13).pack(side=LEFT)
+        lab =  Label(cadre7, image=self.photo)
+        lab.pack(side=LEFT)
 
     def display(self):
         self.comment.set('')

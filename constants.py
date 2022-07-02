@@ -177,6 +177,9 @@ encoImport = 'latin-1'
 HEURE_FERMETURE_WEEKEND = (5, 6)
 HEURE_FERMETURE_SEMAINE = (3, 4)
 
+# image iconique
+IMG_ICO = "entrepot.ico"
+
 
 
 
