@@ -1,4 +1,4 @@
-
+GestionX
 
 OBJECTIFS DU PROGRAMME
 	- régulation des stocks (articles inventoriés)
