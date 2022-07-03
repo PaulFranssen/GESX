@@ -40,7 +40,6 @@ color_35 = 'grey50'
 color_36 = 'grey60'
 color_38 = 'grey80'
 
-
 # largeur des labels et entry
 l_couplage = 1
 l_pc = 5 # longueur pour pourcentage
@@ -130,13 +129,13 @@ elif h == 900:
     h_09 = 5        # lisbox composition
     h_10 = 16       # 21 pour 1920 listbox sans button mais avec comment
 
-# fixation des hauteurs pour écran 1080
 # couleur
 color_32 = 'grey15'         # fond écran
 color_37 = 'grey80'         # écriture claire
 color_6 =  'tomato'         # 'lime green' sélection
 color_33 = 'grey30'         # disabled
 color_30 = 'black'          # écriture foncée
+
 
 # police de caractère
 police_1 = "Consolas"
@@ -169,16 +168,23 @@ max_iteration = 300000
 nbr_categorie_fix = 5
 
 # encoding 
-encoDoc = 'latin-1'
-encoTic = 'latin-1'
-encoImport = 'latin-1'
+encoDoc = "utf-8"
+encoTic = "utf-8"
+encoImport = "utf-8"
+ENCODEINFO = "utf-8"
 
 # heure fermeture
 HEURE_FERMETURE_WEEKEND = (5, 6)
 HEURE_FERMETURE_SEMAINE = (3, 4)
 
 # image iconique
-IMG_ICO = "entrepot.ico"
+IMG_LOGO = "liste.png"
+
+#fichier login
+# LOG_FILE = "in.txt"
+
+MODEDEMPLOI = "emploi.txt"
+
 
 
 

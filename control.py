@@ -10,7 +10,6 @@ from os import startfile, listdir, getcwd, mkdir, rename
 from os.path import isdir, exists, splitext, isfile, join
 import shutil
 from collections import OrderedDict
-
 from func import *
 from vue import *
 
@@ -1236,6 +1235,9 @@ class Base:
         kw['des'].set(self.function_3(code))
         kw['theorique'].set(self.function_23(code))
         kw['explication'].set('')
+        
+    def display_60(self):
+        startfile(MODEDEMPLOI, "edit")
 
     def display_29(self, **kw):
 

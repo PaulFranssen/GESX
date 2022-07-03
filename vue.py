@@ -7,7 +7,7 @@ from model import *
 
 
 class PF(Frame):
-    def __init__(self, base, boss=None):
+    def __init__(self, boss=None):
         Frame.__init__(self, boss)
         self.master.colormap = 'red'
         self.master.configure(**kw_master)
@@ -15,7 +15,6 @@ class PF(Frame):
         self.pack(**pad_pf)
 
         # variables
-        self.base = base
         self.an = IntVar()
         self.database = StringVar()
         
@@ -28,6 +27,9 @@ class PF(Frame):
         # dimensionnement
         self.master.wm_attributes('-fullscreen', 'true')
         self.master.resizable(width=False, height=False)
+        
+    def setBase(self, base):
+        self.base=base
         
         """
         w, h = self.master.winfo_screenwidth(), self.master.winfo_screenheight()
@@ -62,7 +64,7 @@ class Frame1(Frame):
         self.num_display = 0
         
         # enfants
-        self.list_display = [None] * 60
+        self.list_display = [None] * 61
 
         # MENU
         # ARTICLES
@@ -100,6 +102,8 @@ class Frame1(Frame):
         Label(self, **kw_50).pack(side='left')
         me = Menu(mb, **kw_3)
         me.add_command(label="Changer d'exercice", underline=0, command=self.command16, **kw_2)
+        me.add_separator()
+        me.add_command(label="Mode d'emploi", underline=0, command=self.command60, **kw_2)
         if module_activate:
             me.add_checkbutton(label="Afficher G", variable=self.g, command=self.command48, selectcolor=kw_54['col_spec'], **kw_2)
         mb.configure(menu=me)
@@ -169,8 +173,9 @@ class Frame1(Frame):
         # EXIT
         b1 = Button(self, text="X ", command=self.command40, **kw_51)
         b1.pack(padx=5, side=RIGHT)
-        b2 = Button(self, text=" —", command=self.command41, **kw_51)
-        b2.pack(padx=5, side=RIGHT)
+        
+        # b2 = Button(self, text=" —", command=self.command41, **kw_51)
+        # b2.pack(padx=5, side=RIGHT)
 
         # EXERCICE et # DATABASE
         # cadre englobant
@@ -496,6 +501,11 @@ class Frame1(Frame):
         self.list_display[self.num_display].hide()
         self.num_display = 59
         self.list_display[59].display()
+        
+    def command60(self):
+        self.list_display[self.num_display].hide()
+        self.num_display = 60
+        self.list_display[60].display()
 
 
 class Frame2(Frame):
@@ -670,8 +680,37 @@ class Frame2(Frame):
         
         self.frame57 = Frame57(self)
         menu.add_display(57, self.frame57)
+        
+        self.frame60 = Frame60(self)
+        menu.add_display(60, self.frame60)
 
+class Frame60(Frame):
+    def __init__(self, boss=None):
+        Frame.__init__(self, boss)
+        self.configure(**kw_fx)
+        self.comment = StringVar()
+       
+        
+        # structure
+        Label(self, text="mode d'emploi".upper(), **kw_42).pack(**pad_42)
+        cadre1 = Frame(self, **kw_c1)
+        cadre1.pack(**pad_c1)
+        cadre2 = Frame(self, **kw_c2)
+        cadre2.pack(**pad_c2)
+        Label(self, textvariable=self.comment, **kw_14).pack(**pad_14)
+        
+    def display(self, arg=''):
+        self.arg=arg
+        self.master.master.base.fermer()
+        self.master.master.base.ouvrir()
 
+        self.master.master.base.display_60()
+
+        self.pack(**pad_fx)
+
+    def hide(self):
+        self.pack_forget()
+        
 class Frame42(Frame):
 
     def __init__(self, boss=None):
@@ -1064,12 +1103,11 @@ class Frame0(Frame):
         cadre7 = Frame(cadrex, **kw_c7)
         cadre7.pack(**pad_c7)
         
-        self.photo = PhotoImage(file = IMG_ICO)
+        self.photo = PhotoImage(file = IMG_LOGO)
 
         #Label(cadre7, text='GESX', **kw_13).pack(side=LEFT)
-        lab =  Label(cadre7, image=self.photo)
-        lab.pack(side=LEFT)
-
+        Label(cadre7, image=self.photo, **kw_13).pack(side=LEFT)
+      
     def display(self):
         self.comment.set('')
         self.pack(**pad_fx)

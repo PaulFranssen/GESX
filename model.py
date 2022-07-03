@@ -151,7 +151,7 @@ kw_40 = {'font': (police_1, taille_4), 'bg': color_32, 'fg': color_37}
 pad_40 = dict()
 
 # titre de la fenêtre
-kw_42 = {'font': (police_1, taille_5, 'italic'), 'bg': color_32, 'fg': color_37}
+kw_42 = {'font': (police_1, taille_5, 'italic'), 'bg': color_32, 'fg': color_6}
 pad_42 = dict()
 
 # button (enregistrer, ...
